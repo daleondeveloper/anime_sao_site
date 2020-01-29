@@ -1,4 +1,4 @@
-
+"use strict"
 $(function doAjaxPost() {
     $('#registration').click(function (e) {
 // get the form values
@@ -16,7 +16,7 @@ $(function doAjaxPost() {
         $('input').next('span').remove();
 
         $.ajax({
-            url: '/api/v1/auth/registration',
+            url: '/api/v1/auth',
             data: $('#registerEmployeeForm').serialize(),
             dataType : "json",
             type : "POST",

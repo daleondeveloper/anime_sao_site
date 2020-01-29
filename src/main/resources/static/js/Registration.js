@@ -1,5 +1,5 @@
 "use strict";
-$(function() {
+$(function doReg() {
     /*  Submit form using Ajax */
     $('#registration').click(function(e) {
 
@@ -12,11 +12,11 @@ $(function() {
         $.ajax({
             asyc : true,
             type : "POST",
-            url : '/api/v1/auth/login',
+            url : '/api/v1/auth/registration',
             data : $('#registerEmployeeForm').serialize(),
             dataType : "json",
             timeout : 1000000,
-            complete : [ function(data,textStatus) {
+            success : [ function(data,textStatus) {
 
                 // if(res.validated){
                 //Set response
@@ -32,5 +32,7 @@ $(function() {
 
             }]
         })
+
     });
+
 });
