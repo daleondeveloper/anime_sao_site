@@ -16,21 +16,14 @@ $(function doReg() {
             data : $('#registerEmployeeForm').serialize(),
             dataType : "json",
             timeout : 1000000,
-            success : [ function(data,textStatus) {
-
-                // if(res.validated){
-                //Set response
-                // $('#resultContainer pre code').text(JSON.stringify(res.employee));
-                // $('#resultContainer').show();
-                alert("Registration Successful");
-                // }else{
-                //     //Set error messages
-                //     $.each(res.errorMessages,function(key,value){
-                //         $('input[name='+key+']').after('<span class="error">'+value+'</span>');
-                //     });
-
-
-            }]
+            success :  function(res) {
+                $('#registerEmployeeForm').html('<h3>Регістрація успішна</h3><br>' +
+                    '<h4>Акаунт ' + res.email + ' зареєстровано.</h4>');
+                     alert("Registration Successful" + res.email + " oo");
+            },
+            error: function (res) {
+                $('#resultContainer').html('Ошибка. Данные не отправлены.');
+            }
         })
 
     });
