@@ -1,0 +1,7 @@
+.header{
+    height: 250px;
+
+    background: url("../image/header_picture.png") no-repeat center;
+    background-size: cover;
+
+}

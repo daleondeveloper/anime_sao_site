@@ -1,0 +1,22 @@
+.main{
+
+
+    
+    background-color: aliceblue;
+
+/*    background: url("main_fon_1.jpg") no-repeat center;*/
+    background-size: cover;
+
+}
+
+.card-img-weidth-main{
+    height: auto;
+    width: 10rem;
+}
+.tooltip-img{
+    height: 13rem;
+    margin: 1rem;
+}
+.tooltip-text{
+
+}
