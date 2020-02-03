@@ -69,9 +69,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User register(User user) {
         if(user.getEmail() != null && user.getPassword() != null) {
-            UserRole role = roleRepository.findByName("ROLE_USER");
+            UserRole role_user = roleRepository.findByName("ROLE_USER");
+            UserRole role_admin = roleRepository.findByName("ROLE_ADMIN");
             List<UserRole> roles_list = new ArrayList<>();
-            roles_list.add(role);
+            roles_list.add(role_user);
+            roles_list.add(role_admin);
+          //  roles_list.add(new UserRole("ROLE_ADMIN"));
 
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setRoles(roles_list);

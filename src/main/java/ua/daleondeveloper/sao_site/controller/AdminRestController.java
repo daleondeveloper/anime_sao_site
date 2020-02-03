@@ -26,6 +26,7 @@ public class AdminRestController {
 
     @GetMapping(value = "users/{id}")
     public ResponseEntity<AdminUserDto> getUserById(@PathVariable(name = "id") Long id) {
+        System.out.println("id = [" + id + "]");
         Optional<User> user = userService.findById(id);
 
         if (!user.isPresent()) {

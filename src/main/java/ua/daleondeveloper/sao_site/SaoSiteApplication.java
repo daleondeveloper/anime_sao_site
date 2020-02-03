@@ -45,7 +45,7 @@ public class SaoSiteApplication {
 
                 List<UserRole> roles = new ArrayList<>();
 
-                roles.add(role_admin);
+                //roles.add(role_admin);
                 roles.add(role_user);
                 userServiceImpl.addUser(new User("mail@ukr.net","$2a$10$h.KfO2J.6BIvPTK33kiBGO23hnJ5Wa9eOFg93S4BcapEm737IJNQ6",roles));
                 roles.clear();
@@ -53,7 +53,7 @@ public class SaoSiteApplication {
                 userServiceImpl.addUser(new User("daleon@ukr.net","$2a$10$71fCELBjrWZYzeNZVCPcD.FNCWb77rf..W4kHQ.wGeMzrp4Ax3noq",roles));
                 userServiceImpl.addUser(new User("third@ukr.net","3333"));
 
-                userServiceImpl.register(new User("mai11@ukr.net","1111"));
+//                userServiceImpl.register(new User("mai11@ukr.net","1111"));
 
 //                Group group = new Group("Test");
 //                Contact contact;

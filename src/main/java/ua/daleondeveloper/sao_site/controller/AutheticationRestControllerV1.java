@@ -10,15 +10,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import ua.daleondeveloper.sao_site.domain.User;
+import ua.daleondeveloper.sao_site.domain.UserRole;
 import ua.daleondeveloper.sao_site.dto.AuthenticationRequestDto;
 import ua.daleondeveloper.sao_site.dto.UserDto;
 import ua.daleondeveloper.sao_site.security.jwt.JwtTokenProvider;
 import ua.daleondeveloper.sao_site.service.UserService;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/api/v1/auth/")
@@ -38,7 +37,7 @@ public class AutheticationRestControllerV1 {
     }
 
     @PostMapping("login")
-    public ResponseEntity login (@RequestBody AuthenticationRequestDto requestDto){
+    public ResponseEntity login ( AuthenticationRequestDto requestDto){
 
         try{
             String email = requestDto.getEmail();
@@ -71,12 +70,14 @@ public class AutheticationRestControllerV1 {
             if(userOp.isPresent()){
                 throw new BadCredentialsException("Email is register");
             }
-            if(userRequestDto.getNickName() == null  ){
+            if(userRequestDto.getNickName() == null || userRequestDto.getNickName().isEmpty() ){
                 userRequestDto.setNickName("NewUser");
             }
 
             userRequestDto.setLastUpdateDate(LocalDate.now());
-            User userResponse =  userService.register(userRequestDto.toUser());
+
+            User userResponse = userRequestDto.toUser();
+            userResponse =  userService.register(userResponse);
 
             return ResponseEntity.ok(UserDto.fromUser(userResponse)) ;
         }
