@@ -14,8 +14,10 @@ import ua.daleondeveloper.sao_site.domain.User;
 import ua.daleondeveloper.sao_site.domain.UserRole;
 import ua.daleondeveloper.sao_site.exception.FileStorageException;
 import ua.daleondeveloper.sao_site.exception.MyFileNotFoundException;
+import ua.daleondeveloper.sao_site.security.jwt.JwtTokenProvider;
 import ua.daleondeveloper.sao_site.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +31,14 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private UserRoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserRoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserServiceImpl(JwtTokenProvider jwtTokenProvider, UserRepository userRepository, UserRoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @Transactional
@@ -85,6 +89,8 @@ public class UserServiceImpl implements UserService {
             return null;
         }
     }
+
+    public Optional<User> findByToken(HttpServletRequest request){return userRepository.findByEmail(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(request)));}
 
     @Override
     public Optional<User> findById(Long id) {

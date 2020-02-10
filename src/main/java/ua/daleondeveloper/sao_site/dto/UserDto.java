@@ -31,6 +31,7 @@ public class UserDto {
         user.setAccess(acess);
         user.setImage_main(avatar);
         user.setLastUpdateDate(lastUpdateDate);
+
         return user;
     }
 

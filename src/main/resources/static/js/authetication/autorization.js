@@ -21,11 +21,16 @@ $(function(){
                     '<h4>Акаунт ' + res.email + ' зареєстровано.</h4>' + res.token);
                 localStorage.setItem('token',res.token);
                 alert("Registration Successful" + res.email + " oo");
+                html.reload();
             },
-            error: function (res) {
+            error: function () {
                 $('#resultContainer').html('Ошибка. Данные не отправлены.');
             }
         })
 
     });
-})
+    $('#logout').click(function (){
+        localStorage.setItem('token','');
+    })
+});
+
