@@ -26,5 +26,23 @@ $(function doReg() {
         })
 
     });
+    $('#registration_div').ready( function (){
+        //Prevent default submission of form
+        $.ajax({
+            beforeSend: function(request) {
+                request.setRequestHeader('Authorization',('Bearer_' + localStorage.getItem('token')));
+            },
+            asyc : true,
+            type : "GET",
+            url : '/api/v1/user/getUserInfo',
+            timeout : 1000000,
+            success :  function(res) {
+                $('#registerEmployeeForm').html('<h3>Ви авторизовані</h3>');
+
+            }
+        })
+
+
+    });
 
 });
