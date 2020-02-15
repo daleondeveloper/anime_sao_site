@@ -1,4 +1,4 @@
-package ua.daleondeveloper.sao_site.controller;
+package ua.daleondeveloper.sao_site.controller.RestController;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,38 +15,40 @@ import ua.daleondeveloper.sao_site.domain.User;
 import ua.daleondeveloper.sao_site.dto.UploadFileResponse;
 import ua.daleondeveloper.sao_site.dto.UserDto;
 import ua.daleondeveloper.sao_site.exception.MyFileNotFoundException;
+import ua.daleondeveloper.sao_site.security.jwt.JwtAuthenticationException;
 import ua.daleondeveloper.sao_site.security.jwt.JwtTokenDecode;
 import ua.daleondeveloper.sao_site.security.jwt.JwtTokenProvider;
 import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/api/v1/user/")
-public class UserController {
+public class UserRestController {
 
 
     private UserServiceImpl userServiceImpl;
     private DBFileStorageService dbFileStorageService;
     private JwtTokenProvider jwtTokenProvider;
 
-    @Autowired
-    public UserController(UserServiceImpl userServiceImpl, DBFileStorageService dbFileStorageService, JwtTokenProvider jwtTokenProvider) {
-        this.userServiceImpl = userServiceImpl;
-        this.dbFileStorageService = dbFileStorageService;
-        this.jwtTokenProvider = jwtTokenProvider;
-    }
 
     @GetMapping(value = "getUserInfo")
     public ResponseEntity getUserInfo(HttpServletRequest httpServletRequest){
-        Optional<User> tokenUser = userServiceImpl.findByToken(httpServletRequest);
-        if(tokenUser.isPresent()){
-            return ResponseEntity.ok(UserDto.fromUser(tokenUser.get()));
-        }else{
+        try {
+            Optional<User> tokenUser = userServiceImpl.findByToken(httpServletRequest);
+            if(tokenUser.isPresent()) {
+                return ResponseEntity.ok(UserDto.fromUser(tokenUser.get()));
+            }else{
+                throw new JwtAuthenticationException("Not found user");
+            }
+        }catch (JwtAuthenticationException e){
             return ResponseEntity.badRequest().body("User not found");
+
         }
 
     }

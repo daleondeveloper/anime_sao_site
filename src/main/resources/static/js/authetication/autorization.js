@@ -20,8 +20,7 @@ $(function(){
                 $('#registerEmployeeForm').html('<h3>Регістрація успішна</h3><br>' +
                     '<h4>Акаунт ' + res.email + ' зареєстровано.</h4>' + res.token);
                 localStorage.setItem('token',res.token);
-                alert("Registration Successful" + res.email + " oo");
-                html.reload();
+                window.location.href = '/';
             },
             error: function () {
                 $('#resultContainer').html('Ошибка. Данные не отправлены.');
@@ -31,6 +30,7 @@ $(function(){
     });
     $('#logout').click(function (){
         localStorage.setItem('token','');
+        window.location.reload();
     })
 });
 

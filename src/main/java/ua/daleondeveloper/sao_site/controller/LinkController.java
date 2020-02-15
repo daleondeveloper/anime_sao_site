@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/jsp/")
-public class RegisterHtmlController {
+@RequestMapping("/")
+public class LinkController {
 
-    @RequestMapping(value = "Reg", method = RequestMethod.GET)
-    public String mymethod(Locale locale, Model model){
-        System.out.println("WHAT");
+    @RequestMapping(value = "Registration", method = RequestMethod.GET)
+    public String registrationLink(Locale locale, Model model){
         return "Registration";
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String mainLink(Locale locale, Model model){
+        return "index";
     }
 }

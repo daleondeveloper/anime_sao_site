@@ -51,6 +51,14 @@ public class User extends BaseEntity implements Serializable {
         this.roles = roles;
     }
 
+    public User(String email, String password, String nickname, List<UserRole> roles, LocalDate lastUpdateDate) {
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
+        this.roles = roles;
+        this.lastUpdateDate = lastUpdateDate;
+    }
+
     public User(String mail, String password){
         this.setEmail(mail);
         this.setPassword(password);

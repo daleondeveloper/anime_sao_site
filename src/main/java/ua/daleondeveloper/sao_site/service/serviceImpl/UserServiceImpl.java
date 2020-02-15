@@ -14,6 +14,7 @@ import ua.daleondeveloper.sao_site.domain.User;
 import ua.daleondeveloper.sao_site.domain.UserRole;
 import ua.daleondeveloper.sao_site.exception.FileStorageException;
 import ua.daleondeveloper.sao_site.exception.MyFileNotFoundException;
+import ua.daleondeveloper.sao_site.security.jwt.JwtAuthenticationException;
 import ua.daleondeveloper.sao_site.security.jwt.JwtTokenProvider;
 import ua.daleondeveloper.sao_site.service.UserService;
 
@@ -74,11 +75,8 @@ public class UserServiceImpl implements UserService {
     public User register(User user) {
         if(user.getEmail() != null && user.getPassword() != null) {
             UserRole role_user = roleRepository.findByName("ROLE_USER");
-            UserRole role_admin = roleRepository.findByName("ROLE_ADMIN");
             List<UserRole> roles_list = new ArrayList<>();
             roles_list.add(role_user);
-            roles_list.add(role_admin);
-          //  roles_list.add(new UserRole("ROLE_ADMIN"));
 
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setRoles(roles_list);
@@ -90,7 +88,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public Optional<User> findByToken(HttpServletRequest request){return userRepository.findByEmail(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(request)));}
+    public Optional<User> findByToken(HttpServletRequest request) throws JwtAuthenticationException {return userRepository.findByEmail(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(request)));}
 
     @Override
     public Optional<User> findById(Long id) {

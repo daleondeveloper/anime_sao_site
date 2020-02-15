@@ -72,13 +72,14 @@
 <main class="main" style="background: 8b4545">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-4 col-lg-3 order-md-1" id="autorization_div">
+            <div class="col-12 col-md-4 col-lg-3 order-md-1" >
+                <div id="autorization_div">
                 <card class="card border border-primary" style=" padding: 1rem; margin: 0.4rem;">
                 <form id="autorization_form" action="" method="post">
                       <div class="form-group row">
                           <label for="inputEmail3" class="col-sm-12 col-form-label"><h4>Авторизація</h4></label>
                         <div class="col-sm-12">
-                          <input type="email" class="form-control" name="email" id="inputEmail3" placeholder="Email">
+                          <input type="email" class="form-control" name="email" value="" id="inputEmail3" placeholder="Email">
                         </div>
                       </div>
                       <div class="form-group row">
@@ -91,10 +92,10 @@
                           <button id="autorization_button" class="btn btn-outline-primary btn-block">Вхід</button>
                         </div>
                         <div class="col-sm-6">
-                            <a href="/jsp/Reg" class="btn btn-outline-primary btn-block">Регістрація</a>
+                            <a href="/Registration" class="btn btn-outline-primary btn-block">Регістрація</a>
                         </div>
                       </div>
-                    </form>
+                </form>
                     <div class="row" id="mini_user_info_menu" hidden="true">
                         <div class="col-4">
                             <img src="/image/icon.jpg" Width="50" Height="50">
@@ -112,6 +113,8 @@
                         </div>
                     </div>
                 </card>
+                </div>
+                <div id="last_update_post">
                 <card class="card border border-primary" style=" padding: 1rem; margin: 0.4rem;">
                     <div class="card-header">
                         <h4>Остані оновлення:</h4>
@@ -190,10 +193,11 @@
                                 <h6>Мастера меча онлайн (спецвыпуск 1) / Sword Art Online: Extra Edition</h6>
                             </a>
                             </div>
-                            
+
                         </div><!--                        row-->
                     </div><!--                    card-body-->
                 </card>
+                </div>
             </div><!--            col-3-->
             <div class="col-12 col-md-8 col-lg-6 order-md-2 ">
                 <div class="card border border-primary" style="margin: 0.4rem;">
@@ -281,7 +285,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="../js/authetication/Registration.js" ></script>
 <script src="../js/authetication/autorization.js" ></script>
-<script async src="../js/html_reg_fom_authorization_user.js" ></script>
+<script async src="../js/autorization_form/html_reg_fom_authorization_user.js" ></script>
+<!--<script async src="../js/autorization_form/authorization_form_auto_fill.js" ></script>-->
     <script>
     $(function () {
         // инициализация всплывающих подсказок

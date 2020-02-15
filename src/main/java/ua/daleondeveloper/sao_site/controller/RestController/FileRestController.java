@@ -1,4 +1,4 @@
-package ua.daleondeveloper.sao_site.controller;
+package ua.daleondeveloper.sao_site.controller.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/v1/file/")
-public class FileController {
+public class FileRestController {
 
     @Autowired
     private DBFileStorageService dbFileStorageService;

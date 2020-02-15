@@ -1,4 +1,4 @@
-package ua.daleondeveloper.sao_site.controller;
+package ua.daleondeveloper.sao_site.controller.RestController;
 
 import ua.daleondeveloper.sao_site.domain.User;
 import ua.daleondeveloper.sao_site.dto.AdminUserDto;

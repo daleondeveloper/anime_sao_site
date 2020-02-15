@@ -19,7 +19,6 @@ $(function doReg() {
             success :  function(res) {
                 $('#registerEmployeeForm').html('<h3>Регістрація успішна</h3><br>' +
                     '<h4>Акаунт ' + res.email + ' зареєстровано.</h4>');
-                     alert("Registration Successful" + res.email + " oo");
             },
             error: function (res) {
                 $('#resultContainer').html('Ошибка. Данные не отправлены.');

@@ -1,4 +1,4 @@
-package ua.daleondeveloper.sao_site.controller;
+package ua.daleondeveloper.sao_site.controller.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -66,7 +66,6 @@ public class AutheticationRestControllerV1 {
         if(userRequestDto.getEmail() != null && userRequestDto.getPassword() != null){
 
             Optional<User> userOp = userService.findByEmail(userRequestDto.getEmail());
-            System.out.println("In Method");
             if(userOp.isPresent()){
                 throw new BadCredentialsException("Email is register");
             }
