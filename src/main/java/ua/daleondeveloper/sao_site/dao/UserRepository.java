@@ -13,8 +13,8 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User,Long> {
 
     @Modifying
-    @Query("UPDATE User c SET c.image_main = :image WHERE c.id = :id")
-    void updateAvatar(@Param("id") Long id, @Param("image") byte[] image);
+    @Query("UPDATE User c SET c.imageId = :imageId WHERE c.id = :id")
+    void updateAvatar(@Param("id") Long userId, @Param("imageId") Long imageId);
 
     @Query("SELECT c FROM User c WHERE c.email = :email")
     Optional<User> findByEmail(@Param("email") String email);

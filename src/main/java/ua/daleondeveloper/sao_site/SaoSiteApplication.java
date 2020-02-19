@@ -46,6 +46,7 @@ public class SaoSiteApplication {
                 // Admin users
                 roles.add(role_admin);
                 roles.add(role_user);
+
                 userServiceImpl.addUser(new User("mail@ukr.net","$2a$10$htuylAmgsFeg0F1yVWk2e.Cr/0a3P5VgZjoT0qMsWuyEa4JJxUS1S","admin1",roles,LocalDate.now()));
                 userServiceImpl.addUser(new User("daleon@ukr.net","$2a$10$6m6jO4ztTxR/7CxhRl5KmO68wj9/oNT.XSQOiDmuN2OFQavzmeMhu","admin2",roles, LocalDate.now()));
                 roles.clear();

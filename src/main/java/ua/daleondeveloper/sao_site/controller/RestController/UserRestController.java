@@ -39,45 +39,41 @@ public class UserRestController {
 
     @GetMapping(value = "getUserInfo")
     public ResponseEntity getUserInfo(HttpServletRequest httpServletRequest){
-        try {
+
             Optional<User> tokenUser = userServiceImpl.findByToken(httpServletRequest);
             if(tokenUser.isPresent()) {
                 return ResponseEntity.ok(UserDto.fromUser(tokenUser.get()));
             }else{
                 throw new JwtAuthenticationException("Not found user");
             }
-        }catch (JwtAuthenticationException e){
-            return ResponseEntity.badRequest().body("User not found");
-
-        }
 
     }
-    @PostMapping("updateAvatar")
-    public UploadFileResponse uploadAvatar(@RequestParam("avatar")MultipartFile avatarReq,
-                                           HttpServletRequest httpServletRequest){
-                Optional<User> tokenUser = userServiceImpl.findByEmail(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(httpServletRequest)));
+//    @PostMapping("updateAvatar")
+//    public UploadFileResponse uploadAvatar(@RequestParam("avatar")MultipartFile avatarReq,
+//                                           HttpServletRequest httpServletRequest){
+//                Optional<User> tokenUser = userServiceImpl.findByEmail(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(httpServletRequest)));
+//
+//                    tokenUser.ifPresent(user -> userServiceImpl.updateAvatar(user.getId(), avatarReq));
+//
+//                return new UploadFileResponse(avatarReq.getName(), "",
+//                        avatarReq.getContentType(), avatarReq.getSize());
+//    }
 
-                    tokenUser.ifPresent(user -> userServiceImpl.updateAvatar(user.getId(), avatarReq));
-
-                return new UploadFileResponse(avatarReq.getName(), "",
-                        avatarReq.getContentType(), avatarReq.getSize());
-    }
-
-    @PostMapping("getAvatar")
-    public ResponseEntity<Resource> getAvatar(HttpServletRequest httpServletRequest) {
-
-        Optional<User> tokenUser = userServiceImpl.findByToken(httpServletRequest);
-
-        if (tokenUser.isPresent() && tokenUser.get().getImage_main() != null) {
-
-            return ResponseEntity.ok()
-                    .contentType(MediaType.parseMediaType("image/jpeg"))
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + "avatar" + "\"")
-                    .body(new ByteArrayResource(tokenUser.get().getImage_main()));
-
-        } else {
-            throw new MyFileNotFoundException("File not found with id ");
-        }
-    }
+//    @PostMapping("getAvatar")
+//    public ResponseEntity<Resource> getAvatar(HttpServletRequest httpServletRequest) {
+//
+//        Optional<User> tokenUser = userServiceImpl.findByToken(httpServletRequest);
+//
+////        if (tokenUser.isPresent() && tokenUser.get().getImage_main() != null) {
+////
+////            return ResponseEntity.ok()
+////                    .contentType(MediaType.parseMediaType("image/jpeg"))
+////                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + "avatar" + "\"")
+////                    .body(new ByteArrayResource(tokenUser.get().getImage_main()));
+////
+////        } else {
+////            throw new MyFileNotFoundException("File not found with id ");
+////        }
+//    }
 
 }

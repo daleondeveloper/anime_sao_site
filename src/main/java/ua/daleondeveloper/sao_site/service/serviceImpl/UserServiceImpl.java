@@ -46,29 +46,10 @@ public class UserServiceImpl implements UserService {
     public void addUser(User user){userRepository.save(user);}
 
     @Transactional
-    public void updateAvatar (Long id, MultipartFile file){
-        //Normalize file name
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-
-      //  if(file.getContentType().equals("jpg")) {
-            try {
-                //Check if the files name contains invalid characters
-                if (fileName.contains("src/test")) {
-                    throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
-                }
-                System.out.println(file.getContentType());
-                userRepository.updateAvatar(id,file.getBytes());
-
-
-            } catch (IOException e) {
-                throw new FileStorageException("Could not store file " + fileName + ". Please try again!", e);
-            }
-     //   }
-
+    public void updateAvatar (Long userId, Long imageId) {
+        userRepository.updateAvatar(userId,imageId);
     }
 
-    @Transactional
-    public Optional<User> findByEmail(String email){return userRepository.findByEmail(email);}
 
     @Override
     @Transactional
@@ -87,6 +68,9 @@ public class UserServiceImpl implements UserService {
             return null;
         }
     }
+
+    @Transactional
+    public Optional<User> findByEmail(String email){return userRepository.findByEmail(email);}
 
     public Optional<User> findByToken(HttpServletRequest request) throws JwtAuthenticationException {return userRepository.findByEmail(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(request)));}
 

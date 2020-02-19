@@ -15,7 +15,7 @@ public class UserDto {
     private String email;
     private String password;
     private String acess;
-    private byte[] avatar;
+    private Long imageId;
     private LocalDate lastUpdateDate;
 
     public User toUser(){
@@ -29,7 +29,7 @@ public class UserDto {
         user.setEmail(email);
         user.setPassword(password);
         user.setAccess(acess);
-        user.setImage_main(avatar);
+        user.setImageId(imageId);
         user.setLastUpdateDate(lastUpdateDate);
 
         return user;
@@ -42,7 +42,7 @@ public class UserDto {
         userDto.setEmail(user.getEmail());
         userDto.setPassword(user.getPassword());
         userDto.setAcess(user.getAccess());
-        userDto.setAvatar(user.getImage_main());
+        userDto.setImageId(user.getImageId());
         userDto.setLastUpdateDate(user.getLastUpdateDate());
         return userDto;
     }
@@ -55,12 +55,12 @@ public class UserDto {
         this.id = id;
     }
 
-    public byte[] getAvatar() {
-        return avatar;
+    public Long getImageId() {
+        return imageId;
     }
 
-    public void setAvatar(byte[] avatar) {
-        this.avatar = avatar;
+    public void setImageId(Long imageId) {
+        this.imageId = imageId;
     }
 
     public String getNickName() {
