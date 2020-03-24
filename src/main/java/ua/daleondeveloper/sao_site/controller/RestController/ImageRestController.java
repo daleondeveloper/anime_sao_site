@@ -7,18 +7,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import ua.daleondeveloper.sao_site.domain.DBFile;
 import ua.daleondeveloper.sao_site.domain.Image;
 import ua.daleondeveloper.sao_site.domain.User;
 import ua.daleondeveloper.sao_site.dto.ImageResponse;
-import ua.daleondeveloper.sao_site.dto.UploadFileResponse;
-import ua.daleondeveloper.sao_site.dto.UserDto;
 import ua.daleondeveloper.sao_site.security.jwt.JwtAuthenticationException;
 import ua.daleondeveloper.sao_site.service.serviceImpl.ImageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
 
-import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
@@ -38,7 +33,7 @@ public class ImageRestController {
         Optional<User> tokenUser = userService.findByToken(request);
         if(tokenUser.isPresent()) {
             User user = tokenUser.get();
-            if(user.getImageId() > 0 ){
+            if(user.getImageId() >= 0 ){
                 Image avatar = imageService.storeImage(file);
                 userService.updateAvatar(user.getId(),avatar.getId());
                 return ResponseEntity.ok(ImageResponse.fromUser(avatar));
@@ -48,10 +43,10 @@ public class ImageRestController {
             throw new JwtAuthenticationException("Not found user");
         }
 
-        return  null;
+        return (ResponseEntity) ResponseEntity.badRequest();
     }
 
-    @PostMapping("downloadAvatar")
+    @PostMapping("getAvatar")
     public ResponseEntity downloadUserAvatar(HttpServletRequest request){
         Optional<User> tokenUser = userService.findByToken(request);
         if(tokenUser.isPresent()){

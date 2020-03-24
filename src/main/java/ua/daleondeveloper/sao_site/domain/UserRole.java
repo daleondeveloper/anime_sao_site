@@ -24,6 +24,9 @@ public class UserRole implements Serializable {
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private List<User> users;
 
+    public UserRole() {
+    }
+
     public UserRole(String name) {
         this.name = name;
     }

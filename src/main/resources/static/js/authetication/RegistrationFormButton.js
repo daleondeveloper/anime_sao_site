@@ -36,7 +36,9 @@ $(function doReg() {
         }
 
     });
-    $('#registration_div').ready( function (){
+
+
+        $('#registration_div').ready( function (){
         //Prevent default submission of form
         $.ajax({
             beforeSend: function(request) {

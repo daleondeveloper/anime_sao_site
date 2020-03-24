@@ -94,7 +94,30 @@
 
                             </div>
                             <div class="col-4">
-                                <button id="logout" type="button" class="btn btn-outline-primary btn-sm">Вихід</button>
+                                <button id="settingUser" type="button" class="btn btn-outline-primary btn-sm">Настройки</button>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button id="logout" type="button" class="btn btn-outline-primary btn-sm">Вихід</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="mini_user_setting_menu" hidden="true" >
+                            <div class="row">
+                                <div class="col-auto ">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputNewAvatar" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="inputNewAvatar">ку</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button class="btn btn-outline-primary btn-block" id="uploadAvatarButton">Замінити аватар</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <button id="saveSettingButton" type="button" class="btn btn-outline-primary btn-sm">Зберегти</button>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -641,6 +664,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="../js/authetication/autorization.js" ></script>
+<script src="../js/button/UserButton.js" ></script>
 <script async src="../js/autorization_form/html_reg_fom_authorization_user.js" ></script>
 
     <script>

@@ -29,7 +29,8 @@ public class UserDto {
         user.setEmail(email);
         user.setPassword(password);
         user.setAccess(acess);
-        user.setImageId(imageId);
+        //user.setImageId(imageId);
+        user.setImageId(0);
         user.setLastUpdateDate(lastUpdateDate);
 
         return user;
