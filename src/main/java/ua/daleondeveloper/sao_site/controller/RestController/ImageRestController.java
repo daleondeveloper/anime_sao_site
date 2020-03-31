@@ -15,6 +15,7 @@ import ua.daleondeveloper.sao_site.service.serviceImpl.ImageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Base64;
 import java.util.Optional;
 
 @RestController
@@ -46,7 +47,7 @@ public class ImageRestController {
         return (ResponseEntity) ResponseEntity.badRequest();
     }
 
-    @PostMapping("getAvatar")
+    @GetMapping("getAvatar")
     public ResponseEntity downloadUserAvatar(HttpServletRequest request){
         Optional<User> tokenUser = userService.findByToken(request);
         if(tokenUser.isPresent()){
@@ -54,7 +55,7 @@ public class ImageRestController {
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType(avatar.getContentType()))
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + avatar.getFileName() + "\"")
-                    .body(new ByteArrayResource(avatar.getData()));
+                    .body(Base64.getEncoder().encodeToString(avatar.getData()));
         }else{
             throw new JwtAuthenticationException("Not found user");
         }
