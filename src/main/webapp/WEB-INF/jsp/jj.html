@@ -5,6 +5,27 @@
     <title>Title</title>
 </head>
 <body>
-Hello gogo
+<div>Hello gogo</div>
+
+<script>
+    var headerText = '<div> <h3> Голова </h3> </div>';
+
+    function setHeader() {
+        var header = document.createElement("div");
+        header.innerHTML = headerText;
+        document.body.insertAdjacentElement('afterbegin', header);
+    }
+    setHeader();
+    var headerText1 = '<div> <h3> Голова 2</h3> </div>';
+
+    function setHeader1() {
+        var header1 = document.createElement("div");
+        header1.innerHTML = headerText1;
+        document.body.insertAdjacentElement('afterbegin', header1);
+    }
+    setHeader1();
+</script>
 </body>
+<!--<script src="../js/testing.js" ></script>-->
+
 </html>

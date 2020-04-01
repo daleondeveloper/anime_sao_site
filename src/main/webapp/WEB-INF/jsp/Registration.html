@@ -10,211 +10,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-
-
-
     <!-- Header CSS -->
-
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/main.css">
     <title>Hello, world!</title>
 </head>
 <body>
-<!--<script type="text/javascript">-->
-
-    <!--reg_form_autorization();-->
-<!--</script>-->
-<header class="header">
-</header>
-<nav class="navbar  navbar-expand-lg navbar-dark bg-dark sticky-top">
-
-    <a href="#" class="navbar-brand">
-        <img src="../image/icon.jpg"
-             Width="50" Height="50"
-             alt="logo">
-        Sword Art Online
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toogle-navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a href="#" class="nav-link">Головна</a>
-            </li>
-            <li class="nav-item ">
-                <a href="#" class="nav-link">Ігри</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Аніме</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Манга</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Контакти</a>
-            </li>
-        </ul>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Пошук по сайту" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Пошук</button>
-        </form>
-    </div>
-
-
-</nav><!--    navbar-->
-
 <main class="main" style="background: 8b4545">
     <div class="container-fluid">
         <div class="row">
-<!--Left-->
-            <div class="col-12 col-md-4 col-lg-3 order-md-1" >
-                <div id="autorization_div">
-                <card class="card border border-primary" style=" padding: 1rem; margin: 0.4rem;">
-                <form id="autorization_form" action="" method="post" >
-                      <div class="form-group row">
-                          <label for="inputEmail3" class="col-sm-12 col-form-label"><h4>Авторизація</h4></label>
-                        <div class="col-sm-12">
-                          <input type="email" class="form-control" name="email" value="" id="inputEmail3" placeholder="Email">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="col-sm-12">
-                          <input type="password" class="form-control" name="password" id="inputPassword3" placeholder="Password">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="col-sm-6">
-                          <button id="autorization_button" class="btn btn-outline-primary btn-block">Вхід</button>
-                        </div>
-                        <div class="col-sm-6">
-                            <a href="/Registration" class="btn btn-outline-primary btn-block">Регістрація</a>
-                        </div>
-                      </div>
-                </form>
-                    <div class="row" id="mini_user_info_menu" hidden="true">
-                        <div class='preview col-4'>
-                            <img src="" id="avatarImg" width="100" height="100" alt="avatar">
-                        </div>
-                        <div class="col-4" id="autorization_div_nick_name">
-
-                        </div>
-                        <div class="col-4">
-                            <button id="settingUser" type="button" class="btn btn-outline-primary btn-sm">Настройки</button>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <button id="logout" type="button" class="btn btn-outline-primary btn-sm">Вихід</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" id="mini_user_setting_menu" hidden="true" >
-                        <form method="POST" enctype="multipart/form-data" id="uploadAvatar">
-                            <input type="text" name="extraField"/><br/><br/>
-                            <input type="file" name="file"/><br/><br/>
-                            <input type="submit" value="Submit" id="uploadAvatarButton"/>
-                        </form>
-                            </div>
-                        <div class="row">
-                            <div class="col-auto">
-                            <button id="saveSettingButton" type="button" class="btn btn-outline-primary btn-sm">Зберегти</button>
-                            </div>
-                        </div>
-                </card>
-                </div>
-                <div id="last_update_post">
-                <card class="card border border-primary" style=" padding: 1rem; margin: 0.4rem;">
-                    <div class="card-header">
-                        <h4>Остані оновлення:</h4>
-                    </div><!--                    card-header-->
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-12">
-                            <a  class="" href="#" data-toggle="tooltip" data-placement="right" data-html="true" data-title='<div class="row">
-                            <div class="col-12">
-                            <img class="tooltip-img" src="../image/season_1/SAO_Alicization_MP1.jpg" alt="Card image cap">
-                            <p>Год выхода: 2018<br>
-                            Жанр: приключения, фэнтези<br>
-                            Тип: ТВ<br>
-                            Количество серий: 48 (25 мин.)<br>
-                            Режиссёр: Ито Томохико</p>
-                            </div>
-                            </div>
- '>
-                                <h6>Мастера меча онлайн (третий сезон) / Sword Art Online 3rd Season [1-24 из 48] [25 серия - как отдохну]</h6>
-                            </a>
-                            </div>
-                            <div class="col-12">
-                            <a  class="" href="#" data-toggle="tooltip" data-placement="right" data-html="true" data-title='<div class="row">
-                            <div class="col-12">
-                            <img class="tooltip-img" src="../image/season_1/SAO_GGO_MP1.jpg" alt="Card image cap">
-                            <p class="collapse-group"><strong>Год выхода:</strong> 2012<br>
-
-                                <strong>Жанр:</strong> приключения, фэнтези, романтика, драма<br>
-
-                                <strong>Тип:</strong> ТВ<br>
-
-                                <strong>Количество серий:</strong> 12 (25 мин.)<br>
-
-                                <strong>Режиссёр:</strong> Ито Томохико<br>
-                            </div>
-                            </div>
- '>
-                                <h6>Мастера Меча Онлайн: Альтернативная "Призрачная пуля" / Sword Art Online Alternative: Gun Gale Online</h6>
-                            </a>
-                            </div>
-                            <div class="col-12">
-                            <a  class="" href="#" data-toggle="tooltip" data-placement="right" data-html="true" data-title='<div class="row">
-                            <div class="col-12">
-                            <img class="tooltip-img" src="../image/season_1/SAO_OrdinalScale_MP1.jpg" alt="Card image cap">
-                            <p class="collapse-group"><strong>Год выхода:</strong> 2017<br>
-
-                                <strong>Жанр:</strong> приключения, фэнтези, романтика, драма<br>
-
-                                <strong>Тип:</strong> ТВ<br>
-
-                                <strong>Количество серий:</strong>  1 (120 мин.))<br>
-
-                                <strong>Режиссёр:</strong> Ито Томохико<br>>
-                            </div>
-                            </div>
- '>
-                                <h6>Мастера меча онлайн (фильм) / Gekijouban Sword Art Online: Ordinal Scale</h6>
-                            </a>
-                            </div>
-                            <div class="col-12">
-                            <a  class="" href="#" data-toggle="tooltip" data-placement="right" data-html="true" data-title='<div class="row">
-                            <div class="col-12">
-                            <img class="tooltip-img" src="../image/season_1/SAO_S1_Special_MP1.jpg" alt="Card image cap">
-                            <p class="collapse-group"><strong>Год выхода:</strong> 2013<br>
-
-                                <strong>Жанр:</strong> приключения, фэнтези<br>
-
-                                <strong>Тип:</strong> ТВ<br>
-
-                                <strong>Количество серий:</strong> 1 (100 мин.)<br>
-
-                                <strong>Режиссёр:</strong> Ито Томохико<br>
-                            </div>
-                            </div>
- '>
-                                <h6>Мастера меча онлайн (спецвыпуск 1) / Sword Art Online: Extra Edition</h6>
-                            </a>
-                            </div>
-
-                        </div><!--                        row-->
-                    </div><!--                    card-body-->
-                </card>
-                </div>
-            </div><!--            col-3-->
  <!--Center-->
-            <div class="col-12 col-md-8 col-lg-6 order-md-2 ">
+            <div class="col-12 col-md-8 col-lg-6 order-md-2 " id="centerMenu">
                 <div class="card border border-primary" id="registration_div" style="margin: 0.4rem;">
                     <div class="card-header">
                         <h4>
@@ -261,57 +70,39 @@
                 </div><!--                card-->
 
             </div><!--            col-6-->
-<!--Rigth-->
-            <div class="col-12 col-md-4 col-lg-3 order-md-3 ">
-                <card class="card border border-primary" style=" padding: 1rem; margin: 0.4rem;">
-                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                      <div class="carousel-inner">
-                        <div class="carousel-item">
-                          <img class="d-block w-100 img-fluid" src="../image/herous_caroules/kirito.jpeg" alt="Kirito">
-                        </div>
-                        <div class="carousel-item active">
-                          <img class="d-block w-100 img-fluid" src="../image/herous_caroules/asuna.jpg" alt="Asuna">
-                        </div>
-                        <div class="carousel-item">
-                          <img class="d-block w-100 img-fluid" src="../image/herous_caroules/kayaba.png" alt="Kayaba">
-                        </div>
-                        <div class="carousel-item">
-                          <img class="d-block w-100 img-fluid" src="../image/herous_caroules/klein.jpg" alt="Klein">
-                        </div>
-                        <div class="carousel-item">
-                          <img class="d-block w-100 img-fluid" src="../image/herous_caroules/silica.jpg" alt="Silica">
-                        </div>
-                        <div class="carousel-item">
-                          <img class="d-block w-100 img-fluid" src="../image/herous_caroules/casemiro.jpg" alt="Casemiro">
-                        </div>
-                        <div class="carousel-item">
-                          <img class="d-block w-100 img-fluid" src="../image/herous_caroules/eugeo.jpg" alt="Eugeo">
-                        </div>
-                      </div>
-                    </div>
-                </card>
-            </div><!--            col-3-->
         </div><!--        row-->
     </div><!--    container-fluid-->
 </main>
 
-
-
-
 <!-- Optional JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.4.1.js" ></script>
+<!--AutoFillHTML-->
+<script src="../js/autofillHTMLpages/rigthMenuAutoFill.js" ></script>
+<script src="../js/autofillHTMLpages/leftMenuAutoFill.js" ></script>
+<script src="../js/autofillHTMLpages/headerAutoFill.js" ></script>
+<script src="../js/autofillHTMLpages/footerAutoFill.js" ></script>
+<!---->
+<!--GlobalJS-->
+<script src="https://code.jquery.com/jquery-3.4.1.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!---->
+<!--LocalJS-->
 <script src="../js/authetication/RegistrationFormButton.js" ></script>
 <script src="../js/authetication/autorization.js" ></script>
 <script src="../js/button/UserButton.js" ></script>
 <script async src="../js/autorization_form/html_reg_fom_authorization_user.js" ></script>
+<!---->
+<!--Bootstrap-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!---->
+
 <!--<script async src="../js/autorization_form/authorization_form_auto_fill.js" ></script>-->
     <script>
     $(function () {
         // инициализация всплывающих подсказок
         $('[data-toggle="tooltip"]').tooltip();
     });
+
+    // rigthMenuAutoFill();
 </script>
 
 </body>
