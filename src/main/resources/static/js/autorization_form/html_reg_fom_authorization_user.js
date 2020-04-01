@@ -1,6 +1,7 @@
 "use strict";
 $('#autorization_div').ready( function reg_form_autorization(){
         //Prevent default submission of form
+        if(localStorage.getItem('token') != null)
         $.ajax({
             beforeSend: function(request) {
                 request.setRequestHeader('Authorization',('Bearer_' + localStorage.getItem('token')));

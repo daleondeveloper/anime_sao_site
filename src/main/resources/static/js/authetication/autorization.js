@@ -29,7 +29,8 @@ $(function(){
 
     });
     $('#logout').click(function (){
-        localStorage.setItem('token','');
+        // localStorage.setItem('token','');
+        localStorage.removeItem('token');
         window.location.reload();
     })
 });
