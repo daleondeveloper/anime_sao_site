@@ -15,7 +15,7 @@ $('#autorization_div').ready( function reg_form_autorization(){
                 $('#autorization_form').attr('hidden',true);
                 if($('#mini_user_setting_menu').attr('hidden')) {
                     $('#mini_user_info_menu').attr('hidden', false);
-                    $('#autorization_div_nick_name').html('<h5> ' + res.nickName + ' </h5>');
+                    $('#user_nick_name_txt_left_menu').html( res.nickName );
                     ajaxGetAvatar();
                 }else{
                     $('#mini_user_setting_menu').attr('hidden',false);
@@ -48,7 +48,6 @@ function ajaxGetAvatar(){
         success:function(data) {
 
             $('#avatarImg').attr('src', 'data:image/jpeg;base64,'+ data);
-            alert("fuckin");
         },
         error: function(err){
 

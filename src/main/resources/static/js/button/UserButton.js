@@ -49,10 +49,11 @@ $('#uploadAvatarButton').click(function (e) {
         contentType: false,
         // timeout: 1000000,
         success: function () {
-            $('#registerEmployeeForm').html('<h3>Регістрація успішна</h3>');
+            $('#upload_avatar_txt').attr('class','text-primary text-left text-wrap text-break font-italic');
+            $('#upload_avatar_txt').html('Аватар змінено');
         },
         error: function () {
-            $('#registration_error_div').html('<h4>Ведені неправильні дані або користувач з таким email уже існує</h4>');
-        }
+            $('#upload_avatar_txt').attr('class','text-primary text-left text-wrap text-break font-italic');
+            $('#upload_avatar_txt').html('Помилка завантаження, попробуйте пізніше');        }
     })
 });

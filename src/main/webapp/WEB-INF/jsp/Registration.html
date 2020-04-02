@@ -9,8 +9,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
     <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!-- Header CSS -->
@@ -19,54 +20,55 @@
     <title>Hello, world!</title>
 </head>
 <body>
+
 <main class="main" style="background: 8b4545">
     <div class="container-fluid">
         <div class="row">
- <!--Center-->
+            <!--Center-->
             <div class="col-12 col-md-8 col-lg-6 order-md-2 " id="centerMenu">
                 <div class="card border border-primary" id="registration_div" style="margin: 0.4rem;">
                     <div class="card-header">
                         <h4>
-                           Регістрація
+                            Регістрація
                         </h4>
                     </div><!--                    card-header-->
-                  <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-12">
-                            <form   id="registerEmployeeForm" action="" method="post">
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <input type="email" class="form-control" id="registration_email" name="email" placeholder="Ведіть Email">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form   id="registerEmployeeForm" action="" method="post">
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input type="email" class="form-control" id="registration_email" name="email" placeholder="Ведіть Email">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="registration_nickName" name="nickname" placeholder="Ведіть нікнейм">
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="registration_nickName" name="nickname" placeholder="Ведіть нікнейм">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <input type="password" class="form-control" id="registration_password" name="password" placeholder="Ведіть пароль">
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input type="password" class="form-control" id="registration_password" name="password" placeholder="Ведіть пароль">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <input type="password" class="form-control" id="registration_password_repeat" placeholder="Ведіть пароль повторно">
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <input type="password" class="form-control" id="registration_password_repeat" placeholder="Ведіть пароль повторно">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <button  id="registration" onclick="doReg()" class="btn btn-outline-primary btn-block">Регістрація</button>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <button  id="registration" onclick="doReg()" class="btn btn-outline-primary btn-block">Регістрація</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
-                            <div class="row" id = "registration_error_div">
+                                </form>
+                                <div class="row" id = "registration_error_div">
 
-                            </div>
-                        </div><!--                          col-12 -card-body -->
-                    </div><!--                      row - card-body -->
-                      
-                  </div><!--                    card-body-->
+                                </div>
+                            </div><!--                          col-12 -card-body -->
+                        </div><!--                      row - card-body -->
+
+                    </div><!--                    card-body-->
                 </div><!--                card-->
 
             </div><!--            col-6-->
@@ -96,7 +98,7 @@
 <!---->
 
 <!--<script async src="../js/autorization_form/authorization_form_auto_fill.js" ></script>-->
-    <script>
+<script>
     $(function () {
         // инициализация всплывающих подсказок
         $('[data-toggle="tooltip"]').tooltip();
