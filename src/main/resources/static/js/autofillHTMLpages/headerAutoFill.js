@@ -1,7 +1,7 @@
 "use strict";
 // function rigthMenuAutoFill() {
 var headerMenuHtml = "<header class=\"header\">\n" +
-    "</header>" +
+    "</header>\n" +
     "<nav class=\"navbar  navbar-expand-lg navbar-dark bg-dark sticky-top\">\n" +
     "\n" +
     "    <a href=\"#\" class=\"navbar-brand\">\n" +
@@ -18,19 +18,19 @@ var headerMenuHtml = "<header class=\"header\">\n" +
     "    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n" +
     "        <ul class=\"navbar-nav mr-auto\">\n" +
     "            <li class=\"nav-item active\">\n" +
-    "                <a href=\"#\" class=\"nav-link\">Головна</a>\n" +
+    "                <a href=\"/\" class=\"nav-link\">Головна</a>\n" +
     "            </li>\n" +
     "            <li class=\"nav-item \">\n" +
-    "                <a href=\"#\" class=\"nav-link\">Ігри</a>\n" +
+    "                <a href=\"/game\" class=\"nav-link\">Ігри</a>\n" +
     "            </li>\n" +
     "            <li class=\"nav-item\">\n" +
-    "                <a href=\"#\" class=\"nav-link\">Аніме</a>\n" +
+    "                <a href=\"/anime\" class=\"nav-link\">Аніме</a>\n" +
     "            </li>\n" +
     "            <li class=\"nav-item\">\n" +
-    "                <a href=\"#\" class=\"nav-link\">Манга</a>\n" +
+    "                <a href=\"/manga\" class=\"nav-link\">Манга</a>\n" +
     "            </li>\n" +
     "            <li class=\"nav-item\">\n" +
-    "                <a href=\"#\" class=\"nav-link\">Контакти</a>\n" +
+    "                <a href=\"/contacts\" class=\"nav-link\">Контакти</a>\n" +
     "            </li>\n" +
     "        </ul>\n" +
     "        <form class=\"form-inline\">\n" +
@@ -40,7 +40,7 @@ var headerMenuHtml = "<header class=\"header\">\n" +
     "    </div>\n" +
     "\n" +
     "\n" +
-    "</nav><!--    navbar-->\n";
+    "</nav><!--    navbar-->";
 
 document.body.insertAdjacentHTML("afterbegin", headerMenuHtml);
 //}

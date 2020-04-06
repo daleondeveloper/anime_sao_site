@@ -11,13 +11,33 @@ import java.util.Locale;
 @RequestMapping("/")
 public class LinkController {
 
-    @RequestMapping(value = "Registration", method = RequestMethod.GET)
+    @RequestMapping(value = "registration", method = RequestMethod.GET)
     public String registrationLink(Locale locale, Model model){
-        return "Registration";
+        return "registration";
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String mainLink(Locale locale, Model model){
         return "index";
+    }
+
+    @RequestMapping(value = "anime", method = RequestMethod.GET)
+    public String animeLink(Locale locale, Model model){
+        return "anime";
+    }
+
+    @RequestMapping(value = "manga", method = RequestMethod.GET)
+    public String mangaLink(Locale locale, Model model){
+        return "manga";
+    }
+
+    @RequestMapping(value = "game", method = RequestMethod.GET)
+    public String gameLink(Locale locale, Model model){
+        return "game";
+    }
+
+    @RequestMapping(value = "contacts", method = RequestMethod.GET)
+    public String contactsLink(Locale locale, Model model){
+        return "contacts";
     }
 }

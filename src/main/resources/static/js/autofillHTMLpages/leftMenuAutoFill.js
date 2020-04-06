@@ -20,7 +20,7 @@ var leftMenuHtml = "            <div class=\"col-12 col-md-4 col-lg-3 order-md-1
     "                                    <button id=\"autorization_button\" class=\"btn btn-outline-primary btn-block\">Вхід</button>\n" +
     "                                </div>\n" +
     "                                <div class=\"col-sm-6\">\n" +
-    "                                    <a href=\"/Registration\" class=\"btn btn-outline-primary btn-block\">Регістрація</a>\n" +
+    "                                    <a href=\"/registration\" class=\"btn btn-outline-primary btn-block\">Регістрація</a>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </form>\n" +
@@ -48,6 +48,8 @@ var leftMenuHtml = "            <div class=\"col-12 col-md-4 col-lg-3 order-md-1
     "                                        <label>Зміна аватара</label><br><br>\n" +
     "                                        <input type=\"file\" name=\"file\" value=\"ooo\" class=\"custom-file-input\" id=\"avatar_file_download\" aria-describedby=\"uploadAvatarButton\">\n" +
     "                                        <label class=\"custom-file-label\" for=\"avatar_file_download\"></label>\n" +
+    "                                        <p class=\" text-primary text-left text-wrap text-break font-italic\" id = \"upload_avatar_txt\"></p>\n" +
+    "\n" +
     "                                    </form>\n" +
     "\n" +
     "                                </div>\n" +

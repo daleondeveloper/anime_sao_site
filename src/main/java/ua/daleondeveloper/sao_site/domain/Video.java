@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
+import ua.daleondeveloper.sao_site.domain.publication.Publication;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -77,7 +78,7 @@ public class Video implements Serializable {
     //All
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_posts")
-    private Post posts;
+    private Publication posts;
 
     public Video(){}
 }
