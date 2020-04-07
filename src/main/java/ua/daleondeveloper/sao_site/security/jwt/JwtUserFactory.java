@@ -4,7 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import ua.daleondeveloper.sao_site.domain.User;
 import ua.daleondeveloper.sao_site.domain.UserRole;
-import ua.daleondeveloper.sao_site.domain.dao_enum.User_Role_Enum;
 
 import java.util.ArrayList;
 import java.util.List;

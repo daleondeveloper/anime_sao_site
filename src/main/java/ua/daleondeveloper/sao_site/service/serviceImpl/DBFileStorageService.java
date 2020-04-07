@@ -6,6 +6,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import ua.daleondeveloper.sao_site.dao.DBFileRepository;
 import ua.daleondeveloper.sao_site.domain.DBFile;
+import ua.daleondeveloper.sao_site.domain.UserRole;
 import ua.daleondeveloper.sao_site.exception.FileStorageException;
 import ua.daleondeveloper.sao_site.exception.MyFileNotFoundException;
 
@@ -36,7 +37,7 @@ public class DBFileStorageService {
 
     }
 
-    public DBFile getFile (Long fileId){
+    public DBFile getFile (Long fileId, ){
         return dbFileRepository.findById(fileId).
                 orElseThrow(() -> new MyFileNotFoundException("File not found with id " + fileId));
     }

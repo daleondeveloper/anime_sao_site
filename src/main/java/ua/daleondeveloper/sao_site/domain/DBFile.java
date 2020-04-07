@@ -1,6 +1,8 @@
 package ua.daleondeveloper.sao_site.domain;
 
 
+import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,6 +20,10 @@ public class DBFile {
     @Lob
     private byte[] data;
 
+    @Column(name = "access")
+    @Enumerated(EnumType.STRING)
+    private RoleEnum access;
+
     public DBFile(){
 
     }
@@ -26,6 +32,13 @@ public class DBFile {
         this.fileName = fileName;
         this.fileType = fileType;
         this.data = data;
+    }
+
+    public DBFile(String fileName, String fileType, byte[] data, RoleEnum access) {
+        this.fileName = fileName;
+        this.fileType = fileType;
+        this.data = data;
+        this.access = access;
     }
 
     public long getId() {
@@ -58,5 +71,13 @@ public class DBFile {
 
     public void setData(byte[] data) {
         this.data = data;
+    }
+
+    public RoleEnum getAccess() {
+        return access;
+    }
+
+    public void setAccess(RoleEnum access) {
+        this.access = access;
     }
 }

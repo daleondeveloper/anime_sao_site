@@ -10,11 +10,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ua.daleondeveloper.sao_site.domain.DBFile;
+import ua.daleondeveloper.sao_site.domain.User;
+import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
 import ua.daleondeveloper.sao_site.dto.UploadFileResponse;
+import ua.daleondeveloper.sao_site.service.UserService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
+import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -23,6 +29,8 @@ public class FileRestController {
 
     @Autowired
     private DBFileStorageService dbFileStorageService;
+    @Autowired
+    private UserServiceImpl userService;
 
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file")MultipartFile file){
@@ -46,13 +54,18 @@ public class FileRestController {
     }
 
     @GetMapping("/downloadFile/{fileId}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable Long fileId) {
-        // Load file from database
-        DBFile dbFile = dbFileStorageService.getFile(fileId);
+    public ResponseEntity<Resource> downloadFile(@PathVariable Long fileId, HttpServletRequest request) {
+        //Get User by token
+        Optional<User> tokenUser = userService.findByToken(request);
+        if(tokenUser.isPresent()) {
+            // Load file from database
+            DBFile dbFile = dbFileStorageService.getFile(fileId, tokenUser.get().getRoles());
 
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(dbFile.getFileType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.getFileName() + "\"")
-                .body(new ByteArrayResource(dbFile.getData()));
-    }
+            if (dbFile.getAccess() == RoleEnum.ADMIN) {
+                return ResponseEntity.ok()
+                        .contentType(MediaType.parseMediaType(dbFile.getFileType()))
+                        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.getFileName() + "\"")
+                        .body(new ByteArrayResource(dbFile.getData()));
+            }
+        }
 }
