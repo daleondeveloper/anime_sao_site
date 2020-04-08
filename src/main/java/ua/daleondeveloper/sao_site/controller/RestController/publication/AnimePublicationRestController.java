@@ -1,13 +1,8 @@
 package ua.daleondeveloper.sao_site.controller.RestController.publication;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ua.daleondeveloper.sao_site.domain.DBFile;
 import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.AnimePublicationService;
 

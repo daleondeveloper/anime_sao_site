@@ -5,10 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import ua.daleondeveloper.sao_site.dao.ImageRepository;
-import ua.daleondeveloper.sao_site.domain.DBFile;
-import ua.daleondeveloper.sao_site.domain.Image;
+import ua.daleondeveloper.sao_site.domain.Files.Image;
 import ua.daleondeveloper.sao_site.exception.FileStorageException;
-import ua.daleondeveloper.sao_site.exception.MyFileNotFoundException;
+import ua.daleondeveloper.sao_site.exception.FileNotFoundException;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -41,6 +40,6 @@ public class ImageService {
 
     public Image getImage (Long fileId){
         return imageRepository.findById(fileId).
-                orElseThrow(() -> new MyFileNotFoundException("File not found with id " + fileId));
+                orElseThrow(() -> new FileNotFoundException("File not found with id " + fileId));
     }
 }

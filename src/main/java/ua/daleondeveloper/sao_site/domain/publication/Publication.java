@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class Publication implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
 
     //All Strings

@@ -1,11 +1,20 @@
 package ua.daleondeveloper.sao_site.domain.publication;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Anime")
+@Getter
+@Setter
+@AllArgsConstructor
 public class AnimePublication extends Publication{
 
     @JoinColumn(name = "director")
@@ -22,4 +31,7 @@ public class AnimePublication extends Publication{
 
     @JoinColumn(name = "categories")
     private String categories;
+
+    public AnimePublication() {
+    }
 }

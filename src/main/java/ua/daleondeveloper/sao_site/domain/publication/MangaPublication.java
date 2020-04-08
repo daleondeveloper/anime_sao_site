@@ -1,11 +1,18 @@
 package ua.daleondeveloper.sao_site.domain.publication;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Manga")
+@Getter
+@Setter
+@AllArgsConstructor
 public class MangaPublication extends Publication{
 
     @JoinColumn(name = "director")

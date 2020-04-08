@@ -15,21 +15,21 @@ public class PublicationRestController {
     @Autowired
     private PublicationService publicationService;
 
-    @GetMapping(value = "get_number_of_publication")
-    public ResponseEntity get_number_of_publication(){
-
-        return ResponseEntity.ok(publicationService.getCountPublication());
-    }
+//    @GetMapping(value = "get_number_of_publication")
+//    public ResponseEntity get_number_of_publication(){
+//
+//        return ResponseEntity.ok(publicationService.getCountPublication());
+//    }
     @GetMapping(value = "get_publication_{start}_{end}")
     public  ResponseEntity get_publication(@PathVariable(name = "start")int start, @PathVariable(name = "end")int end){
         return ResponseEntity.ok(publicationService.getPublicationByNumber(start,end));
     }
 
-    @GetMapping(name = "get_avatar")
-    public ResponseEntity getAvatar(){
-
-        return null;
-    }
+//    @GetMapping(name = "get_avatar")
+//    public ResponseEntity getAvatar(){
+//
+//        return null;
+//    }
 
 
 }

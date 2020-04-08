@@ -1,4 +1,4 @@
-package ua.daleondeveloper.sao_site.domain;
+package ua.daleondeveloper.sao_site.domain.Files;
 
 
 import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
@@ -7,15 +7,18 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name = "files")
-public class DBFile {
+public class File {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
 
     private String fileName;
 
     private String fileType;
+
+    protected String contentType;
 
     @Lob
     private byte[] data;
@@ -24,17 +27,17 @@ public class DBFile {
     @Enumerated(EnumType.STRING)
     private RoleEnum access;
 
-    public DBFile(){
+    public File(){
 
     }
 
-    public DBFile(String fileName, String fileType, byte[] data) {
+    public File(String fileName, String fileType, byte[] data) {
         this.fileName = fileName;
         this.fileType = fileType;
         this.data = data;
     }
 
-    public DBFile(String fileName, String fileType, byte[] data, RoleEnum access) {
+    public File(String fileName, String fileType, byte[] data, RoleEnum access) {
         this.fileName = fileName;
         this.fileType = fileType;
         this.data = data;
@@ -79,5 +82,13 @@ public class DBFile {
 
     public void setAccess(RoleEnum access) {
         this.access = access;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 }

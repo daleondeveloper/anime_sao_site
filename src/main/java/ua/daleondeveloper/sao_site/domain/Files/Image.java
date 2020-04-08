@@ -1,4 +1,4 @@
-package ua.daleondeveloper.sao_site.domain;
+package ua.daleondeveloper.sao_site.domain.Files;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +15,7 @@ import java.time.LocalTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Image implements Serializable {
+public class Image extends File implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class Image implements Serializable {
 
     private String fileName;
     //Image type(jpg, png ...)
-    private String contentType;
+   // private String contentType;
 
     @Lob
     private byte[] data;

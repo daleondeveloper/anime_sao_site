@@ -3,8 +3,7 @@ package ua.daleondeveloper.sao_site.dto;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import ua.daleondeveloper.sao_site.domain.Image;
-import ua.daleondeveloper.sao_site.domain.User;
+import ua.daleondeveloper.sao_site.domain.Files.Image;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

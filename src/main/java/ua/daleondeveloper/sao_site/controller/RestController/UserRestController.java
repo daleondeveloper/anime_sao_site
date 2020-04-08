@@ -1,29 +1,16 @@
 package ua.daleondeveloper.sao_site.controller.RestController;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import ua.daleondeveloper.sao_site.domain.DBFile;
 import ua.daleondeveloper.sao_site.domain.User;
-import ua.daleondeveloper.sao_site.dto.UploadFileResponse;
 import ua.daleondeveloper.sao_site.dto.UserDto;
-import ua.daleondeveloper.sao_site.exception.MyFileNotFoundException;
 import ua.daleondeveloper.sao_site.security.jwt.JwtAuthenticationException;
-import ua.daleondeveloper.sao_site.security.jwt.JwtTokenDecode;
 import ua.daleondeveloper.sao_site.security.jwt.JwtTokenProvider;
 import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.Optional;
 
 @RestController
@@ -72,7 +59,7 @@ public class UserRestController {
 ////                    .body(new ByteArrayResource(tokenUser.get().getImage_main()));
 ////
 ////        } else {
-////            throw new MyFileNotFoundException("File not found with id ");
+////            throw new FileNotFoundException("File not found with id ");
 ////        }
 //    }
 
