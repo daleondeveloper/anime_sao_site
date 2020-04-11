@@ -20,18 +20,7 @@ public class Image extends File implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    //Image create date
-    private LocalDate createDate;
-    private LocalTime createTime;
-
-    private String fileName;
-    //Image type(jpg, png ...)
-   // private String contentType;
-
-    @Lob
-    private byte[] data;
-
+        
     public Image(LocalDate createDate, LocalTime createTime, String fileName, String contentType, byte[] data) {
         this.createDate = createDate;
         this.createTime = createTime;

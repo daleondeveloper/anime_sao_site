@@ -36,6 +36,7 @@ public class ImageRestController {
     @PostMapping("uploadAvatar")
     public ResponseEntity uploadUserAvatar(@RequestParam("file")MultipartFile file, HttpServletRequest request){
 
+        String contentType = file.getContentType();
         Optional<User> tokenUser = userService.findByToken(request);
         if(tokenUser.isPresent()) {
             User user = tokenUser.get();

@@ -3,23 +3,23 @@
 var leftMenuHtml = "            <div class=\"col-12 col-md-4 col-lg-3 order-md-1\" >\n" +
     "                <div id=\"autorization_div\">\n" +
     "                    <card class=\"card border border-primary\" style=\" padding: 10%; margin: 0.4rem;\">\n" +
-    "                        <form id=\"autorization_form\" action=\"\" method=\"post\"  >\n" +
-    "                            <div class=\"form-group row\">\n" +
+    "                        <form id=\"autorization_form\" action=\"\" method=\"post\"    >\n" +
+    "                            <div class=\"form-group col-12\">\n" +
     "                                <label for=\"inputEmail3\" class=\"col-sm-12 col-form-label\"><h4>Авторизація</h4></label>\n" +
-    "                                <div class=\"col-sm-12\">\n" +
+    "                                <div class=\"col-12\">\n" +
     "                                    <input type=\"email\" class=\"form-control\" name=\"email\" value=\"\" id=\"inputEmail3\" placeholder=\"Email\">\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"form-group row\">\n" +
-    "                                <div class=\"col-sm-12\">\n" +
+    "                            <div class=\"form-group col-12\">\n" +
+    "                                <div class=\"col-12\">\n" +
     "                                    <input type=\"password\" class=\"form-control\" name=\"password\" id=\"inputPassword3\" placeholder=\"Password\">\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <div class=\"form-group row\">\n" +
-    "                                <div class=\"col-sm-6\">\n" +
+    "                            <div class=\"form-group col-12 \">\n" +
+    "                                <div class=\"col-6 offset-sm-3 col-md-12 offset-md-0 \">\n" +
     "                                    <button id=\"autorization_button\" class=\"btn btn-outline-primary btn-block\">Вхід</button>\n" +
     "                                </div>\n" +
-    "                                <div class=\"col-sm-6\">\n" +
+    "                                <div class=\"col-6 offset-sm-3 col-md-12 offset-md-0 \">\n" +
     "                                    <a href=\"/registration\" class=\"btn btn-outline-primary btn-block\">Регістрація</a>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -36,45 +36,32 @@ var leftMenuHtml = "            <div class=\"col-12 col-md-4 col-lg-3 order-md-1
     "                                <button id=\"logout\" type=\"button\" class=\"btn btn-outline-primary btn-sm float-right\">Вихід</button>\n" +
     "\n" +
     "                            </div>\n" +
-    "                            <div class=\"row\">\n" +
     "                                <div class=\"col-12\">\n" +
     "                                </div>\n" +
-    "                            </div>\n" +
     "                        </div>\n" +
-    "                        <div class=\"row\" id=\"mini_user_setting_menu\" hidden=\"true\" >\n" +
-    "                            <div class=\"input-group\">\n" +
+    "                        <div class=\"row\" id=\"mini_user_setting_menu\" hidden=\"true\"  >\n" +
+    "                            <div class=\"input-group col-12\">\n" +
     "                                <div class=\"custom-file\">\n" +
     "                                    <form method=\"POST\" enctype=\"multipart/form-data\" id=\"uploadAvatar\">\n" +
     "                                        <label>Зміна аватара</label><br><br>\n" +
     "                                        <input type=\"file\" name=\"file\" value=\"ooo\" class=\"custom-file-input\" id=\"avatar_file_download\" aria-describedby=\"uploadAvatarButton\">\n" +
     "                                        <label class=\"custom-file-label\" for=\"avatar_file_download\"></label>\n" +
-    "                                        <p class=\" text-primary text-left text-wrap text-break font-italic\" id = \"upload_avatar_txt\"></p>\n" +
     "\n" +
     "                                    </form>\n" +
     "\n" +
     "                                </div>\n" +
-    "\n" +
-    "                                <div class=\"input-group-append\">\n" +
+    "                                <div class=\"input-group-append \">\n" +
     "                                    <button class=\"btn btn-outline-primary btn-sm\" type=\"button\" id=\"uploadAvatarButton\">Зміна</button>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "                            <!--<form method=\"POST\" enctype=\"multipart/form-data\" id=\"uplo312\">-->\n" +
-    "                                <!--<input type=\"file\" name=\"file8\" class=\"\" id=\"123\">-->\n" +
-    "                                <!--<label class=\"\" for=\"123\">kl</label>-->\n" +
-    "                                <!--<input type=\"submit\" value=\"Submit\" id=\"uploadAvatarButton1\" class=\"btn btn-outline-primary btn-sm\"/>-->\n" +
-    "                                <!--<div class=\"row\" id = \"download_avatar_error_div\">-->\n" +
-    "                                    <!--<h5>Картинка загружена</h5>-->\n" +
-    "                                 <!--</div>-->\n" +
-    "                            <!--</form>-->\n" +
-    "\n" +
-    "                            <div class=\"row\">\n" +
-    "                                <div class=\"col-12\">\n" +
-    "                                    <br>\n" +
-    "                                    <button id=\"saveSettingButton\" type=\"button\" class=\"btn btn-outline-primary btn-sm\">Назад</button>\n" +
+    "                                    <div class = \"col-12\">\n" +
+    "                                    <p class=\" text-primary text-left  text-wrap text-break font-italic\" id = \"upload_avatar_txt\">,f,f,f, ,f,lsaf;samf;as sd;lfmsa;dfld;smf dsa;lf;sa</p>\n" +
     "                                </div>\n" +
+    "                                <div class=\"col-12 \" >\n" +
+    "\n" +
+    "                                    <button id=\"saveSettingButton\" type=\"button\" class=\"btn btn-outline-primary btn-sm \">Назад</button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "\n" +
     "                    </card>\n" +
     "                </div>\n" +
     "                <div id=\"last_update_post\">\n" +
