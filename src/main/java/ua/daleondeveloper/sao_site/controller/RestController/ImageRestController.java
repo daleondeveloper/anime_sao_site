@@ -16,6 +16,8 @@ import ua.daleondeveloper.sao_site.service.serviceImpl.ImageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Optional;
 
@@ -35,8 +37,12 @@ public class ImageRestController {
 
     @PostMapping("uploadAvatar")
     public ResponseEntity uploadUserAvatar(@RequestParam("file")MultipartFile file, HttpServletRequest request){
-
-        String contentType = file.getContentType();
+        try {
+        if(!file.getContentType().split("/")[0].equals("image")){
+            return ResponseEntity.badRequest().body("Bad image type");
+        }}catch (NullPointerException e){
+            return ResponseEntity.badRequest().body("Bad image type");
+        }
         Optional<User> tokenUser = userService.findByToken(request);
         if(tokenUser.isPresent()) {
             User user = tokenUser.get();
