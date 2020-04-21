@@ -6,10 +6,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ua.daleondeveloper.sao_site.domain.Files.File;
-import ua.daleondeveloper.sao_site.domain.Files.Image;
+import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import ua.daleondeveloper.sao_site.domain.User;
+import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
 import ua.daleondeveloper.sao_site.dto.ImageResponse;
+import ua.daleondeveloper.sao_site.exception.FileNotFoundException;
 import ua.daleondeveloper.sao_site.security.jwt.JwtAuthenticationException;
 import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.ImageService;
@@ -17,7 +18,6 @@ import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Optional;
 
@@ -26,49 +26,47 @@ import java.util.Optional;
 public class ImageRestController {
 
     @Autowired
-    private ImageService imageService;
-    @Autowired
     private UserServiceImpl userService;
-    @Autowired
-    private FileRestController fileRestController;
     @Autowired
     private DBFileStorageService dbFileStorageService;
 
 
     @PostMapping("uploadAvatar")
     public ResponseEntity uploadUserAvatar(@RequestParam("file")MultipartFile file, HttpServletRequest request){
-        try {
-        if(!file.getContentType().split("/")[0].equals("image")){
-            return ResponseEntity.badRequest().body("Bad image type");
-        }}catch (NullPointerException e){
-            return ResponseEntity.badRequest().body("Bad image type");
-        }
-        Optional<User> tokenUser = userService.findByToken(request);
-        if(tokenUser.isPresent()) {
-            User user = tokenUser.get();
-            if(user.getImageId() >= 0 ){
-                Image avatar = imageService.storeImage(file);
-                userService.updateAvatar(user.getId(),avatar.getId());
-                return ResponseEntity.ok(ImageResponse.fromUser(avatar));
+        //Check if file has image type
+        if(file.getContentType().split("/")[0].equals("image")) {
+            Optional<User> tokenUser = userService.findByToken(request);
+            if (tokenUser.isPresent()) {
+                User user = tokenUser.get();
+                try {
+                    if (user.getImageId() >= 0) {
+                        ImageAvatar avatar = (ImageAvatar) dbFileStorageService.storeFile(
+                                new ImageAvatar(file.getName(), file.getContentType(), file.getBytes(), RoleEnum.ROLE_USER, user));
+                        userService.updateAvatar(user.getId(), avatar);
+                        return ResponseEntity.ok(ImageResponse.fromImage(avatar));
+                    }
+                } catch (IOException e) {
+                    throw new FileNotFoundException("Not found file");
+                }
+
+            } else {
+                throw new JwtAuthenticationException("Not found user");
             }
-
-        }else{
-            throw new JwtAuthenticationException("Not found user");
         }
 
-        return (ResponseEntity) ResponseEntity.badRequest();
+        return ResponseEntity.badRequest().body("Bad image type");
     }
 
     @GetMapping("getAvatar")
     public ResponseEntity downloadUserAvatar(HttpServletRequest request){
         Optional<User> tokenUser = userService.findByToken(request);
         if(tokenUser.isPresent()){
-//            Image avatar = imageService.getImage(tokenUser.get().getImageId());
-           return fileRestController.downloadFile(tokenUser.get().getImageId(), request);
-//            return ResponseEntity.ok()
-//                    .contentType(MediaType.parseMediaType(avatar.getContentType()))
-//                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + avatar.getFileName() + "\"")
-//                    .body(Base64.getEncoder().encodeToString(avatar.getData()));
+            ImageAvatar avatar = (ImageAvatar)dbFileStorageService.getFile(
+                    userService.findAvatarId(tokenUser.get().getId()),tokenUser.get());
+            return ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(avatar.getContentType()))
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + avatar.getFileName() + "\"")
+                    .body(Base64.getEncoder().encodeToString(avatar.getData()));
         }else{
             throw new JwtAuthenticationException("Not found user");
         }

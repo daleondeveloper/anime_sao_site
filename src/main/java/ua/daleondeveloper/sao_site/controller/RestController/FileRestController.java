@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ua.daleondeveloper.sao_site.domain.Files.File;
+import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import ua.daleondeveloper.sao_site.domain.User;
 import ua.daleondeveloper.sao_site.dto.UploadFileResponse;
 import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
@@ -33,7 +34,7 @@ public class FileRestController {
 
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
-        File dbFile = dbFileStorageService.storeFile(file);
+        File dbFile = dbFileStorageService.storeFile(new File());
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
@@ -57,7 +58,7 @@ public class FileRestController {
         //Get User by token
         Optional<User> tokenUser = userService.findByToken(request);
         // Load file from database
-        File file = dbFileStorageService.getFile(fileId, tokenUser);
+        File file = dbFileStorageService.getFile(fileId, tokenUser.get());
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType(file.getContentType()))
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFileName() + "\"")

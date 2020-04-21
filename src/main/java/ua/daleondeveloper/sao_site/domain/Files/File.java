@@ -22,8 +22,6 @@ public class File {
 
     protected String fileName;
 
-    protected String fileType;
-
     protected String contentType;
 
     //Image create date
@@ -43,13 +41,13 @@ public class File {
 
     public File(String fileName, String fileType, byte[] data) {
         this.fileName = fileName;
-        this.fileType = fileType;
+        this.contentType = fileType;
         this.data = data;
     }
 
     public File(String fileName, String fileType, byte[] data, RoleEnum access) {
         this.fileName = fileName;
-        this.fileType = fileType;
+        this.contentType = fileType;
         this.data = data;
         this.access = access;
     }

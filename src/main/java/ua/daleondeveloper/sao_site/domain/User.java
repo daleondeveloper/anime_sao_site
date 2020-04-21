@@ -1,9 +1,14 @@
 package ua.daleondeveloper.sao_site.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,6 +42,12 @@ public class User extends BaseEntity implements Serializable {
 
     //ImageId
     private long imageId;
+
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "avatarImg", referencedColumnName = "id")
+    @JsonBackReference
+    private ImageAvatar avatarImg;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",

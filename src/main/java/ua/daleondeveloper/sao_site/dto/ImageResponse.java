@@ -33,7 +33,7 @@ public class ImageResponse {
 
         return image;
     }
-    public static ImageResponse fromUser(Image image){
+    public static ImageResponse fromImage(Image image){
         ImageResponse imageDto = new ImageResponse();
         imageDto.setId(image.getId());
         imageDto.setCreateDate(image.getCreateDate());
