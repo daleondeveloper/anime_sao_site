@@ -64,8 +64,14 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Transactional
     public Long findAvatarId(Long userId){
-       return userRepository.findAvatarId(userId).get().getId();
+        Optional<ImageAvatar> imageAvatar = userRepository.findAvatarId(userId);
+        if( imageAvatar.isPresent()){
+            return imageAvatar.get().getId();
+        }else{
+            return null;
+        }
     }
 
     @Transactional

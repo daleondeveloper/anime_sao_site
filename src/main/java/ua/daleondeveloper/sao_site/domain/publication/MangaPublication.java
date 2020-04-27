@@ -2,34 +2,28 @@ package ua.daleondeveloper.sao_site.domain.publication;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ua.daleondeveloper.sao_site.domain.Files.ImageManga;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "Manga")
+@Table(name = "MangaPublication")
 @Getter
 @Setter
-@AllArgsConstructor
+@NoArgsConstructor
 public class MangaPublication extends Publication{
 
-    @JoinColumn(name = "director")
-    private String director;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    @JoinColumn(name = "language")
-    private String language;
+    @JoinColumn(name = "numberOfPages")
+    private String numberOfPages;
 
-    @JoinColumn(name = "number_of_series")
-    private String numberOfSeries;
+//    @OneToMany
+//    private ImageManga imageManga;
 
-    @JoinColumn(name = "genre")
-    private String genre;
 
-    @JoinColumn(name = "categories")
-    private String categories;
-
-    public MangaPublication() {
-    }
 }

@@ -2,21 +2,22 @@ package ua.daleondeveloper.sao_site.domain.publication;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "Game")
+@Table(name = "GamePublication")
 @Getter
 @Setter
-@AllArgsConstructor
+@NoArgsConstructor
 public class GamePublication extends Publication{
-    @JoinColumn(name = "director")
-    private String director;
 
-    @JoinColumn(name = "language")
-    private String language;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @JoinColumn(name = "url")
+    private String downloadUrl;
 }

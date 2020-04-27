@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import ua.daleondeveloper.sao_site.dao.publication.PublicationRepository;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
 
+import java.util.Optional;
+
 @Service
 public class PublicationService {
     @Autowired
@@ -17,4 +19,5 @@ public class PublicationService {
     public Page<Publication> getPublicationByNumber(int start, int end){
         return publicationRepository.findAll(PageRequest.of(start,end));
     }
+    public Optional<Publication> findById(Long id){return publicationRepository.findById(id);}
 }

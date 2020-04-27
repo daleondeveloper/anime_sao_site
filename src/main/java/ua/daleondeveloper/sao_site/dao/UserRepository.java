@@ -21,7 +21,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Query("SELECT c FROM User c WHERE c.email = :email")
     Optional<User> findByEmail(@Param("email") String email);
 
-    @Transactional
     @Query("SELECT avatarImg FROM User c  where c.id = :id")
     Optional<ImageAvatar> findAvatarId(@Param("id")Long id);
 }

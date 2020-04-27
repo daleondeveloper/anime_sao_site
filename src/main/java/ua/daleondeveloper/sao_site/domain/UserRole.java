@@ -1,5 +1,6 @@
 package ua.daleondeveloper.sao_site.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@Table(name = "roles")
+@Table(name = "Roles")
 public class UserRole implements Serializable {
 
     @Id
@@ -21,7 +22,8 @@ public class UserRole implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ManyToMany(mappedBy = "roles")
     private List<User> users;
 
     public UserRole() {

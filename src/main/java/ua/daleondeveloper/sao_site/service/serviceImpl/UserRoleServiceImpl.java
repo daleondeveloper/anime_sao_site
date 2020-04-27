@@ -16,7 +16,7 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Transactional
     public UserRole saveUserRole(UserRole role){return userRoleRepository.save(role);}
 
-   public UserRole findByName(String name){return userRoleRepository.findByName(name);}
+    public UserRole findByName(String name){return userRoleRepository.findByName(name);}
 
 
 }

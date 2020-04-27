@@ -9,11 +9,10 @@ import org.springframework.web.multipart.MultipartFile;
 import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import ua.daleondeveloper.sao_site.domain.User;
 import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
-import ua.daleondeveloper.sao_site.dto.ImageResponse;
+import ua.daleondeveloper.sao_site.dto.ImageResponseDto;
 import ua.daleondeveloper.sao_site.exception.FileNotFoundException;
 import ua.daleondeveloper.sao_site.security.jwt.JwtAuthenticationException;
 import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
-import ua.daleondeveloper.sao_site.service.serviceImpl.ImageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,12 +38,11 @@ public class ImageRestController {
             if (tokenUser.isPresent()) {
                 User user = tokenUser.get();
                 try {
-                    if (user.getImageId() >= 0) {
                         ImageAvatar avatar = (ImageAvatar) dbFileStorageService.storeFile(
                                 new ImageAvatar(file.getName(), file.getContentType(), file.getBytes(), RoleEnum.ROLE_USER, user));
                         userService.updateAvatar(user.getId(), avatar);
-                        return ResponseEntity.ok(ImageResponse.fromImage(avatar));
-                    }
+                        return ResponseEntity.ok(ImageResponseDto.fromImage(avatar));
+
                 } catch (IOException e) {
                     throw new FileNotFoundException("Not found file");
                 }

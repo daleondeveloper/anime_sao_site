@@ -62,7 +62,6 @@ public class AutheticationRestControllerV1 {
 
     @PostMapping("registration")
     public ResponseEntity register ( UserDto userRequestDto){
-        System.out.println("userRequestDto = [" + userRequestDto + "]");
         if(userRequestDto.getEmail() != null && userRequestDto.getPassword() != null){
 
             Optional<User> userOp = userService.findByEmail(userRequestDto.getEmail());

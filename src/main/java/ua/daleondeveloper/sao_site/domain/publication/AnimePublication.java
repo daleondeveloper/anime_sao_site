@@ -6,32 +6,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "Anime")
+@Table(name = "AnimePublication")
 @Getter
 @Setter
-@AllArgsConstructor
+@NoArgsConstructor
 public class AnimePublication extends Publication{
+    //Video
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    @JoinColumn(name = "director")
-    private String director;
-
-    @JoinColumn(name = "language")
-    private String language;
-
-    @JoinColumn(name = "number_of_series")
-    private String numberOfSeries;
-
-    @JoinColumn(name = "genre")
-    private String genre;
-
-    @JoinColumn(name = "categories")
-    private String categories;
-
-    public AnimePublication() {
-    }
 }

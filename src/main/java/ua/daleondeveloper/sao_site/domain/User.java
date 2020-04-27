@@ -13,6 +13,7 @@ import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 //POJO object of user
@@ -40,10 +41,6 @@ public class User extends BaseEntity implements Serializable {
     @JoinColumn(name = "access")
     private String access;
 
-    //ImageId
-    private long imageId;
-
-
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "avatarImg", referencedColumnName = "id")
     @JsonBackReference
@@ -56,7 +53,14 @@ public class User extends BaseEntity implements Serializable {
     private List<UserRole> roles;
 
     //Date and Time
+    @JoinColumn(name = "releaseData")
+    private LocalDate releaseDate;
+    @JoinColumn(name = "releaseTime")
+    private LocalTime releaseTime;
+    @JoinColumn(name = "lastUpdateDate")
     private LocalDate lastUpdateDate;
+    @JoinColumn(name = "lastUpdateTime")
+    private LocalTime lastUpdateTime;
 
     public User(String email, String password, String nickname, List<UserRole> roles, LocalDate lastUpdateDate) {
         this.email = email;

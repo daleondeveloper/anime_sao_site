@@ -1,8 +1,6 @@
 package ua.daleondeveloper.sao_site.controller.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ua.daleondeveloper.sao_site.domain.Files.File;
-import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import ua.daleondeveloper.sao_site.domain.User;
-import ua.daleondeveloper.sao_site.dto.UploadFileResponse;
+import ua.daleondeveloper.sao_site.dto.UploadFileResponseDto;
 import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
 
@@ -33,7 +30,7 @@ public class FileRestController {
     private UserServiceImpl userService;
 
     @PostMapping("/uploadFile")
-    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
+    public UploadFileResponseDto uploadFile(@RequestParam("file") MultipartFile file) {
         File dbFile = dbFileStorageService.storeFile(new File());
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -41,12 +38,12 @@ public class FileRestController {
                 .path(String.valueOf(dbFile.getId()))
                 .toUriString();
 
-        return new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
+        return new UploadFileResponseDto(dbFile.getFileName(), fileDownloadUri,
                 file.getContentType(), file.getSize());
     }
 
     @PostMapping("/uploadMultipleFiles")
-    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+    public List<UploadFileResponseDto> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
         return Arrays.asList(files)
                 .stream()
                 .map(file -> uploadFile(file))

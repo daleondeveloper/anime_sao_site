@@ -16,12 +16,12 @@ public class AnimePublicationRestController {
     private DBFileStorageService dbFileStorageService;
 
     @GetMapping(value = "get_number_of_publication")
-    public ResponseEntity get_number_of_anime(){
+    public ResponseEntity getNumberOfAnime(){
 
         return ResponseEntity.ok(animePublicationService.getCount());
     }
     @GetMapping(value = "get_anime_{start}_{end}")
-    public  ResponseEntity get_publication(@PathVariable(name = "start")int start, @PathVariable(name = "end")int end){
+    public  ResponseEntity getPublication(@PathVariable(name = "start")int start, @PathVariable(name = "end")int end){
         return ResponseEntity.ok(animePublicationService.getAnimeByNumber(start,end));
     }
 

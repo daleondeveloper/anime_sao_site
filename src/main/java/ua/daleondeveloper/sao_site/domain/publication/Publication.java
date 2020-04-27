@@ -1,23 +1,32 @@
 package ua.daleondeveloper.sao_site.domain.publication;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
+import ua.daleondeveloper.sao_site.domain.Files.ImagePublication;
+import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 //POJO object for post
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "Publication")
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Publication implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @TableGenerator( name = "seqStore", table = "SEQ_STORE", pkColumnName = "SEQ_NAME", pkColumnValue = "JOURNAL.ID.PK", valueColumnName = "SEQ_VALUE", initialValue = 1, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "seqStore" )
     private long id;
 
     //All Strings
@@ -26,25 +35,54 @@ public class Publication implements Serializable {
     @JoinColumn(name = "description")
     private String description;
 
-    @JoinColumn(name = "full_name")
-    private String full_name;
+    @JoinColumn(name = "fullName")
+    private String fullName;
 
     @JoinColumn(name = "name")
     private String name;
 
-    @JoinColumn(name = "post_info_short")
-    private String post_info_short;
+    @JoinColumn(name = "director")
+    private String director;
+
+    @JoinColumn(name = "language")
+    private String language;
+
+    @JoinColumn(name = "genre")
+    private String genre;
+
+    @JoinColumn(name = "categories")
+    private String categories;
+
+    @JoinColumn(name = "postInfoShort")
+    private String postInfoShort;
+
+//    @JoinColumn(name = "groups")
+//    private String group;
 
     //Data and Time
-    @JoinColumn(name = "release_date")
+    @JoinColumn(name = "releaseDate")
     private LocalDate releaseDate;
 
-    @JoinColumn(name = "last_update_date")
+    @JoinColumn(name = "releaseTime")
+    private LocalTime releaseTime;
+
+    @JoinColumn(name = "lastUpdateDate")
     private LocalDate lastUpdateDate;
 
-    //Image
-    @JoinColumn(name = "mainImage")
-    private long mainImage;
+    @JoinColumn(name = "lastUpdateTime")
+    private LocalTime lastUpdateTime;
 
-    public Publication(){}
+//    //Image
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "avatarImg", referencedColumnName = "id")
+//    @JsonManagedReference
+//    private ImageAvatar avatarImg;
+
+//    @OneToMany
+//    private ImagePublication images;
+
+    //Security
+    @JoinColumn(name = "access")
+    private RoleEnum access;
+
 }

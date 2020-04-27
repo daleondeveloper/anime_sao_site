@@ -11,7 +11,7 @@ import java.time.LocalTime;
 @Data
 @Getter
 @Setter
-public class ImageResponse {
+public class ImageResponseDto {
 
     private Long id;
     private LocalDate createDate;
@@ -33,8 +33,8 @@ public class ImageResponse {
 
         return image;
     }
-    public static ImageResponse fromImage(Image image){
-        ImageResponse imageDto = new ImageResponse();
+    public static ImageResponseDto fromImage(Image image){
+        ImageResponseDto imageDto = new ImageResponseDto();
         imageDto.setId(image.getId());
         imageDto.setCreateDate(image.getCreateDate());
         imageDto.setCreateTime(image.getCreateTime());
