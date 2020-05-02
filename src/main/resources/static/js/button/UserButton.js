@@ -27,7 +27,21 @@ $('#uploadAvatarButton').click(function () {
    // if(typeof files == 'undefined')return;
     var form =  $('#uploadAvatar')[0];
     var data = new FormData(form);
-    var uploadImageType = $('#avatar_file_download').val().toString().split(".").pop();
+
+  //  alert("123" + data.files[0].size);
+
+    $('#avatar_file_download').on("ready",function () {
+        alert(this.files[0].size);
+
+        if(this.files[0].size > 1000000){
+            avatarTxt.attr('class', 'text-primary text-left text-wrap text-break font-italic');
+            avatarTxt.html('Розмір файлу не має перевищувати 10 Мb');
+            return null;
+        }
+    });
+    $('#avatar_file_download').trigger("ready");
+
+    var uploadImageType = $('#avatar_file_download').val().toString().split(".").pop().toLowerCase();
     var imageCheckArr = ["jpg", "png", "jpeg"];
 
     if(imageCheckArr.find(function (element) {
@@ -55,8 +69,6 @@ $('#uploadAvatarButton').click(function () {
 
                avatarTxt.attr('class', 'text-primary text-left text-wrap text-break font-italic');
                 avatarTxt.html('Аватар змінено');
-                //alert(data.contentType);
-
             },
             error: function () {
                 avatarTxt.attr('class', 'text-primary text-left text-wrap text-break font-italic');
