@@ -17,6 +17,5 @@ public class ImagePublication extends Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @ManyToOne
-//    private Publication publication;
+
 }

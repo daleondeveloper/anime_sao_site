@@ -14,6 +14,7 @@ import ua.daleondeveloper.sao_site.exception.FileNotFoundException;
 import ua.daleondeveloper.sao_site.security.jwt.JwtAuthenticationException;
 import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
+import ua.daleondeveloper.sao_site.utils.constants.FileConstants;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -33,7 +34,12 @@ public class ImageRestController {
     @PostMapping("uploadAvatar")
     public ResponseEntity uploadUserAvatar(@RequestParam("file")MultipartFile file, HttpServletRequest request){
         //Check if file has image type
-        if(file.getContentType().split("/")[0].equals("image")) {
+        if(!file.getContentType().split("/")[0].equals("image")) {
+            return ResponseEntity.badRequest().body("Bad image type"); }
+
+        if(file.getSize() > FileConstants.MAX_IMAGE_SIZE){
+            return ResponseEntity.badRequest().body("Bad image size");
+        }
             Optional<User> tokenUser = userService.findByToken(request);
             if (tokenUser.isPresent()) {
                 User user = tokenUser.get();
@@ -50,9 +56,7 @@ public class ImageRestController {
             } else {
                 throw new JwtAuthenticationException("Not found user");
             }
-        }
 
-        return ResponseEntity.badRequest().body("Bad image type");
     }
 
     @GetMapping("getAvatar")

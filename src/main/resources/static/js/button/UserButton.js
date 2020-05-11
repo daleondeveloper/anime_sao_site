@@ -20,6 +20,8 @@ $('#saveSettingButton').click(function() {
 $('#uploadAvatarButton').click(function () {
 
     var avatarTxt = $('#upload_avatar_txt');
+    var pictureSizeBoolean = true;
+    var maxPicterSize = 10*1024*1024;
 
     event.stopPropagation();
     event.preventDefault();
@@ -28,29 +30,30 @@ $('#uploadAvatarButton').click(function () {
     var form =  $('#uploadAvatar')[0];
     var data = new FormData(form);
 
-  //  alert("123" + data.files[0].size);
+    //Check image size
+    $('#avatar_file_download').off("ready");
 
     $('#avatar_file_download').on("ready",function () {
-        alert(this.files[0].size);
-
-        if(this.files[0].size > 1000000){
+        if(this.files[0].size > maxPicterSize){
             avatarTxt.attr('class', 'text-primary text-left text-wrap text-break font-italic');
             avatarTxt.html('Розмір файлу не має перевищувати 10 Мb');
-            return null;
+            pictureSizeBoolean = false;
         }
     });
     $('#avatar_file_download').trigger("ready");
-
+    //end check image size
+    //Check image type
     var uploadImageType = $('#avatar_file_download').val().toString().split(".").pop().toLowerCase();
     var imageCheckArr = ["jpg", "png", "jpeg"];
 
     if(imageCheckArr.find(function (element) {
         if(element === uploadImageType)return true;
     })) {
+        //end Check image type
         data.append("CustomField", "This is some extra data, testing");
 
         $("#btnSubmit").prop("disabled", true);
-
+        if(pictureSizeBoolean){
         $.ajax({
             beforeSend: function (request) {
                 request.setRequestHeader('Authorization', ('Bearer_' + localStorage.getItem('token')));
@@ -74,7 +77,7 @@ $('#uploadAvatarButton').click(function () {
                 avatarTxt.attr('class', 'text-primary text-left text-wrap text-break font-italic');
                 avatarTxt.html('Помилка завантаження, попробуйте пізніше');
             }
-        })
+        })}
     }else{
         avatarTxt.html('Змініть тип файлу ' + uploadImageType + '' +
             ' на: ' + imageCheckArr.toString() + '.');

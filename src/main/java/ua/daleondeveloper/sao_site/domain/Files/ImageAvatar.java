@@ -28,17 +28,17 @@ public class ImageAvatar extends Image {
     @JsonManagedReference
     private User user;
 
-//    @OneToOne(mappedBy = "avatarImg", fetch = FetchType.LAZY)
-//    @JsonManagedReference
-//    private Publication publication;
+    @OneToOne(mappedBy = "avatarImg", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Publication publication;
 
     public ImageAvatar(String fileName, String fileType, byte[] data, RoleEnum access, User user) {
         super(fileName, fileType, data, access);
         this.user = user;
     }
 
-//    public ImageAvatar(String fileName, String fileType, byte[] data, RoleEnum access, Publication publication) {
-//        super(fileName, fileType, data, access);
-//        this.publication = publication;
-//    }
+    public ImageAvatar(String fileName, String fileType, byte[] data, RoleEnum access, Publication publication) {
+        super(fileName, fileType, data, access);
+        this.publication = publication;
+    }
 }

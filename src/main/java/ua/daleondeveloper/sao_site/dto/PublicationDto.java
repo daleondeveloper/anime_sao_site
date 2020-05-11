@@ -5,9 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -48,7 +45,7 @@ public class PublicationDto {
         publication.setGenre(this.genre);
         publication.setCategories(this.categories);
         publication.setPostInfoShort(this.postInfoShort);
-//        publication.setGroup(this.group);
+        publication.setGroupers(this.group);
         publication.setReleaseDate(this.releaseDate);
         publication.setReleaseTime(this.releaseTime);
         publication.setLastUpdateDate(this.lastUpdateDate);
@@ -68,7 +65,7 @@ public class PublicationDto {
         publicationDto.setGenre(publication.getGenre());
         publicationDto.setCategories(publication.getCategories());
         publicationDto.setPostInfoShort(publication.getPostInfoShort());
-//        publicationDto.setGroup(publication.getGroup());
+        publicationDto.setGroup(publication.getGroupers());
         publicationDto.setReleaseDate(publication.getReleaseDate());
         publicationDto.setReleaseTime(publication.getReleaseTime());
         publicationDto.setLastUpdateDate(publication.getLastUpdateDate());

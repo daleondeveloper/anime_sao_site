@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
-import ua.daleondeveloper.sao_site.domain.Files.ImagePublication;
 import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
 
 import javax.persistence.*;
@@ -56,8 +55,8 @@ public class Publication implements Serializable {
     @JoinColumn(name = "postInfoShort")
     private String postInfoShort;
 
-//    @JoinColumn(name = "groups")
-//    private String group;
+    @JoinColumn(name = "groupers")
+    private String groupers;
 
     //Data and Time
     @JoinColumn(name = "releaseDate")
@@ -72,17 +71,37 @@ public class Publication implements Serializable {
     @JoinColumn(name = "lastUpdateTime")
     private LocalTime lastUpdateTime;
 
-//    //Image
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "avatarImg", referencedColumnName = "id")
-//    @JsonManagedReference
-//    private ImageAvatar avatarImg;
-
-//    @OneToMany
-//    private ImagePublication images;
+    //Image
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "avatarImg", referencedColumnName = "id")
+    @JsonManagedReference
+    private ImageAvatar avatarImg;
 
     //Security
     @JoinColumn(name = "access")
     private RoleEnum access;
+
+    public void merge(Publication updatePublication){
+        if(updatePublication.getDescription() != null)
+            this.setDescription(updatePublication.getDescription());
+        if(updatePublication.getFullName() != null)
+            this.setFullName(updatePublication.getFullName());
+        if(updatePublication.getName() != null)
+            this.setName(updatePublication.getName());
+        if(updatePublication.getDirector() != null)
+            this.setDirector(updatePublication.getDirector());
+        if(updatePublication.getLanguage() != null)
+            this.setLanguage(updatePublication.getLanguage());
+        if(updatePublication.getGenre() != null)
+            this.setGenre(updatePublication.getGenre());
+        if(updatePublication.getCategories() != null)
+            this.setCategories(updatePublication.getCategories());
+        if(updatePublication.getPostInfoShort() != null)
+            this.setPostInfoShort(updatePublication.getPostInfoShort());
+        if(updatePublication.getGroupers() != null)
+            this.setGroupers(updatePublication.getGroupers());
+        this.setLastUpdateDate(LocalDate.now());
+        this.setLastUpdateTime(LocalTime.now());
+    }
 
 }

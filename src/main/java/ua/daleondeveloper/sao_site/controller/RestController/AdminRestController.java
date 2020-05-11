@@ -54,43 +54,31 @@ public class AdminRestController {
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    @PostMapping(value = "publication/anime/add")
-    public ResponseEntity<PublicationDto> addAnimePublication(PublicationDto publicationDto){
+
+    @PostMapping(value = "publication/{type}/add")
+    public ResponseEntity<PublicationDto> addAnimePublication(PublicationDto publicationDto, @PathVariable(name = "type")String type){
         Publication publication = publicationDto.toPublication();
-        publication = animePublicationService.addPublication((AnimePublication)publication);
+        switch(type.toLowerCase()){
+            case("anime"):
+                publication = animePublicationService.addPublication((AnimePublication)publication);
+                break;
+            case("manga"):
+                publication = mangaPublicationService.addPublication((MangaPublication)publication);
+                break;
+            case("game"):
+                publication = gamePublicationService.addPublication((GamePublication)publication);
+                break;
+        }
         return ResponseEntity.ok().body(publicationDto.fromPublication(publication));
     }
     @PostMapping(value = "publication/anime/edit/{id}")
-    public ResponseEntity.BodyBuilder editAnimePublication(PublicationDto publicationDto){
+    public ResponseEntity editAnimePublication(PublicationDto publicationDto){
         Publication requestPublication = publicationDto.toPublication();
         if(requestPublication.getId() > 0) {
-            Optional<Publication> publicationBDOptional = publicationService.findById(requestPublication.getId());
-            if (publicationBDOptional.isPresent()) {
-                AnimePublication publicationBD = (AnimePublication)publicationBDOptional.get();
-                if(requestPublication.getDescription() != null)
-                publicationBD.setDescription(requestPublication.getDescription());
-                if(requestPublication.getFullName() != null)
-                publicationBD.setFullName(requestPublication.getFullName());
-                if(requestPublication.getName() != null)
-                publicationBD.setName(requestPublication.getName());
-                if(requestPublication.getDirector() != null)
-                publicationBD.setDirector(requestPublication.getDirector());
-                if(requestPublication.getLanguage() != null)
-                publicationBD.setLanguage(requestPublication.getLanguage());
-                if(requestPublication.getGenre() != null)
-                publicationBD.setGenre(requestPublication.getGenre());
-                if(requestPublication.getCategories() != null)
-                publicationBD.setCategories(requestPublication.getCategories());
-                if(requestPublication.getPostInfoShort() != null)
-                publicationBD.setPostInfoShort(requestPublication.getPostInfoShort());
-//                if(requestPublication.getGroup() != null)
-//                publicationBD.setGroup(requestPublication.getGroup());
-                publicationBD.setLastUpdateDate(LocalDate.now());
-                publicationBD.setLastUpdateTime(LocalTime.now());
-                //заміна даних
+            Publication updatedPublication = publicationService.merge(requestPublication);
+            return ResponseEntity.ok().body(updatedPublication);
             }
+            return ResponseEntity.badRequest().body(requestPublication);
         }
-            return ResponseEntity.badRequest();
 
-        }
 }
