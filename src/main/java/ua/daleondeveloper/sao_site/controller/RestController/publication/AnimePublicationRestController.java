@@ -3,6 +3,7 @@ package ua.daleondeveloper.sao_site.controller.RestController.publication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ua.daleondeveloper.sao_site.dto.PublicationDto;
 import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.AnimePublicationService;
 
@@ -26,7 +27,8 @@ public class AnimePublicationRestController {
     }
 
     @PostMapping(name = "create")
-    public ResponseEntity createAnimePublication(){
+    public ResponseEntity createAnimePublication(PublicationDto publicationDto){
+
 
 
         return null;

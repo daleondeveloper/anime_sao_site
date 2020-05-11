@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 import ua.daleondeveloper.sao_site.dao.publication.PublicationRepository;
+import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
 
 import java.util.Optional;
@@ -19,7 +20,7 @@ public class PublicationService {
     private PublicationRepository publicationRepository;
 
 
-    public Long getCountPublication(){return publicationRepository.count();}
+    public Long getCount(){return publicationRepository.count();}
 
     public Page<Publication> getPublicationByNumber(int start, int end){
         return publicationRepository.findAll(PageRequest.of(start,end));
@@ -40,5 +41,10 @@ public class PublicationService {
             //not found
         }
         return null;
+    }
+
+    @Transactional
+    public Publication updateAvatar(Long publicationId, ImageAvatar imageAvatar){
+        return publicationRepository.updateAvatar(publicationId,imageAvatar);
     }
 }
