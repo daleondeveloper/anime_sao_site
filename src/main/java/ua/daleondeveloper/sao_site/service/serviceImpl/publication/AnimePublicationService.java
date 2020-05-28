@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.daleondeveloper.sao_site.dao.publication.AnimePublicationRepository;
+import ua.daleondeveloper.sao_site.domain.Files.ImagePublication;
 import ua.daleondeveloper.sao_site.domain.publication.AnimePublication;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
 
@@ -25,6 +26,12 @@ public class AnimePublicationService {
 
     @Transactional
     public AnimePublication addPublication(AnimePublication publication){
-        return animePublicationRepository.saveAndFlush(publication);}
+        return animePublicationRepository.saveAndFlush(publication);
+    }
+
+    @Transactional
+    public AnimePublication addInfoImage(Long publicationId, ImagePublication infoImage){
+        return animePublicationRepository.addInfoImage(publicationId,infoImage);
+    }
 
 }

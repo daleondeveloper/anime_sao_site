@@ -7,8 +7,12 @@ import org.springframework.web.multipart.MultipartFile;
 import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
+import ua.daleondeveloper.sao_site.dto.UploadFileResponseDto;
+import ua.daleondeveloper.sao_site.exception.BadFileTypeException;
+import ua.daleondeveloper.sao_site.exception.FileToBigException;
 import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.PublicationService;
+import ua.daleondeveloper.sao_site.utils.FileCheker;
 import ua.daleondeveloper.sao_site.utils.constants.FileConstants;
 
 import java.io.IOException;
@@ -23,7 +27,7 @@ public class PublicationRestController {
     @Autowired
     private DBFileStorageService dbFileStorageService;
 
-    @GetMapping(value = "get_number_of_publication")
+    @GetMapping(value = "getNumberOfPublication")
     public ResponseEntity get_number_of_publication(){
 
         return ResponseEntity.ok(publicationService.getCount());
@@ -36,32 +40,19 @@ public class PublicationRestController {
     @PostMapping(value = "uploadAvatar/{id}")
     public ResponseEntity uploadAvatar (@RequestParam("file")MultipartFile requestFile, @PathVariable(name = "id")Long id) {
 
-        //Check if file has image type
-        if (!requestFile.getContentType().split("/")[0].equals("image")) {
-            return ResponseEntity.badRequest().body("Bad image type");
-        }
-
-        if (requestFile.getSize() > FileConstants.MAX_IMAGE_SIZE) {
-            return ResponseEntity.badRequest().body("Bad image size");
-        }
-
             Optional<Publication> publication = publicationService.findById(id);
-            if (publication.isPresent()) {
-                try {
+            try {
+                if (publication.isPresent() && FileCheker.chekImageFile(requestFile)) {
+
                     ImageAvatar imageAvatar = (ImageAvatar) dbFileStorageService.storeFile(
                             new ImageAvatar(requestFile.getName(), requestFile.getContentType(), requestFile.getBytes(), RoleEnum.ROLE_GUEST, publication.get()));
 
                     publicationService.updateAvatar(publication.get().getId(), imageAvatar);
-                } catch (IOException e) {
-                    System.out.println(e);
                 }
-
-
+            }catch (Exception e) {
+                return ResponseEntity.badRequest().body(e.getMessage());
             }
-
-
-            return null;
-
+        return ResponseEntity.ok().body("Image download");
     }
 
 //    @GetMapping(name = "get_avatar")

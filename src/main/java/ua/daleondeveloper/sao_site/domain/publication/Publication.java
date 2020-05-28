@@ -24,8 +24,8 @@ import java.time.LocalTime;
 public class Publication implements Serializable {
 
     @Id
-    @TableGenerator( name = "seqStore", table = "SEQ_STORE", pkColumnName = "SEQ_NAME", pkColumnValue = "JOURNAL.ID.PK", valueColumnName = "SEQ_VALUE", initialValue = 1, allocationSize = 1 )
-    @GeneratedValue( strategy = GenerationType.TABLE, generator = "seqStore" )
+    @TableGenerator( name = "genPublicationId", table = "PUBLICATION_ID", pkColumnName = "PUBLICATION_ID", pkColumnValue = "PUBLICATION.ID.PK", valueColumnName = "SEQ_VALUE", initialValue = 1, allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.TABLE, generator = "genPublicationId" )
     private long id;
 
     //All Strings

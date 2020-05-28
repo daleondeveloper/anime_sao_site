@@ -16,6 +16,7 @@ $('#autorization_div').ready( function reg_form_autorization(){
                     if ($('#mini_user_setting_menu').attr('hidden')) {
                         $('#mini_user_info_menu').attr('hidden', false);
                         $('#user_nick_name_txt_left_menu').html(res.nickName);
+                      //  alert(TEST_CONSTANS);
                         ajaxGetAvatar();
                     } else {
                         $('#mini_user_setting_menu').attr('hidden', false);

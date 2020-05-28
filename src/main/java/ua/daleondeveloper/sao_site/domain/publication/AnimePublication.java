@@ -5,8 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import ua.daleondeveloper.sao_site.domain.Files.ImagePublication;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "AnimePublication")
@@ -18,5 +20,8 @@ public class AnimePublication extends Publication{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @OneToMany(mappedBy = "animePublicationImages")
+    private List<ImagePublication> infoImages;
 
 }

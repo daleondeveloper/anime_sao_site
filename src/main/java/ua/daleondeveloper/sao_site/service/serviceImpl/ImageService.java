@@ -1,11 +1,15 @@
 package ua.daleondeveloper.sao_site.service.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import ua.daleondeveloper.sao_site.dao.ImageRepository;
 import ua.daleondeveloper.sao_site.domain.Files.Image;
+import ua.daleondeveloper.sao_site.domain.User;
 import ua.daleondeveloper.sao_site.exception.FileStorageException;
 import ua.daleondeveloper.sao_site.exception.FileNotFoundException;
 
@@ -37,7 +41,9 @@ public class ImageService {
         }
 
     }
-
+    public Page<Image> getAnimeByNumber(int start, int end){
+        return imageRepository.findAll(PageRequest.of(1,3, Sort.by("data")));
+    }
     public Image getImage (Long fileId){
         return imageRepository.findById(fileId).
                 orElseThrow(() -> new FileNotFoundException("File not found with id " + fileId));

@@ -1,4 +1,6 @@
-"use strict"
+"use strict";
+import{TEST_CONSTANS} from './utils/constans.js';
+
 $(function doAjaxPost() {
     $('#registration').click(function (e) {
 // get the form values

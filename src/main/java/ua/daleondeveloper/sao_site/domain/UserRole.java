@@ -1,5 +1,7 @@
 package ua.daleondeveloper.sao_site.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -22,7 +24,7 @@ public class UserRole implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @JsonManagedReference
+    @JsonBackReference
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 

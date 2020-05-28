@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import ua.daleondeveloper.sao_site.domain.User;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -23,4 +24,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     @Query("SELECT avatarImg FROM User c  where c.id = :id")
     Optional<ImageAvatar> findAvatarId(@Param("id")Long id);
+
+//    @Query("SELECT c FROM USER c WHERE c.id > 4")
+//    List<User> findUsers(@Param("start")int start,@Param("end")int end);
 }

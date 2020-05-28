@@ -2,6 +2,9 @@ package ua.daleondeveloper.sao_site.service.serviceImpl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +13,7 @@ import ua.daleondeveloper.sao_site.dao.UserRoleRepository;
 import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import ua.daleondeveloper.sao_site.domain.User;
 import ua.daleondeveloper.sao_site.domain.UserRole;
+import ua.daleondeveloper.sao_site.domain.publication.AnimePublication;
 import ua.daleondeveloper.sao_site.security.jwt.JwtAuthenticationException;
 import ua.daleondeveloper.sao_site.security.jwt.JwtTokenProvider;
 import ua.daleondeveloper.sao_site.service.UserService;
@@ -37,6 +41,10 @@ public class UserServiceImpl implements UserService {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
+    public Long getCount(){return userRepository.count();}
+    public Page<User> getAnimeByNumber(int start, int end){
+        return userRepository.findAll(PageRequest.of(start,2, Sort.by("email").descending()));
+    }
     @Transactional
     public void addUser(User user){userRepository.save(user);}
 
