@@ -22,7 +22,7 @@ public final class JwtUserFactory {
                 user.getEmail(),
                 user.getPassword(),
                 true,
-                user.getLastUpdateDate(),
+                user.getLastUpdateDateTime().toLocalDate(),
                 mapToGrantedAuthorities(new ArrayList<>(user.getRoles()))
         );
     }

@@ -59,13 +59,13 @@ public class Publication implements Serializable {
     private String groupers;
 
     //Data and Time
-    @JoinColumn(name = "releaseDate")
+    @JoinColumn(name = "releaseDateTime")
     private LocalDate releaseDate;
 
     @JoinColumn(name = "releaseTime")
     private LocalTime releaseTime;
 
-    @JoinColumn(name = "lastUpdateDate")
+    @JoinColumn(name = "lastUpdateDateTime")
     private LocalDate lastUpdateDate;
 
     @JoinColumn(name = "lastUpdateTime")

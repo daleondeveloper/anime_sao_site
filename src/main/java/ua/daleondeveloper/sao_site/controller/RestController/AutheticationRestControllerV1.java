@@ -10,13 +10,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import ua.daleondeveloper.sao_site.domain.User;
-import ua.daleondeveloper.sao_site.domain.UserRole;
 import ua.daleondeveloper.sao_site.dto.AuthenticationRequestDto;
 import ua.daleondeveloper.sao_site.dto.UserDto;
 import ua.daleondeveloper.sao_site.security.jwt.JwtTokenProvider;
 import ua.daleondeveloper.sao_site.service.UserService;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @RestController
@@ -72,7 +72,7 @@ public class AutheticationRestControllerV1 {
                 userRequestDto.setNickName("NewUser");
             }
 
-            userRequestDto.setLastUpdateDate(LocalDate.now());
+            userRequestDto.setLastUpdateDateTime(LocalDateTime.now());
 
             User userResponse = userRequestDto.toUser();
             userResponse =  userService.register(userResponse);

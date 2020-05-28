@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import ua.daleondeveloper.sao_site.domain.User;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Getter
@@ -19,7 +19,7 @@ public class UserDto {
     private String email;
     private String password;
     private String acess;
-    private LocalDate lastUpdateDate;
+    private LocalDateTime lastUpdateDateTime;
 
     public User toUser(){
         User user = new User();
@@ -32,7 +32,7 @@ public class UserDto {
         user.setEmail(email);
         user.setPassword(password);
         user.setAccess(acess);
-        user.setLastUpdateDate(lastUpdateDate);
+        user.setLastUpdateDateTime(lastUpdateDateTime);
 
         return user;
     }
@@ -44,7 +44,7 @@ public class UserDto {
         userDto.setEmail(user.getEmail());
         userDto.setPassword(user.getPassword());
         userDto.setAcess(user.getAccess());
-        userDto.setLastUpdateDate(user.getLastUpdateDate());
+        userDto.setLastUpdateDateTime(user.getLastUpdateDateTime());
         return userDto;
     }
 }

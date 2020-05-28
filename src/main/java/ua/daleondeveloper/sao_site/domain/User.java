@@ -1,8 +1,6 @@
 package ua.daleondeveloper.sao_site.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +10,7 @@ import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -54,20 +52,16 @@ public class User extends BaseEntity implements Serializable {
     private List<UserRole> roles;
 
     //Date and Time
-    @JoinColumn(name = "releaseData")
-    private LocalDate releaseDate;
-    @JoinColumn(name = "releaseTime")
-    private LocalTime releaseTime;
-    @JoinColumn(name = "lastUpdateDate")
-    private LocalDate lastUpdateDate;
-    @JoinColumn(name = "lastUpdateTime")
-    private LocalTime lastUpdateTime;
+    @JoinColumn(name = "releaseDataAndTime")
+    private LocalDateTime releaseDateTime;
+    @JoinColumn(name = "lastUpdateDateTime")
+    private LocalDateTime lastUpdateDateTime;
 
-    public User(String email, String password, String nickname, List<UserRole> roles, LocalDate lastUpdateDate) {
+    public User(String email, String password, String nickname, List<UserRole> roles, LocalDateTime lastUpdateDateTime) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.roles = roles;
-        this.lastUpdateDate = lastUpdateDate;
+        this.lastUpdateDateTime = lastUpdateDateTime;
     }
 }
