@@ -5,12 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 //POJO object for post
@@ -31,8 +33,12 @@ public class Publication implements Serializable {
     //All Strings
     //
     //a description of what is in the post
+    @Type(type = "text")
     @JoinColumn(name = "description")
     private String description;
+
+    @JoinColumn(name = "types")
+    private String types;
 
     @JoinColumn(name = "fullName")
     private String fullName;
@@ -59,17 +65,13 @@ public class Publication implements Serializable {
     private String groupers;
 
     //Data and Time
+    @JoinColumn(name = "createDate")
+    private LocalDate createDate;
     @JoinColumn(name = "releaseDateTime")
-    private LocalDate releaseDate;
-
-    @JoinColumn(name = "releaseTime")
-    private LocalTime releaseTime;
+    private LocalDateTime releaseDateTime;
 
     @JoinColumn(name = "lastUpdateDateTime")
-    private LocalDate lastUpdateDate;
-
-    @JoinColumn(name = "lastUpdateTime")
-    private LocalTime lastUpdateTime;
+    private LocalDateTime lastUpdateDateTime;
 
     //Image
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -80,6 +82,21 @@ public class Publication implements Serializable {
     //Security
     @JoinColumn(name = "access")
     private RoleEnum access;
+
+    public Publication(String description, String fullName, String name, String director, String language, String genre, String categories, String postInfoShort, String groupers, LocalDateTime releaseDateTime, LocalDateTime lastUpdateDateTime, RoleEnum access) {
+        this.description = description;
+        this.fullName = fullName;
+        this.name = name;
+        this.director = director;
+        this.language = language;
+        this.genre = genre;
+        this.categories = categories;
+        this.postInfoShort = postInfoShort;
+        this.groupers = groupers;
+        this.releaseDateTime = releaseDateTime;
+        this.lastUpdateDateTime = lastUpdateDateTime;
+        this.access = access;
+    }
 
     public void merge(Publication updatePublication){
         if(updatePublication.getDescription() != null)
@@ -100,8 +117,7 @@ public class Publication implements Serializable {
             this.setPostInfoShort(updatePublication.getPostInfoShort());
         if(updatePublication.getGroupers() != null)
             this.setGroupers(updatePublication.getGroupers());
-        this.setLastUpdateDate(LocalDate.now());
-        this.setLastUpdateTime(LocalTime.now());
+        this.setLastUpdateDateTime(LocalDateTime.now());
     }
 
 }

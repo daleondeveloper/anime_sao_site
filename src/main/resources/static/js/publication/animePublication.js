@@ -39,7 +39,6 @@
 //     </div>
 
 $('#autorization_div').ready(function(){
-    alert("sss");
     createNumericalPageNavigation(100);
 
 
@@ -48,7 +47,7 @@ $('#autorization_div').ready(function(){
 function createNumericalPageNavigation(start){
 
     let pageCount = 1;
-    let publicationInPage = 3;
+    let publicationInPage = 10;
 
     $.ajax({
         url:"/api/v1/publication/anime/getCount",
@@ -71,30 +70,24 @@ function createNumericalPageNavigation(start){
             pageCount = 1;
         }
     });
-
-
-
-
-    // $.ajax({
-    //     beforeSend: function (request) {
-    //         request.setRequestHeader('Authorization', ('Bearer_' + localStorage.getItem('token')));
-    //     },
-    //     url : "/api/v1/publication/getNumberOfPublication",
-    //     type : "GET",
-    //     success : function (res) {
-    //
-    //     }
-    // })
-
-
 }
 
 function getAnimePublicationAjax(page){
     $.ajax({
-        url:("/api/v1/publication/anime/getAime" + page),
+        url:("/api/v1/publication/anime/getAnime" + page),
         type:"GET",
         success: function(res){
+            let i;
 
+            for(i = 0; i < res.content.length; i++){
+                let publication = res.content[i],
+                 stringPublicationDiv = createPublicationdiv(publication.id,
+                     publication.fullName, publication.genre, publication.director,
+                     publication.description,publication.categories) ;
+                let publicationDiv = document.getElementById("publicationDiv");
+                publicationDiv.insertAdjacentHTML("beforeend", stringPublicationDiv);
+                // ajaxDownloadAvatar(id);
+            }
         },
         error: function(){
 
@@ -103,10 +96,84 @@ function getAnimePublicationAjax(page){
     });
 }
 
-function publicationShow() {
-    for(var i = 1 , j = 10; i < 11; i++, j++){
+function ajaxDownloadAvatar(id) {
+    $.ajax({
+        url: ("" + id),
+        type: "GET",
+        success: function (res) {
+            $('#publicationimage' + id).attr('src', 'data:image/jpeg;base64,'+ res);
+        },
+        error: function () {
 
-    }
+        }
 
+    })
+}
+
+function createPublicationdiv(id,fullName,genre, director, description, categories) {
+    let stringDiv = "                <div class=\"card border border-primary\" style=\"margin: 0.4rem;\">\n" +
+        "                    <div class=\"card-header\">\n" +
+        "                        <h4>\n" +
+        "                          <a  href=\"#\">&#10031; " + fullName + "</a>\n" +
+        "                        </h4>\n" +
+        "                    </div><!--                    card-header-->\n" +
+        "                  <div class=\"card-body\">\n" +
+        "                      <div class=\"row\">\n" +
+        "                        <div class=\"col-md-12\">\n" +
+        "                              <img id=publicationImage"+ id +"style=\"float:left;width:10rem;height:auto; margin-right:10px;\" src=\"\" alt=\"Card image cap\">\n" +
+        "                            <p class=\"collapse-group\"><strong>Год выхода:</strong> 2012<br>\n" +
+        "\n" +
+        "                                <strong>Жанр:</strong>" + genre + "<br>\n" +
+        "\n" +
+        "                                <strong>Тип:</strong> ТВ<br>\n" +
+        "\n" +
+        "                                <strong>Количество серий:</strong> 25 (25 мин.)<br>\n" +
+        "\n" +
+        "                                <strong>Режиссёр:</strong>" + director + "<br>\n" +
+        "                                <strong>Описание:</strong>" + description.slice(0,100) + "\n" +
+        "                            <span class=\"collapse\" id=\"viewdetails" + id + "\">" + description.slice(101,description.length) + "</span>\n" +
+        "                            <a href=\"#\" data-toggle=\"collapse\" data-target=\"#viewdetails" + id + "\">Більше... &raquo;</a>\n" +
+        "                            </p>\n" +
+        "                                \n" +
+        "                                <div id=\"accordion\">\n" +
+        "                                  <div class=\"card\">\n" +
+        "                                    <div class=\"card-header\" id=\"headingOne\" style=\"padding: 0; background: d8d2d9;\">\n" +
+        "                                      <h5 class=\"mb-0\">\n" +
+        "                                        <button class=\"btn btn-link\" styly=\"padding: 0\" data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\n" +
+        "                                          Это аниме состоит из:\n" +
+        "                                        </button>\n" +
+        "                                      </h5>\n" +
+        "                                    </div>\n" +
+        "\n" +
+        "                                    <div id=\"collapseOne\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordion\">\n" +
+        "                                      <div class=\"card-body\">\n" +
+        "                                       <ol>\n" +
+        "                                           <li><a href=\"#\">Мастера меча онлайн</a> - ТВ (25 эп.), адаптация ранобэ, 2012</li>\n" +
+        "                                           <li><a href=\"#\">Мастера меча онлайн (спецвыпуск 1)</a> - ТВ-спэшл, продолжение, 2013</li>\n" +
+        "                                           <li><a href=\"#\">Мастера меча онлайн (второй сезон)</a> - ТВ (24 эп.), продолжение, 2014</li>\n" +
+        "                                           <li><a href=\"#\">Мастера меча онлайн (фильм)</a> - п/ф, адаптация ранобэ, 2017</li>\n" +
+        "                                           <li><a href=\"#\">Мастера меча онлайн (третий сезон)</a> - ТВ (12+ эп.), продолжение, 2018</li>\n" +
+        "                                           <li><a href=\"#\">Мастера Меча Онлайн: Альтернативная \"Призрачная пуля\"</a> - ТВ (12+ эп.), адаптация ранобэ, 2018</li>\n" +
+        "                                        </ol>\n" +
+        "                                      </div><!--                                        card-body-->\n" +
+        "                                    </div><!--                                      collapse show one-->\n" +
+        "                                  </div><!--                                    card-collapse-->\n" +
+        "                                </div><!--                            id-accordition-->\n" +
+        "                        </div><!--                          col-12 -card-body -->\n" +
+        "                    </div><!--                      row - card-body -->\n" +
+        "                      \n" +
+        "                  </div><!--                    card-body-->\n" +
+        "                    <div class=\"card-footer text-muted\">\n" +
+        "                        <div class=\"row\">\n" +
+        "                            <div class=\"col-9\">\n" +
+        "                                <p><strong>Категории:</strong>" + categories + "</p>\n" +
+        "                            </div>\n" +
+        "                            <div class=\"col-3\">\n" +
+        "                                <button id=\"goToPublication" + id + "\" type=\"button\" class=\"btn btn-primary\" style=\"display: block; margin-left: auto;\">Смотреть</button>\n" +
+        "                            </div>\n" +
+        "                        </div>\n" +
+        "                      </div><!--                    card-footer-->\n" +
+        "                </div><!--                card-->\n"
+        return stringDiv;
 }
 

@@ -7,8 +7,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 import ua.daleondeveloper.sao_site.domain.User;
 import ua.daleondeveloper.sao_site.domain.UserRole;
+import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
+import ua.daleondeveloper.sao_site.domain.factory.PublicationFactory;
+import ua.daleondeveloper.sao_site.domain.factory.UserFactory;
+import ua.daleondeveloper.sao_site.domain.publication.AnimePublication;
+import ua.daleondeveloper.sao_site.domain.publication.Publication;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserRoleServiceImpl;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.PublicationService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,7 +34,8 @@ public class SaoSiteApplication {
 
     @Bean
     public CommandLineRunner demo(final UserServiceImpl userServiceImpl,
-                                  final UserRoleServiceImpl userRoleServiceImpl) {
+                                  final UserRoleServiceImpl userRoleServiceImpl,
+                                  final PublicationService publicationService) {
         return new CommandLineRunner() {
             @Override
             public void run(String... strings) throws Exception {
@@ -47,23 +54,18 @@ public class SaoSiteApplication {
                 // Admin users
                 roles.add(role_admin);
                 roles.add(role_user);
-
-                userServiceImpl.addUser(new User("mail@ukr.net","$2a$10$htuylAmgsFeg0F1yVWk2e.Cr/0a3P5VgZjoT0qMsWuyEa4JJxUS1S","admin1",roles, LocalDateTime.now()));
-                userServiceImpl.addUser(new User("daleon@ukr.net","$2a$10$6m6jO4ztTxR/7CxhRl5KmO68wj9/oNT.XSQOiDmuN2OFQavzmeMhu","admin2",roles, LocalDateTime.now()));
-                roles.clear();
-                //Non admin users
-                roles.add(role_user);
-                userServiceImpl.addUser(new User("daleon1@mail.ru","$2a$10$ox.IvgI54mBB8uz54sQ9xOOK7pUK6qOHrLZMEyJZP9ko7/E0mv/F6","daleon1",roles, LocalDateTime.now()));
-                userServiceImpl.addUser(new User("daleon2@mail.ru","$2a$10$PWL/tptqCQczmSDKJ4axZ.buICvxPjBxSGwCPnqjIiaf.lOp2udSe","daleon2",roles, LocalDateTime.now()));
-                userServiceImpl.addUser(new User("daleon3@mail.ru","$2a$10$uRT8lYP69Ffq3nECSLKXPO1RnGm.Ggd4IeOi59jFMev33nm7kXqI.","daleon3",roles, LocalDateTime.now()));
-                userServiceImpl.addUser(new User("daleon4@mail.ru","$2a$10$h.M7BpBLdz9SAt2oL.z.d.vjYB7I2LJWBjCuNszEN9lIAvVjLRRay","daleon4",roles, LocalDateTime.now()));
-                userServiceImpl.addUser(new User("daleon5@mail.ru","$2a$10$TgFSGsjU/qioNzW5lWjGCeZxAENZH4Zvbc7a4Ljl1GqrJP/buQ29i","daleon5",roles, LocalDateTime.now()));
-                userServiceImpl.addUser(new User("daleon6@mail.ru","$2a$10$oPEaUYnxkctH68kBN2F7WuqOdV3Sf8evrznQxbRT0PqnSTGELdhz2","daleon6",roles, LocalDateTime.now()));
-                userServiceImpl.addUser(new User("daleon7@mail.ru","$2a$10$Cdwq2R3bS0YKT88KMtjb1enRe3Ey35egHJOTuWTAf3zgT1pnNfm.S","daleon7",roles, LocalDateTime.now()));
-                userServiceImpl.addUser(new User("daleon8@mail.ru","$2a$10$4z6r/rdB0Id7Jg38f8mTGeTh3vccFBcXzDls5vwEp89gBLvgbiENy","daleon8",roles, LocalDateTime.now()));
-                userServiceImpl.addUser(new User("daleon9@mail.ru","$2a$10$ANd64k0PngMJKSZFoBwuQOLJCNS9T/OTLGlPO.sz2cHdERCBmMbKy","daleon9",roles, LocalDateTime.now()));
-
-
+                userServiceImpl.addUser(UserFactory.getUser("mail@ukr.net","1234",roles));
+                userServiceImpl.addUser(UserFactory.getUser("daleon@ukr.net","1234",roles));
+                //User users
+                for(int i = 0; i < 20 ; i++){
+                    String email = ("daleon" + i + "@ukr.net");
+                    userServiceImpl.addUser(UserFactory.getUser(email,"$2a$10$81.IeFg8DpDeGhTtpN/MpOla6jjRVFC/PVZJjKfpTNEtWCLS7/06a",roles));
+                }
+                for(int i = 0, j = 0; i < 95; i++, j++){
+                    Publication animePublication = PublicationFactory.getAnimePublication(j);
+                    publicationService.addPublication(animePublication);
+                            if(j == 6 )j = 0;
+                }
             }
         };
     }

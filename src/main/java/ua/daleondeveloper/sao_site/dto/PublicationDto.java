@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Data
 @Getter
@@ -29,10 +28,8 @@ public class PublicationDto {
     private String group;
 
     //Data and Time
-    private LocalDate releaseDate;
-    private LocalTime releaseTime;
-    private LocalDate lastUpdateDate;
-    private LocalTime lastUpdateTime;
+    private LocalDateTime releaseDateTime;
+    private LocalDateTime lastUpdateDateTime;
 
     public Publication toPublication(){
         Publication publication = new Publication();
@@ -46,10 +43,8 @@ public class PublicationDto {
         publication.setCategories(this.categories);
         publication.setPostInfoShort(this.postInfoShort);
         publication.setGroupers(this.group);
-        publication.setReleaseDate(this.releaseDate);
-        publication.setReleaseTime(this.releaseTime);
-        publication.setLastUpdateDate(this.lastUpdateDate);
-        publication.setLastUpdateTime(this.lastUpdateTime);
+        publication.setReleaseDateTime(this.releaseDateTime);
+        publication.setLastUpdateDateTime(this.lastUpdateDateTime);
 
         return publication;
     }
@@ -66,10 +61,8 @@ public class PublicationDto {
         publicationDto.setCategories(publication.getCategories());
         publicationDto.setPostInfoShort(publication.getPostInfoShort());
         publicationDto.setGroup(publication.getGroupers());
-        publicationDto.setReleaseDate(publication.getReleaseDate());
-        publicationDto.setReleaseTime(publication.getReleaseTime());
-        publicationDto.setLastUpdateDate(publication.getLastUpdateDate());
-        publicationDto.setLastUpdateTime(publication.getLastUpdateTime());
+        publicationDto.setReleaseDateTime(publication.getReleaseDateTime());
+        publicationDto.setLastUpdateDateTime(publication.getLastUpdateDateTime());
 
         return publicationDto;
     }

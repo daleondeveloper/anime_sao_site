@@ -41,13 +41,13 @@ public class AnimePublicationRestController {
 
     @GetMapping("getCount")
     public ResponseEntity getNumberOfAnime(){
-        Long l = 123L;
-       // return ResponseEntity.ok(animePublicationService.getCount());
-        return ResponseEntity.ok().body(userService.getCount());
+
+        return ResponseEntity.ok().body(animePublicationService.getCount());
+//        return ResponseEntity.ok().body(userService.getCount());
     }
     @GetMapping(value = "getAnime{page}")
     public  ResponseEntity getPublication(@PathVariable(name = "page")int page){
-        return ResponseEntity.ok(userService.getAnimeByNumber(page,page+3));
+        return ResponseEntity.ok(animePublicationService.getAnimeByNumber(page,page+3));
     }
 
     @PostMapping(value = "uploadInfoImages/{id}")

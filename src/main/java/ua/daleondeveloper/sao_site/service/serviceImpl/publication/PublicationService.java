@@ -47,4 +47,6 @@ public class PublicationService {
     public Publication updateAvatar(Long publicationId, ImageAvatar imageAvatar){
         return publicationRepository.updateAvatar(publicationId,imageAvatar);
     }
+    @Transactional
+    public Publication addPublication(Publication publication){return publicationRepository.save(publication);}
 }

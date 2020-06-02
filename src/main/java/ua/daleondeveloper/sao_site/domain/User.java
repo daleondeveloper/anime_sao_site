@@ -57,11 +57,12 @@ public class User extends BaseEntity implements Serializable {
     @JoinColumn(name = "lastUpdateDateTime")
     private LocalDateTime lastUpdateDateTime;
 
-    public User(String email, String password, String nickname, List<UserRole> roles, LocalDateTime lastUpdateDateTime) {
+    public User(String email, String password, String nickname, List<UserRole> roles,LocalDateTime releaseDateTime, LocalDateTime lastUpdateDateTime) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.roles = roles;
+        this.releaseDateTime = releaseDateTime;
         this.lastUpdateDateTime = lastUpdateDateTime;
     }
 }
