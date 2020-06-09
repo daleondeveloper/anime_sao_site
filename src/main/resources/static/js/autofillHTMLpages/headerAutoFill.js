@@ -5,7 +5,7 @@ var headerMenuHtml = "<header class=\"header\">\n" +
     "<nav class=\"navbar  navbar-expand-lg navbar-dark bg-dark sticky-top\">\n" +
     "\n" +
     "    <a href=\"#\" class=\"navbar-brand\">\n" +
-    "        <img src=\"../image/icon.jpg\"\n" +
+    "        <img id=\"imageAvatarTest\" src=\"../image/icon.jpg\"\n" +
     "             Width=\"50\" Height=\"50\"\n" +
     "             alt=\"logo\">\n" +
     "        Sword Art Online\n" +

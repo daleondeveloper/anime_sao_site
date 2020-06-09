@@ -19,6 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String LOGIN_ENDPOINT = "/api/v1/auth/**";
     private static final String USER_ENDPOINT = "/api/v1/user/**";
     private static final String ANIME_ENDPOINT = "/api/v1/publication/anime/**";
+    private static final String PUBLICATION_ENDPOINT = "/api/v1/publication/**";
     private static final String LINK_ENDPOINT = "/**";
 
     @Autowired
@@ -43,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(LOGIN_ENDPOINT).permitAll()
                 .antMatchers(LINK_ENDPOINT).permitAll()
                 .antMatchers(ANIME_ENDPOINT).permitAll()
+                .antMatchers(PUBLICATION_ENDPOINT).permitAll()
                 .antMatchers(USER_ENDPOINT).hasRole("ADMIN")
                 .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
                 .antMatchers("/css/**","/js/**","/image/**").permitAll()

@@ -34,7 +34,7 @@ public class DBFileStorageService {
     public File getFile (Long fileId, User user){
         File file = dbFileRepository.findById(fileId).
                 orElseThrow(() -> new FileNotFoundException("File not found with id " + fileId));
-        if(file.getAccess() != null) {
+        if(file.getAccess() != null && user != null) {
             for (UserRole role : user.getRoles()) {
                 if (role.getName().equals(file.getAccess().toString())) {
                     return file;

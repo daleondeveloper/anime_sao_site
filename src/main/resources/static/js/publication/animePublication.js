@@ -74,19 +74,28 @@ function createNumericalPageNavigation(start){
 
 function getAnimePublicationAjax(page){
     $.ajax({
-        url:("/api/v1/publication/anime/getAnime" + page),
+        url:("/api/v1/publication/anime/getAnime/" + page),
         type:"GET",
         success: function(res){
             let i;
 
             for(i = 0; i < res.content.length; i++){
-                let publication = res.content[i],
-                 stringPublicationDiv = createPublicationdiv(publication.id,
-                     publication.fullName, publication.genre, publication.director,
-                     publication.description,publication.categories) ;
+                let publication = res.content[i],genres = "",categories = "";
+
+                for(let i = 0 ; i < publication.genres.length; i++){
+                    genres += publication.genres[i].genre + ", ";
+                }
+                for(let i = 0 ; i < publication.categories.length; i++){
+                    categories += publication.categories[i].categories + ", ";
+                }
+
+                let stringPublicationDiv = createPublicationdiv(publication.id,
+                     publication.fullName, genres, publication.director, publication.language,
+                     publication.createDate,
+                     publication.description,categories,publication.countSeries) ;
                 let publicationDiv = document.getElementById("publicationDiv");
                 publicationDiv.insertAdjacentHTML("beforeend", stringPublicationDiv);
-                // ajaxDownloadAvatar(id);
+                ajaxDownloadAvatar(publication.id);
             }
         },
         error: function(){
@@ -98,10 +107,14 @@ function getAnimePublicationAjax(page){
 
 function ajaxDownloadAvatar(id) {
     $.ajax({
-        url: ("" + id),
+        async:"true",
+        datatype: "json",
+        url: ("/api/v1/publication/getAvatar/" + id),
         type: "GET",
+        processData: "false",
+        contentType: "false",
         success: function (res) {
-            $('#publicationimage' + id).attr('src', 'data:image/jpeg;base64,'+ res);
+            $('#publicationImage' + id).attr('src', 'data:image/jpeg;base64,'+ res);
         },
         error: function () {
 
@@ -110,7 +123,7 @@ function ajaxDownloadAvatar(id) {
     })
 }
 
-function createPublicationdiv(id,fullName,genre, director, description, categories) {
+function createPublicationdiv(id,fullName,genre, director, language,createDate, description, categories, series) {
     let stringDiv = "                <div class=\"card border border-primary\" style=\"margin: 0.4rem;\">\n" +
         "                    <div class=\"card-header\">\n" +
         "                        <h4>\n" +
@@ -120,18 +133,18 @@ function createPublicationdiv(id,fullName,genre, director, description, categori
         "                  <div class=\"card-body\">\n" +
         "                      <div class=\"row\">\n" +
         "                        <div class=\"col-md-12\">\n" +
-        "                              <img id=publicationImage"+ id +"style=\"float:left;width:10rem;height:auto; margin-right:10px;\" src=\"\" alt=\"Card image cap\">\n" +
-        "                            <p class=\"collapse-group\"><strong>Год выхода:</strong> 2012<br>\n" +
+        "                              <img id=\"publicationImage"+ id +"\" style=\"float:left;width:10rem;height:auto; margin-right:10px;\" src=\"\" alt=\"Card image cap\">\n" +
+        "                            <p class=\"collapse-group\"><strong>Дата випуску:</strong>" + createDate + "<br>\n" +
         "\n" +
         "                                <strong>Жанр:</strong>" + genre + "<br>\n" +
         "\n" +
         "                                <strong>Тип:</strong> ТВ<br>\n" +
         "\n" +
-        "                                <strong>Количество серий:</strong> 25 (25 мин.)<br>\n" +
+        "                                <strong>Количество серий:</strong> " + series + "<br>\n" +
         "\n" +
         "                                <strong>Режиссёр:</strong>" + director + "<br>\n" +
-        "                                <strong>Описание:</strong>" + description.slice(0,100) + "\n" +
-        "                            <span class=\"collapse\" id=\"viewdetails" + id + "\">" + description.slice(101,description.length) + "</span>\n" +
+        "                                <strong>Описание:</strong>" + description.slice(0,250) + "\n" +
+        "                            <span class=\"collapse\" id=\"viewdetails" + id + "\">" + description.slice(251,description.length) + "</span>\n" +
         "                            <a href=\"#\" data-toggle=\"collapse\" data-target=\"#viewdetails" + id + "\">Більше... &raquo;</a>\n" +
         "                            </p>\n" +
         "                                \n" +
@@ -139,7 +152,7 @@ function createPublicationdiv(id,fullName,genre, director, description, categori
         "                                  <div class=\"card\">\n" +
         "                                    <div class=\"card-header\" id=\"headingOne\" style=\"padding: 0; background: d8d2d9;\">\n" +
         "                                      <h5 class=\"mb-0\">\n" +
-        "                                        <button class=\"btn btn-link\" styly=\"padding: 0\" data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\n" +
+        "                                        <button class=\"btn btn-link\" style=\"padding: 0\" data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\n" +
         "                                          Это аниме состоит из:\n" +
         "                                        </button>\n" +
         "                                      </h5>\n" +

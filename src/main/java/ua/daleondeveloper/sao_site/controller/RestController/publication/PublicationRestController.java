@@ -1,6 +1,8 @@
 package ua.daleondeveloper.sao_site.controller.RestController.publication;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,10 +18,11 @@ import ua.daleondeveloper.sao_site.utils.FileCheker;
 import ua.daleondeveloper.sao_site.utils.constants.FileConstants;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(name = "/api/v1/publication/")
+@RequestMapping(value = "/api/v1/publication/")
 public class PublicationRestController {
 
     @Autowired
@@ -27,14 +30,14 @@ public class PublicationRestController {
     @Autowired
     private DBFileStorageService dbFileStorageService;
 
-    @GetMapping(value = "getNumberOfPublication")
+    @GetMapping("getNumberOfPublication")
     public ResponseEntity get_number_of_publication(){
 
         return ResponseEntity.ok(publicationService.getCount());
     }
-    @GetMapping(value = "get_publication_{start}_{end}")
-    public  ResponseEntity get_publication(@PathVariable(name = "start")int start, @PathVariable(name = "end")int end){
-        return ResponseEntity.ok(publicationService.getPublicationByNumber(start,end));
+    @GetMapping(value = "getPublication/{page}")
+    public  ResponseEntity get_publication(@PathVariable(name = "page")int page){
+        return ResponseEntity.ok(publicationService.getPublicationByNumber(page,page+3));
     }
 
     @PostMapping(value = "uploadAvatar/{id}")
@@ -55,11 +58,14 @@ public class PublicationRestController {
         return ResponseEntity.ok().body("Image download");
     }
 
-//    @GetMapping(name = "get_avatar")
-//    public ResponseEntity getAvatar(){
-//
-//        return null;
-//    }
+    @GetMapping(value = "getAvatar/{id}")
+    public ResponseEntity getAvatar(@PathVariable("id")long id){
+        ImageAvatar avatar = (ImageAvatar)dbFileStorageService.getFile(publicationService.findAvatarId(id),null);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(avatar.getContentType()))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + avatar.getFileName() + "\"")
+                .body(Base64.getEncoder().encodeToString(avatar.getData()));
+    }
 
 
 }

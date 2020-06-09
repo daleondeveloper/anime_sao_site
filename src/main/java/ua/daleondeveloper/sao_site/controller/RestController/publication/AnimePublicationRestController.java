@@ -45,7 +45,7 @@ public class AnimePublicationRestController {
         return ResponseEntity.ok().body(animePublicationService.getCount());
 //        return ResponseEntity.ok().body(userService.getCount());
     }
-    @GetMapping(value = "getAnime{page}")
+    @GetMapping(value = "getAnime/{page}")
     public  ResponseEntity getPublication(@PathVariable(name = "page")int page){
         return ResponseEntity.ok(animePublicationService.getAnimeByNumber(page,page+3));
     }
@@ -66,7 +66,7 @@ public class AnimePublicationRestController {
                 ImagePublication imageInfo = (ImagePublication) dbFileStorageService.storeFile(
                         new ImagePublication(file.getName(), file.getContentType(), file.getBytes(), RoleEnum.ROLE_GUEST, (AnimePublication)publication.get()));
 
-                animePublicationService.addInfoImage(publication.get().getId(), imageInfo);
+              //  animePublicationService.addInfoImage(publication.get().getId(), imageInfo);
             }
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage() + " FileName: " + file.getName());

@@ -28,8 +28,7 @@ public class ImageAvatar extends Image {
     @JsonManagedReference
     private User user;
 
-    @OneToOne(mappedBy = "avatarImg", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @OneToOne(mappedBy = "avatarImg", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Publication publication;
 
     public ImageAvatar(String fileName, String fileType, byte[] data, RoleEnum access, User user) {

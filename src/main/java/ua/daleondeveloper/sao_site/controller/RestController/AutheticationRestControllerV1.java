@@ -49,7 +49,7 @@ public class AutheticationRestControllerV1 {
             }
 
             String token = jwtTokenProvider.createToken(email, user.get().getRoles());
-
+            System.out.println("requestDto = [" + token + "]");
             Map<Object,Object> responce = new HashMap<>();
             responce.put("email",email);
             responce.put("token",token);

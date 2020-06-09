@@ -4,8 +4,16 @@ import ua.daleondeveloper.sao_site.domain.UserRole;
 import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
 import ua.daleondeveloper.sao_site.domain.publication.AnimePublication;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Categories;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Genre;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Types;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.CategoriesService;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.GenreService;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.TypesService;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -55,33 +63,50 @@ public class PublicationFactory {
 
     private static String director = "Сакой Масаюки";
     private static String language = "UK";
-    private static String[] genre = new String[]{
-            "Фантастика",
-            "Фэнтези",
-            "Виртуальная реальность",
-            "Экшен",
-            "Перестрелки",
-            "Военная тематика",
-            "Игры"
-    };
 
-    private static String groupers = "SAO";
     private static Random random = new Random();
 
-    public static Publication getPublication(int postNumber){
-        return  new Publication(description[postNumber],fullName[postNumber],name[postNumber],
-                director,language,genre[random.nextInt(genre.length)],null,null,groupers,
-                LocalDateTime.now(),LocalDateTime.now(),RoleEnum.ROLE_GUEST);
-    }
-    public static AnimePublication getAnimePublication(int postNumber){
-        return  new AnimePublication(description[postNumber],fullName[postNumber],name[postNumber],
-                director,language,genre[random.nextInt(genre.length)],null,null,groupers,
-                LocalDateTime.now(),LocalDateTime.now(),RoleEnum.ROLE_GUEST);
+    public static AnimePublication getAnimePublication(int postNumber, CategoriesService categoriesService, TypesService typesService, GenreService genreService){
+        return  new AnimePublication(description[postNumber],fullName[postNumber],name[postNumber], director,language,null,
+                LocalDate.of(2010,10,20),LocalDateTime.now(),LocalDateTime.now(),
+                getTypes("anime",typesService),getCategories(categoriesService),getGenre(genreService),RoleEnum.ROLE_GUEST,random.nextInt(40));
     }
 
-    public static Publication getPublication(int postNumber, RoleEnum role){
-        Publication publication = getPublication(postNumber);
-        publication.setAccess(role);
-        return publication;
+//    public static Publication getAnimePublication(int postNumber, RoleEnum role){
+//        Publication publication = getAnimePublication(postNumber);
+//        publication.setAccess(role);
+//        return publication;
+//    }
+
+    private static List<Types> getTypes(String type, TypesService typesService){
+        List<Types> types = new ArrayList<>();
+        switch (type.toLowerCase()){
+            case("anime"):
+                types.add(typesService.getById(1L));
+                break;
+            case("manga"):
+                types.add(typesService.getById(2L));
+                break;
+            case("game"):
+                types.add(typesService.getById(3L));
+                break;
+        }
+        return types;
+    }
+    private static List<Categories> getCategories(CategoriesService categoriesService){
+        String[] strCategorie = {"ТВ", "2012", "Драма", "Приключения", "Романтика", "Фэнтези"};
+        List<Categories> returnCategories = new ArrayList<>();
+            for(int i = 0; i < random.nextInt(10);i++){
+                returnCategories.add(categoriesService.getById((long)random.nextInt(strCategorie.length-1)+1));
+            }
+            return returnCategories;
+    }
+    private static List<Genre> getGenre(GenreService genreService){
+        String[] strGenre = {"приключения", "фэнтези", "романтика", "драма"};
+        List<Genre> returnGenres = new ArrayList<>();
+            for(int i = 0; i < 6; i++){
+            returnGenres.add(genreService.getById((long)random.nextInt(strGenre.length-1)+1));
+        }
+        return returnGenres;
     }
 }

@@ -1,5 +1,7 @@
 package ua.daleondeveloper.sao_site.domain.publication;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,12 +10,15 @@ import lombok.Setter;
 import org.hibernate.annotations.Type;
 import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Categories;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Genre;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Types;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.List;
 
 //POJO object for post
 @Entity
@@ -37,9 +42,6 @@ public class Publication implements Serializable {
     @JoinColumn(name = "description")
     private String description;
 
-    @JoinColumn(name = "types")
-    private String types;
-
     @JoinColumn(name = "fullName")
     private String fullName;
 
@@ -51,15 +53,6 @@ public class Publication implements Serializable {
 
     @JoinColumn(name = "language")
     private String language;
-
-    @JoinColumn(name = "genre")
-    private String genre;
-
-    @JoinColumn(name = "categories")
-    private String categories;
-
-    @JoinColumn(name = "postInfoShort")
-    private String postInfoShort;
 
     @JoinColumn(name = "groupers")
     private String groupers;
@@ -76,25 +69,46 @@ public class Publication implements Serializable {
     //Image
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "avatarImg", referencedColumnName = "id")
-    @JsonManagedReference
+    @JsonIgnore
     private ImageAvatar avatarImg;
 
-    //Security
+    @JsonManagedReference
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "publicationTypes",
+    joinColumns = {@JoinColumn(name = "publicationId", referencedColumnName = "id") },
+            inverseJoinColumns = {@JoinColumn(name = "typesId", referencedColumnName = "id")})
+    private List<Types> types;
+
+    @JsonManagedReference
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "publicationCategories",
+    joinColumns = {@JoinColumn(name = "publicationId", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "categoriesId", referencedColumnName = "id")})
+    private List<Categories> categories;
+
+    @JsonManagedReference
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "publicationGenre",
+    joinColumns = {@JoinColumn(name = "publicationId", referencedColumnName = "id")},
+    inverseJoinColumns = {@JoinColumn(name = "genreId", referencedColumnName = "id")})
+    private List<Genre> genres;
+     //Security
     @JoinColumn(name = "access")
     private RoleEnum access;
 
-    public Publication(String description, String fullName, String name, String director, String language, String genre, String categories, String postInfoShort, String groupers, LocalDateTime releaseDateTime, LocalDateTime lastUpdateDateTime, RoleEnum access) {
+    public Publication(String description, String fullName, String name, String director, String language, String groupers, LocalDate createDate, LocalDateTime releaseDateTime, LocalDateTime lastUpdateDateTime, List<Types> types, List<Categories> categories, List<Genre> genres, RoleEnum access) {
         this.description = description;
         this.fullName = fullName;
         this.name = name;
         this.director = director;
         this.language = language;
-        this.genre = genre;
-        this.categories = categories;
-        this.postInfoShort = postInfoShort;
         this.groupers = groupers;
+        this.createDate = createDate;
         this.releaseDateTime = releaseDateTime;
         this.lastUpdateDateTime = lastUpdateDateTime;
+        this.types = types;
+        this.categories = categories;
+        this.genres = genres;
         this.access = access;
     }
 
@@ -109,12 +123,10 @@ public class Publication implements Serializable {
             this.setDirector(updatePublication.getDirector());
         if(updatePublication.getLanguage() != null)
             this.setLanguage(updatePublication.getLanguage());
-        if(updatePublication.getGenre() != null)
-            this.setGenre(updatePublication.getGenre());
+        if(updatePublication.getGenres() != null)
+            this.setGenres(updatePublication.getGenres());
         if(updatePublication.getCategories() != null)
             this.setCategories(updatePublication.getCategories());
-        if(updatePublication.getPostInfoShort() != null)
-            this.setPostInfoShort(updatePublication.getPostInfoShort());
         if(updatePublication.getGroupers() != null)
             this.setGroupers(updatePublication.getGroupers());
         this.setLastUpdateDateTime(LocalDateTime.now());

@@ -4,8 +4,12 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Categories;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Genre;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Types;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Getter
@@ -22,8 +26,9 @@ public class PublicationDto {
     private String name;
     private String director;
     private String language;
-    private String genre;
-    private String categories;
+    private List<Genre> genre;
+    private List<Categories> categories;
+    private List<Types> types;
     private String postInfoShort;
     private String group;
 
@@ -39,9 +44,9 @@ public class PublicationDto {
         publication.setName(this.name);
         publication.setDirector(this.director);
         publication.setLanguage(this.language);
-        publication.setGenre(this.genre);
+        publication.setGenres(this.genre);
         publication.setCategories(this.categories);
-        publication.setPostInfoShort(this.postInfoShort);
+        publication.setTypes(this.types);
         publication.setGroupers(this.group);
         publication.setReleaseDateTime(this.releaseDateTime);
         publication.setLastUpdateDateTime(this.lastUpdateDateTime);
@@ -57,9 +62,9 @@ public class PublicationDto {
         publicationDto.setName(publication.getName());
         publicationDto.setDirector(publication.getDirector());
         publicationDto.setLanguage(publication.getLanguage());
-        publicationDto.setGenre(publication.getGenre());
+        publicationDto.setGenre(publication.getGenres());
         publicationDto.setCategories(publication.getCategories());
-        publicationDto.setPostInfoShort(publication.getPostInfoShort());
+        publicationDto.setTypes(publication.getTypes());
         publicationDto.setGroup(publication.getGroupers());
         publicationDto.setReleaseDateTime(publication.getReleaseDateTime());
         publicationDto.setLastUpdateDateTime(publication.getLastUpdateDateTime());

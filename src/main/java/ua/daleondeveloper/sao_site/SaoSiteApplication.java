@@ -12,9 +12,15 @@ import ua.daleondeveloper.sao_site.domain.factory.PublicationFactory;
 import ua.daleondeveloper.sao_site.domain.factory.UserFactory;
 import ua.daleondeveloper.sao_site.domain.publication.AnimePublication;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Categories;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Genre;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Types;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserRoleServiceImpl;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.PublicationService;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.CategoriesService;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.GenreService;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.TypesService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -35,7 +41,10 @@ public class SaoSiteApplication {
     @Bean
     public CommandLineRunner demo(final UserServiceImpl userServiceImpl,
                                   final UserRoleServiceImpl userRoleServiceImpl,
-                                  final PublicationService publicationService) {
+                                  final PublicationService publicationService,
+                                  final CategoriesService categoriesService,
+                                  final GenreService genreService,
+                                  final TypesService typesService) {
         return new CommandLineRunner() {
             @Override
             public void run(String... strings) throws Exception {
@@ -61,8 +70,20 @@ public class SaoSiteApplication {
                     String email = ("daleon" + i + "@ukr.net");
                     userServiceImpl.addUser(UserFactory.getUser(email,"$2a$10$81.IeFg8DpDeGhTtpN/MpOla6jjRVFC/PVZJjKfpTNEtWCLS7/06a",roles));
                 }
+                String [] categories = {"ТВ", "2012", "Драма", "Приключения", "Романтика", "Фэнтези"};
+                for(String tmp: categories){
+                    categoriesService.save(new Categories(tmp));
+                }
+                String [] genre = {"приключения", "фэнтези", "романтика", "драма"};
+                for(String tmp: genre){
+                    genreService.save(new Genre(tmp));
+                }
+                String [] types = {"Anime","Manga","Game"};
+                for(String tmp: types){
+                    typesService.save(new Types(tmp));
+                }
                 for(int i = 0, j = 0; i < 95; i++, j++){
-                    Publication animePublication = PublicationFactory.getAnimePublication(j);
+                    Publication animePublication = PublicationFactory.getAnimePublication(j,categoriesService,typesService,genreService);
                     publicationService.addPublication(animePublication);
                             if(j == 6 )j = 0;
                 }

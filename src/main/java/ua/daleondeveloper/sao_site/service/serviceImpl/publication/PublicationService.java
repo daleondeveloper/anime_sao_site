@@ -27,6 +27,17 @@ public class PublicationService {
     }
     public Optional<Publication> findById(Long id){return publicationRepository.findById(id);}
 
+
+    @Transactional
+    public Long findAvatarId(Long publicationId){
+        Optional<ImageAvatar> imageAvatar = publicationRepository.getAvatar(publicationId);
+            if( imageAvatar.isPresent()){
+                return imageAvatar.get().getId();
+            }else{
+                return null;
+            }
+    }
+
     //find publication in BD by updatePublication.id then insert
     //to BD entity new date from updatePublication
     @Transactional
@@ -44,8 +55,8 @@ public class PublicationService {
     }
 
     @Transactional
-    public Publication updateAvatar(Long publicationId, ImageAvatar imageAvatar){
-        return publicationRepository.updateAvatar(publicationId,imageAvatar);
+    public void updateAvatar(Long publicationId, ImageAvatar imageAvatar){
+         publicationRepository.updateAvatar(publicationId,imageAvatar);
     }
     @Transactional
     public Publication addPublication(Publication publication){return publicationRepository.save(publication);}
