@@ -17,6 +17,7 @@ import ua.daleondeveloper.sao_site.service.serviceImpl.publication.AnimePublicat
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.GamePublicationService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.MangaPublicationService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.PublicationService;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.GenreService;
 
 
 import java.time.LocalDate;
@@ -31,14 +32,16 @@ public class AdminRestController {
     private final AnimePublicationService animePublicationService;
     private final GamePublicationService gamePublicationService;
     private final MangaPublicationService mangaPublicationService;
+    private final GenreService genreService;
 
     @Autowired
-    public AdminRestController(UserService userService, PublicationService publicationService, AnimePublicationService animePublicationService, GamePublicationService gamePublicationService, MangaPublicationService mangaPublicationService) {
+    public AdminRestController(UserService userService, PublicationService publicationService, AnimePublicationService animePublicationService, GamePublicationService gamePublicationService, MangaPublicationService mangaPublicationService, GenreService genreService) {
         this.userService = userService;
         this.publicationService = publicationService;
         this.animePublicationService = animePublicationService;
         this.gamePublicationService = gamePublicationService;
         this.mangaPublicationService = mangaPublicationService;
+        this.genreService = genreService;
     }
 
     @GetMapping(value = "users/{id}")
@@ -55,6 +58,10 @@ public class AdminRestController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @GetMapping(value = "publication/genre/{str}")
+    public ResponseEntity getGenres(@PathVariable(name = "str")String reqTxt){
+        return ResponseEntity.ok(genreService.getByTxt(reqTxt));
+    }
     @PostMapping(value = "publication/{type}/add")
     public ResponseEntity<PublicationDto> addAnimePublication(PublicationDto publicationDto, @PathVariable(name = "type")String type){
         Publication publication = publicationDto.toPublication();

@@ -12,8 +12,6 @@ $('#inputGenre').bind('input', function () {
         async:true,
         type:"GET",
         url:"",
-        data:$('#inputGenre').serialize(),
-        dataType:"json",
         success:function(res){
             let i,j = 20,dropdownStr = "";
             let dropdownDiv = document.getElementById("dropDownInputGenre");
