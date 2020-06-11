@@ -62,7 +62,7 @@ function createNumericalPageNavigation(start){
                 visiblePages: 7,
 
                 onPageClick: function (event, page) {
-                    getAnimePublicationAjax(page);
+                    getAnimePublicationAjax(page-1);
                 }
             });
         },
@@ -94,6 +94,7 @@ function getAnimePublicationAjax(page){
                      publication.createDate,
                      publication.description,categories,publication.countSeries) ;
                 let publicationDiv = document.getElementById("publicationDiv");
+                publicationDiv.empty();
                 publicationDiv.insertAdjacentHTML("beforeend", stringPublicationDiv);
                 ajaxDownloadAvatar(publication.id);
             }

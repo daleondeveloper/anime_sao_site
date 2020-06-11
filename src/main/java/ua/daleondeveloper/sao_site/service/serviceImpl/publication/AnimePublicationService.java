@@ -3,6 +3,7 @@ package ua.daleondeveloper.sao_site.service.serviceImpl.publication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.daleondeveloper.sao_site.dao.publication.AnimePublicationRepository;
@@ -21,7 +22,7 @@ public class AnimePublicationService {
     public Long getCount(){return animePublicationRepository.count();}
 
     public Page<AnimePublication> getAnimeByNumber(int start, int end){
-        return animePublicationRepository.findAll(PageRequest.of(start,end));
+        return animePublicationRepository.findAll(PageRequest.of(start,end,Sort.by(Sort.Direction.DESC, "lastUpdateDateTime")));
     }
 
     @Transactional

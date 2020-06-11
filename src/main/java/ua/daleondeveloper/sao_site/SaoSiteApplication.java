@@ -61,15 +61,17 @@ public class SaoSiteApplication {
                 List<UserRole> roles = new ArrayList<>();
 
                 // Admin users
-                roles.add(role_admin);
-                roles.add(role_user);
-                userServiceImpl.addUser(UserFactory.getUser("mail@ukr.net","1234",roles));
-                userServiceImpl.addUser(UserFactory.getUser("daleon@ukr.net","1234",roles));
                 //User users
+                roles.add(role_user);
+
                 for(int i = 0; i < 20 ; i++){
                     String email = ("daleon" + i + "@ukr.net");
                     userServiceImpl.addUser(UserFactory.getUser(email,"$2a$10$81.IeFg8DpDeGhTtpN/MpOla6jjRVFC/PVZJjKfpTNEtWCLS7/06a",roles));
                 }
+                roles.add(role_admin);
+
+                userServiceImpl.addUser(UserFactory.getUser("mail@ukr.net","$2a$10$81.IeFg8DpDeGhTtpN/MpOla6jjRVFC/PVZJjKfpTNEtWCLS7/06a",roles));
+                userServiceImpl.addUser(UserFactory.getUser("daleon@ukr.net","$2a$10$81.IeFg8DpDeGhTtpN/MpOla6jjRVFC/PVZJjKfpTNEtWCLS7/06a",roles));
                 String [] categories = {"ТВ", "2012", "Драма", "Приключения", "Романтика", "Фэнтези"};
                 for(String tmp: categories){
                     categoriesService.save(new Categories(tmp));

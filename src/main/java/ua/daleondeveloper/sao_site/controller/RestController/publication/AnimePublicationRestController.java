@@ -47,7 +47,7 @@ public class AnimePublicationRestController {
     }
     @GetMapping(value = "getAnime/{page}")
     public  ResponseEntity getPublication(@PathVariable(name = "page")int page){
-        return ResponseEntity.ok(animePublicationService.getAnimeByNumber(page,page+3));
+        return ResponseEntity.ok(animePublicationService.getAnimeByNumber(page,10));
     }
 
     @PostMapping(value = "uploadInfoImages/{id}")

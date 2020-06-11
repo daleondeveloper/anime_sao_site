@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link href="https://flaviusmatis.github.io/simplePagination.js/simplePagination.css" rel="stylesheet">
+
+    <title>Hello, world!</title>
+</head>
+<body>
+
+<main class="main" style="background: 8b4545">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-8 order-md-2 " id="centerMenu">
+                <div class="col-12">
+                    <form class="form-inline">
+                        <label class="my-1 mr-2" for="inlineTypeSelect">Тип публікації</label>
+                        <select class="custom-select my-1 mr-sm-2" id="inlineTypeSelect">
+                            <option selected>Вибрати...</option>
+                            <option value="1">Аніме</option>
+                            <option value="2">Манга</option>
+                            <option value="3">Гра</option>
+                        </select>
+
+                        <button id="showAddingPbnBtn" type="submit" class="btn btn-outline-primary my-1">Додати публікацію</button>
+                    </form>
+
+                    <button id="editPublicationBtn" type="button" class="btn btn-outline-primary">Редагування Публікації</button>
+                <button id="getUserBtn" type="button" class="btn btn-outline-primary">Отримання користувачів</button>
+                </div>
+                <div id="divAdmin" class="col-12" >
+                    <form>
+
+                        <div class="form-group">
+                            <label for="inputName">Назва публікації</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputFullName">Повна назва публікації</label>
+                            <input type="text" class="form-control" id="inputFullName" placeholder="fullName">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDirector">Назва публікації</label>
+                            <input type="text" class="form-control" id="inputDirector" placeholder="director">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLanguage">Назва публікації</label>
+                            <input type="text" class="form-control" id="inputLanguage" placeholder="language">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDescription">Назва публікації</label>
+                            <input type="text" class="form-control" id="inputDescription" placeholder="description">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputGenre">Назва публікації</label>
+                            <input type="text" class="form-control" id="inputGenre" placeholder="genre">
+                            <div id="dropDownInputGenre" class="dropdown-menu" aria-labelledby="inputGenre">
+                                <a class="dropdown-item" href="#">Actions</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+
+                        </div>
+                    </form>
+
+                </div>
+
+            </div><!--            col-6-->
+        </div><!--        row-->
+    </div><!--    container-fluid-->
+</main>
+
+<!-- Optional JavaScript -->
+<!--AutoFillHTML-->
+<script src="../js/autofillHTMLpages/rigthMenuAutoFill.js" ></script>
+<script src="../js/autofillHTMLpages/leftMenuAutoFill.js" ></script>
+<script src="../js/autofillHTMLpages/headerAutoFill.js" ></script>
+<script src="../js/autofillHTMLpages/adminAutoFill.js" ></script>
+<script src="../js/autofillHTMLpages/footerAutoFill.js" ></script>
+<!---->
+<!--GlobalJS-->
+<script src="https://code.jquery.com/jquery-3.4.1.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<!---->
+<!--LocalJS-->
+<script src="../js/authetication/autorization.js" ></script>
+<script src="../js/button/UserButton.js" ></script>
+<script async src="../js/autorization_form/html_reg_fom_authorization_user.js" ></script>
+<script async src="../js/publication/animePublication.js" ></script>
+<!---->
+<!--BootStrap-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!---->
+
+    <script>
+    $(function () {
+        // инициализация всплывающих подсказок
+        $('[data-toggle="tooltip"]').tooltip();
+        $('#inputGenre').dropdown('show');
+
+    });
+</script>
+
+</body>
+</html>

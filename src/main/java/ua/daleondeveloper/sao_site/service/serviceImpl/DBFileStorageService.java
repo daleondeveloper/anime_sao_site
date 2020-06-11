@@ -32,6 +32,9 @@ public class DBFileStorageService {
     }
 
     public File getFile (Long fileId, User user){
+        if(fileId == null){
+return null;
+        }
         File file = dbFileRepository.findById(fileId).
                 orElseThrow(() -> new FileNotFoundException("File not found with id " + fileId));
         if(file.getAccess() != null && user != null) {
