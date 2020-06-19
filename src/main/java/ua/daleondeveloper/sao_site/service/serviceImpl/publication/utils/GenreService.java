@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import ua.daleondeveloper.sao_site.dao.publication.utils.GenreRepository;
 import ua.daleondeveloper.sao_site.domain.publication.utils.Genre;
 
+import java.util.List;
+
 @Service
 public class GenreService {
 
@@ -22,5 +24,5 @@ public class GenreService {
         return genreRepository.getOne(id);
     }
 
-    public Page<Genre> getByTxt(String text){return genreRepository.getByTxt(text);}
+    public List<Genre> getByTxt(String text){return genreRepository.getGenreTxt(text);}
 }

@@ -17,6 +17,7 @@ import ua.daleondeveloper.sao_site.service.serviceImpl.publication.AnimePublicat
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.GamePublicationService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.MangaPublicationService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.PublicationService;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.CategoriesService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.GenreService;
 
 
@@ -33,15 +34,17 @@ public class AdminRestController {
     private final GamePublicationService gamePublicationService;
     private final MangaPublicationService mangaPublicationService;
     private final GenreService genreService;
+    private final CategoriesService categoriesService;
 
     @Autowired
-    public AdminRestController(UserService userService, PublicationService publicationService, AnimePublicationService animePublicationService, GamePublicationService gamePublicationService, MangaPublicationService mangaPublicationService, GenreService genreService) {
+    public AdminRestController(UserService userService, PublicationService publicationService, AnimePublicationService animePublicationService, GamePublicationService gamePublicationService, MangaPublicationService mangaPublicationService, GenreService genreService, CategoriesService categoriesService) {
         this.userService = userService;
         this.publicationService = publicationService;
         this.animePublicationService = animePublicationService;
         this.gamePublicationService = gamePublicationService;
         this.mangaPublicationService = mangaPublicationService;
         this.genreService = genreService;
+        this.categoriesService = categoriesService;
     }
 
     @GetMapping(value = "users/{id}")
@@ -61,6 +64,10 @@ public class AdminRestController {
     @GetMapping(value = "publication/genre/{str}")
     public ResponseEntity getGenres(@PathVariable(name = "str")String reqTxt){
         return ResponseEntity.ok(genreService.getByTxt(reqTxt));
+    }
+    @GetMapping(value = "publication/categories/{str}")
+    public ResponseEntity getCategories(@PathVariable(name = "str")String reqTxt){
+        return ResponseEntity.ok(categoriesService.getByTxt(reqTxt));
     }
     @PostMapping(value = "publication/{type}/add")
     public ResponseEntity<PublicationDto> addAnimePublication(PublicationDto publicationDto, @PathVariable(name = "type")String type){

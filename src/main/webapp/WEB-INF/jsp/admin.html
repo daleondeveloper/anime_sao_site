@@ -40,7 +40,6 @@
                 <button id="getUserBtn" type="button" class="btn btn-outline-primary">Отримання користувачів</button>
                 </div>
                 <div id="divAdmin" class="col-12" >
-                    <form>
 
                         <div class="form-group">
                             <label for="inputName">Назва публікації</label>
@@ -62,18 +61,40 @@
                             <label for="inputDescription">Назва публікації</label>
                             <input type="text" class="form-control" id="inputDescription" placeholder="description">
                         </div>
-                        <div class="form-group">
-                            <label for="inputGenre">Назва публікації</label>
-                            <input type="text" class="form-control" id="inputGenre" placeholder="genre">
-                            <div id="dropDownInputGenre" class="dropdown-menu" aria-labelledby="inputGenre">
-                                <a class="dropdown-item" href="#">Actions</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+
+                        <div class="dropdown">
+                            <label id="txtGenre" for="inputGenre">Назва публікації</label>
+                            <input type="text" class="form-control" id="inputGenre" placeholder="жанр">
+                            <div id="dropDownInputGenre" class="dropdown-menu" >
+                                <a class="dropdown-item" >fafa</a>
+                                <a class="dropdown-item" >fafa</a>
+                                <a class="dropdown-item" >fafa</a>
                             </div>
-                        </div>
+
+                        <div id = "spanGenre">
+                            <span class="badge badge-primary">Primary</span>
+                            <span class="badge badge-primary">Primary</span>
+                            <span class="badge badge-primary">Primary</span>
+                            <span class="badge badge-primary">Primary</span>
 
                         </div>
-                    </form>
+                        </div>
+
+                        <div class="dropdown">
+                            <label id="txtCategories" for="inputCategories">Назва публікації</label>
+                            <input type="text" class="form-control" id="inputCategories" placeholder="категорії">
+                            <div id="dropDownInputCategories" class="dropdown-menu" aria-labelledby="inputCategories">
+
+                            </div>
+
+                            <div id = "spanCategories">
+                                <span class="badge badge-primary">Primary</span>
+                                <span class="badge badge-primary">Primary</span>
+                                <span class="badge badge-primary">Primary</span>
+                                <span class="badge badge-primary">Primary</span>
+
+                            </div>
+                        </div>
 
                 </div>
 
@@ -100,6 +121,7 @@
 <script src="../js/button/UserButton.js" ></script>
 <script async src="../js/autorization_form/html_reg_fom_authorization_user.js" ></script>
 <script async src="../js/publication/animePublication.js" ></script>
+<script async src="../js/admin/addPublication.js" ></script>
 <!---->
 <!--BootStrap-->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -109,7 +131,7 @@
     $(function () {
         // инициализация всплывающих подсказок
         $('[data-toggle="tooltip"]').tooltip();
-        $('#inputGenre').dropdown('show');
+        // $('#inputGenre').dropdown('show');
 
     });
 </script>

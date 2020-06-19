@@ -15,6 +15,7 @@ import ua.daleondeveloper.sao_site.service.serviceImpl.ImageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.AnimePublicationService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.PublicationService;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.GenreService;
 import ua.daleondeveloper.sao_site.utils.FileCheker;
 
 import java.lang.reflect.Array;
@@ -35,6 +36,8 @@ public class AnimePublicationRestController {
     @Autowired
     private DBFileStorageService dbFileStorageService;
     @Autowired
+    private GenreService genreService;
+    @Autowired
     private UserServiceImpl userService;
     @Autowired
     private ImageService imageService;
@@ -48,6 +51,10 @@ public class AnimePublicationRestController {
     @GetMapping(value = "getAnime/{page}")
     public  ResponseEntity getPublication(@PathVariable(name = "page")int page){
         return ResponseEntity.ok(animePublicationService.getAnimeByNumber(page,10));
+    }
+    @GetMapping(value = "publication/genre/{str}")
+    public ResponseEntity getGenres(@PathVariable(name = "str")String reqTxt){
+        return ResponseEntity.ok(genreService.getByTxt(reqTxt));
     }
 
     @PostMapping(value = "uploadInfoImages/{id}")

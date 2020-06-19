@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import ua.daleondeveloper.sao_site.dao.publication.utils.CategoriesRepository;
 import ua.daleondeveloper.sao_site.domain.publication.utils.Categories;
 
+import java.util.List;
+
 @Service
 public class CategoriesService {
 
@@ -20,4 +22,7 @@ public class CategoriesService {
     public Categories getById(Long id){
         return categoriesRepository.getOne(id);
     }
+
+    public List<Categories> getByTxt(String text){return categoriesRepository.getCategoriesTxt(text);}
+
 }
