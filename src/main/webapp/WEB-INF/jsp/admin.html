@@ -22,81 +22,66 @@
 <main class="main" style="background: 8b4545">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-8 col-lg-8 order-md-2 " id="centerMenu">
-                <div class="col-12">
-                    <form class="form-inline">
-                        <label class="my-1 mr-2" for="inlineTypeSelect">Тип публікації</label>
-                        <select class="custom-select my-1 mr-sm-2" id="inlineTypeSelect">
-                            <option selected>Вибрати...</option>
-                            <option value="1">Аніме</option>
-                            <option value="2">Манга</option>
-                            <option value="3">Гра</option>
-                        </select>
+            <div class="col-12 col-md-8 col-lg-6 order-md-2 " id="centerMenu">
 
-                        <button id="showAddingPbnBtn" type="submit" class="btn btn-outline-primary my-1">Додати публікацію</button>
-                    </form>
+                <!--<div id="divAdmin" class="col-12" >-->
 
-                    <button id="editPublicationBtn" type="button" class="btn btn-outline-primary">Редагування Публікації</button>
-                <button id="getUserBtn" type="button" class="btn btn-outline-primary">Отримання користувачів</button>
-                </div>
-                <div id="divAdmin" class="col-12" >
+                        <!--<div class="form-group">-->
+                            <!--<label for="inputName">Назва публікації</label>-->
+                            <!--<input type="text" class="form-control" id="inputName" placeholder="name">-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label for="inputFullName">Повна назва публікації</label>-->
+                            <!--<input type="text" class="form-control" id="inputFullName" placeholder="fullName">-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label for="inputDirector">Назва публікації</label>-->
+                            <!--<input type="text" class="form-control" id="inputDirector" placeholder="director">-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label for="inputLanguage">Назва публікації</label>-->
+                            <!--<input type="text" class="form-control" id="inputLanguage" placeholder="language">-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label for="inputDescription">Назва публікації</label>-->
+                            <!--<input type="text" class="form-control" id="inputDescription" placeholder="description">-->
+                        <!--</div>-->
 
-                        <div class="form-group">
-                            <label for="inputName">Назва публікації</label>
-                            <input type="text" class="form-control" id="inputName" placeholder="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputFullName">Повна назва публікації</label>
-                            <input type="text" class="form-control" id="inputFullName" placeholder="fullName">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputDirector">Назва публікації</label>
-                            <input type="text" class="form-control" id="inputDirector" placeholder="director">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputLanguage">Назва публікації</label>
-                            <input type="text" class="form-control" id="inputLanguage" placeholder="language">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputDescription">Назва публікації</label>
-                            <input type="text" class="form-control" id="inputDescription" placeholder="description">
-                        </div>
+                        <!--<div class="dropdown">-->
+                            <!--<label id="txtGenre" for="inputGenre">Назва публікації</label>-->
+                            <!--<input type="text" class="form-control" id="inputGenre" placeholder="жанр">-->
+                            <!--<div id="dropDownInputGenre" class="dropdown-menu" >-->
+                                <!--<a class="dropdown-item" >fafa</a>-->
+                                <!--<a class="dropdown-item" >fafa</a>-->
+                                <!--<a class="dropdown-item" >fafa</a>-->
+                            <!--</div>-->
 
-                        <div class="dropdown">
-                            <label id="txtGenre" for="inputGenre">Назва публікації</label>
-                            <input type="text" class="form-control" id="inputGenre" placeholder="жанр">
-                            <div id="dropDownInputGenre" class="dropdown-menu" >
-                                <a class="dropdown-item" >fafa</a>
-                                <a class="dropdown-item" >fafa</a>
-                                <a class="dropdown-item" >fafa</a>
-                            </div>
+                        <!--<div id = "spanGenre">-->
+                            <!--<span class="badge badge-primary">Primary</span>-->
+                            <!--<span class="badge badge-primary">Primary</span>-->
+                            <!--<span class="badge badge-primary">Primary</span>-->
+                            <!--<span class="badge badge-primary">Primary</span>-->
 
-                        <div id = "spanGenre">
-                            <span class="badge badge-primary">Primary</span>
-                            <span class="badge badge-primary">Primary</span>
-                            <span class="badge badge-primary">Primary</span>
-                            <span class="badge badge-primary">Primary</span>
+                        <!--</div>-->
+                        <!--</div>-->
 
-                        </div>
-                        </div>
+                        <!--<div class="dropdown">-->
+                            <!--<label id="txtCategories" for="inputCategories">Назва публікації</label>-->
+                            <!--<input type="text" class="form-control" id="inputCategories" placeholder="категорії">-->
+                            <!--<div id="dropDownInputCategories" class="dropdown-menu" aria-labelledby="inputCategories">-->
 
-                        <div class="dropdown">
-                            <label id="txtCategories" for="inputCategories">Назва публікації</label>
-                            <input type="text" class="form-control" id="inputCategories" placeholder="категорії">
-                            <div id="dropDownInputCategories" class="dropdown-menu" aria-labelledby="inputCategories">
+                            <!--</div>-->
 
-                            </div>
+                            <!--<div id = "spanCategories">-->
+                                <!--<span class="badge badge-primary">Primary</span>-->
+                                <!--<span class="badge badge-primary">Primary</span>-->
+                                <!--<span class="badge badge-primary">Primary</span>-->
+                                <!--<span class="badge badge-primary">Primary</span>-->
 
-                            <div id = "spanCategories">
-                                <span class="badge badge-primary">Primary</span>
-                                <span class="badge badge-primary">Primary</span>
-                                <span class="badge badge-primary">Primary</span>
-                                <span class="badge badge-primary">Primary</span>
-
-                            </div>
-                        </div>
-
-                </div>
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--<button type="button" class="btn btn-outline-primary">Додати публікацію</button>-->
+                <!--</div>-->
 
             </div><!--            col-6-->
         </div><!--        row-->
