@@ -24,7 +24,7 @@ public class AnimePublicationService {
     public Page<AnimePublication> getAnimeByNumber(int start, int end){
         return animePublicationRepository.findAll(PageRequest.of(start,end,Sort.by(Sort.Direction.DESC, "lastUpdateDateTime")));
     }
-
+//,Sort.by(Sort.Direction.DESC, "lastUpdateDateTime")
     @Transactional
     public AnimePublication addPublication(AnimePublication publication){
         return animePublicationRepository.saveAndFlush(publication);

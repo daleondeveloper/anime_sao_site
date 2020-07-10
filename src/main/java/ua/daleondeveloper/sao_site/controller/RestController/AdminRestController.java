@@ -1,8 +1,10 @@
 package ua.daleondeveloper.sao_site.controller.RestController;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import ua.daleondeveloper.sao_site.domain.User;
+import ua.daleondeveloper.sao_site.domain.factory.PublicationFactory;
 import ua.daleondeveloper.sao_site.domain.publication.AnimePublication;
 import ua.daleondeveloper.sao_site.domain.publication.GamePublication;
 import ua.daleondeveloper.sao_site.domain.publication.MangaPublication;
@@ -21,6 +23,7 @@ import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.Categor
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.GenreService;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
@@ -70,11 +73,12 @@ public class AdminRestController {
         return ResponseEntity.ok(categoriesService.getByTxt(reqTxt));
     }
     @PostMapping(value = "publication/{type}/add")
-    public ResponseEntity<PublicationDto> addAnimePublication(PublicationDto publicationDto, @PathVariable(name = "type")String type){
+    public ResponseEntity<PublicationDto> addAnimePublication(PublicationDto publicationDto, @PathVariable(name = "type")String type, HttpServletRequest httpRequest){
         Publication publication = publicationDto.toPublication();
         switch(type.toLowerCase()){
             case("anime"):
-                publication = animePublicationService.addPublication((AnimePublication)publication);
+           //     AnimePublication animePublication = publication.getAnimePublication();
+                publication = animePublicationService.addPublication(PublicationFactory.getAnimePublicationFromPublication(publication));
                 break;
             case("manga"):
                 publication = mangaPublicationService.addPublication((MangaPublication)publication);

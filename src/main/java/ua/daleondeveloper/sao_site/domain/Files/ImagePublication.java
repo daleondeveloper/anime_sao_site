@@ -11,7 +11,7 @@ import ua.daleondeveloper.sao_site.domain.publication.Publication;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ImagePublication")
+@Table(name = "Image_Publication")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,7 +21,7 @@ public class ImagePublication extends Image {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "animePublicationId")
+    @JoinColumn(name = "anime_Publication_Id")
     private AnimePublication animePublicationImages;
 
     public ImagePublication(String fileName, String fileType, byte[] data, RoleEnum access, AnimePublication animePublication) {

@@ -39,15 +39,15 @@
 //     </div>
 
 $('#autorization_div').ready(function(){
-    createNumericalPageNavigation(100);
+    createNumericalPageNavigation();
 
 
 });
 
-function createNumericalPageNavigation(start){
+function createNumericalPageNavigation(){
 
     let pageCount = 1;
-    let publicationInPage = 10;
+    let publicationInPage = 1;
 
     $.ajax({
         url:"/api/v1/publication/anime/getCount",
@@ -78,6 +78,7 @@ function getAnimePublicationAjax(page){
         type:"GET",
         success: function(res){
             let i;
+            $('#publicationDiv').empty();
 
             for(i = 0; i < res.content.length; i++){
                 let publication = res.content[i],genres = "",categories = "";
@@ -94,7 +95,6 @@ function getAnimePublicationAjax(page){
                      publication.createDate,
                      publication.description,categories,publication.countSeries) ;
                 let publicationDiv = document.getElementById("publicationDiv");
-                $('#publicationDiv').empty();
                 publicationDiv.insertAdjacentHTML("beforeend", stringPublicationDiv);
                 ajaxDownloadAvatar(publication.id);
             }

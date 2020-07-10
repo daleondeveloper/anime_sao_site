@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "AnimePublication")
+@Table(name = "Anime_Publication")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,7 +29,7 @@ public class AnimePublication extends Publication{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @JoinColumn(name = "countSeries")
+    @JoinColumn(name = "count_Series")
     private int countSeries;
 
     @JsonIgnore
@@ -40,4 +40,5 @@ public class AnimePublication extends Publication{
         super(description, fullName, name, director, language, groupers, createDate, releaseDateTime, lastUpdateDateTime, types, categories, genres, access);
         this.countSeries = countSeries;
     }
+
 }

@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "GamePublication")
+@Table(name = "Game_Publication")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,6 +18,6 @@ public class GamePublication extends Publication{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @JoinColumn(name = "url")
+    @JoinColumn(name = "download_url")
     private String downloadUrl;
 }

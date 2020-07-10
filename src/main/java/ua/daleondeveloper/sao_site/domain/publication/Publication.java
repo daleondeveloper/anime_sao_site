@@ -27,7 +27,6 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 public class Publication implements Serializable {
 
     @Id
@@ -42,7 +41,7 @@ public class Publication implements Serializable {
     @JoinColumn(name = "description")
     private String description;
 
-    @JoinColumn(name = "fullName")
+    @JoinColumn(name = "full_Name")
     private String fullName;
 
     @JoinColumn(name = "name")
@@ -58,43 +57,49 @@ public class Publication implements Serializable {
     private String groupers;
 
     //Data and Time
-    @JoinColumn(name = "createDate")
+    @JoinColumn(name = "create_Date")
     private LocalDate createDate;
-    @JoinColumn(name = "releaseDateTime")
+    @JoinColumn(name = "release_Date_Time")
     private LocalDateTime releaseDateTime;
 
-    @JoinColumn(name = "lastUpdateDateTime")
+    @JoinColumn(name = "last_Update_Date_Time")
     private LocalDateTime lastUpdateDateTime;
 
     //Image
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "avatarImg", referencedColumnName = "id")
+    @JoinColumn(name = "avatar_Img", referencedColumnName = "id")
     @JsonIgnore
     private ImageAvatar avatarImg;
 
     @JsonManagedReference
+//    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "publicationTypes",
-    joinColumns = {@JoinColumn(name = "publicationId", referencedColumnName = "id") },
-            inverseJoinColumns = {@JoinColumn(name = "typesId", referencedColumnName = "id")})
+    @JoinTable(name = "publication_Types",
+    joinColumns = {@JoinColumn(name = "publication_Id", referencedColumnName = "id") },
+            inverseJoinColumns = {@JoinColumn(name = "types_Id", referencedColumnName = "id")})
     private List<Types> types;
 
     @JsonManagedReference
+//    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "publicationCategories",
-    joinColumns = {@JoinColumn(name = "publicationId", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "categoriesId", referencedColumnName = "id")})
+    @JoinTable(name = "publication_Categories",
+    joinColumns = {@JoinColumn(name = "publication_Id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "categories_Id", referencedColumnName = "id")})
     private List<Categories> categories;
 
     @JsonManagedReference
+//    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "publicationGenre",
-    joinColumns = {@JoinColumn(name = "publicationId", referencedColumnName = "id")},
-    inverseJoinColumns = {@JoinColumn(name = "genreId", referencedColumnName = "id")})
+    @JoinTable(name = "publication_Genre",
+    joinColumns = {@JoinColumn(name = "publication_Id", referencedColumnName = "id")},
+    inverseJoinColumns = {@JoinColumn(name = "genre_Id", referencedColumnName = "id")})
     private List<Genre> genres;
      //Security
     @JoinColumn(name = "access")
     private RoleEnum access;
+
+    public Publication() {
+    }
 
     public Publication(String description, String fullName, String name, String director, String language, String groupers, LocalDate createDate, LocalDateTime releaseDateTime, LocalDateTime lastUpdateDateTime, List<Types> types, List<Categories> categories, List<Genre> genres, RoleEnum access) {
         this.description = description;

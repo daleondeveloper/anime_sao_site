@@ -52,7 +52,7 @@ public class SaoSiteApplication {
                 LocalTime localTime = LocalTime.parse("12:12:12");
 
                 //Adding User
-                    //Create Roles
+                //Create Roles
                 UserRole role_admin = new UserRole("ROLE_ADMIN");
                 UserRole role_user = new UserRole("ROLE_USER");
                 role_admin = userRoleServiceImpl.saveUserRole(role_admin);
@@ -85,9 +85,9 @@ public class SaoSiteApplication {
                     typesService.save(new Types(tmp));
                 }
                 for(int i = 0, j = 0; i < 95; i++, j++){
-                    Publication animePublication = PublicationFactory.getAnimePublication(j,categoriesService,typesService,genreService);
+                    AnimePublication animePublication = PublicationFactory.getAnimePublication(j,categoriesService,typesService,genreService);
                     publicationService.addPublication(animePublication);
-                            if(j == 6 )j = 0;
+                    if(j == 6 )j = 0;
                 }
             }
         };

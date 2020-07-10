@@ -8,7 +8,7 @@ import ua.daleondeveloper.sao_site.domain.publication.MangaPublication;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ImageManga")
+@Table(name = "Image_Manga")
 @Getter
 @Setter
 @NoArgsConstructor

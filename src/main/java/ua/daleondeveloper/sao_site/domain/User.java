@@ -40,7 +40,7 @@ public class User extends BaseEntity implements Serializable {
     private String access;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "avatarImg", referencedColumnName = "id")
+    @JoinColumn(name = "avatar_Img", referencedColumnName = "id")
     @JsonBackReference
     private ImageAvatar avatarImg;
 
@@ -52,9 +52,9 @@ public class User extends BaseEntity implements Serializable {
     private List<UserRole> roles;
 
     //Date and Time
-    @JoinColumn(name = "releaseDataAndTime")
+    @JoinColumn(name = "release_Data_Time")
     private LocalDateTime releaseDateTime;
-    @JoinColumn(name = "lastUpdateDateTime")
+    @JoinColumn(name = "last_Update_Date_Time")
     private LocalDateTime lastUpdateDateTime;
 
     public User(String email, String password, String nickname, List<UserRole> roles,LocalDateTime releaseDateTime, LocalDateTime lastUpdateDateTime) {

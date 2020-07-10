@@ -9,7 +9,7 @@ import ua.daleondeveloper.sao_site.domain.Files.ImageManga;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "MangaPublication")
+@Table(name = "Manga_Publication")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,7 +19,7 @@ public class MangaPublication extends Publication{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @JoinColumn(name = "numberOfPages")
+    @JoinColumn(name = "number_Of_Pages")
     private String numberOfPages;
 
 //    @OneToMany

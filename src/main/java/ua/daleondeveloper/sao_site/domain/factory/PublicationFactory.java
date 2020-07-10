@@ -66,6 +66,22 @@ public class PublicationFactory {
 
     private static Random random = new Random();
 
+    public static AnimePublication getAnimePublicationFromPublication(Publication publication){
+        AnimePublication animePublication = new AnimePublication();
+        animePublication.setAccess(RoleEnum.ROLE_GUEST);
+        animePublication.setCreateDate(LocalDate.now());
+        animePublication.setTypes(publication.getTypes());
+        animePublication.setReleaseDateTime(LocalDateTime.now());
+        animePublication.setLastUpdateDateTime(LocalDateTime.now());
+        animePublication.setName(publication.getName());
+        animePublication.setLanguage(publication.getLanguage());
+        animePublication.setGenres(publication.getGenres());
+        animePublication.setDirector(publication.getDirector());
+        animePublication.setDescription(publication.getDescription());
+        animePublication.setCategories(publication.getCategories());
+        animePublication.setFullName(publication.getFullName());
+        return animePublication;
+    }
     public static AnimePublication getAnimePublication(int postNumber, CategoriesService categoriesService, TypesService typesService, GenreService genreService){
         return  new AnimePublication(description[postNumber],fullName[postNumber],name[postNumber], director,language,null,
                 LocalDate.of(2010,10,20),LocalDateTime.now(),LocalDateTime.now(),

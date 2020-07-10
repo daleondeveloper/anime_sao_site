@@ -50,7 +50,7 @@ public class AnimePublicationRestController {
     }
     @GetMapping(value = "getAnime/{page}")
     public  ResponseEntity getPublication(@PathVariable(name = "page")int page){
-        return ResponseEntity.ok(animePublicationService.getAnimeByNumber(page,10));
+        return ResponseEntity.ok(animePublicationService.getAnimeByNumber(page,1));
     }
     @GetMapping(value = "publication/genre/{str}")
     public ResponseEntity getGenres(@PathVariable(name = "str")String reqTxt){

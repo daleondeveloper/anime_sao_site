@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "ImageAvatar")
+@Table(name = "Image_Avatar")
 @Getter
 @Setter
 @NoArgsConstructor
