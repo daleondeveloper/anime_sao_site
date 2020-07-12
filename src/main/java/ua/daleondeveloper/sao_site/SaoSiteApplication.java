@@ -5,6 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import ua.daleondeveloper.sao_site.domain.Files.File;
+import ua.daleondeveloper.sao_site.domain.Files.Image;
+import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import ua.daleondeveloper.sao_site.domain.User;
 import ua.daleondeveloper.sao_site.domain.UserRole;
 import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
@@ -15,6 +18,7 @@ import ua.daleondeveloper.sao_site.domain.publication.Publication;
 import ua.daleondeveloper.sao_site.domain.publication.utils.Categories;
 import ua.daleondeveloper.sao_site.domain.publication.utils.Genre;
 import ua.daleondeveloper.sao_site.domain.publication.utils.Types;
+import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserRoleServiceImpl;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.PublicationService;
@@ -22,6 +26,7 @@ import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.Categor
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.GenreService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.TypesService;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -44,10 +49,11 @@ public class SaoSiteApplication {
                                   final PublicationService publicationService,
                                   final CategoriesService categoriesService,
                                   final GenreService genreService,
-                                  final TypesService typesService) {
+                                  final TypesService typesService,
+                                  final DBFileStorageService dbFileStorageService) {
         return new CommandLineRunner() {
             @Override
-            public void run(String... strings) throws Exception {
+            public void run(String... strings)  {
                 LocalDate localDate = LocalDate.parse("2019-01-10");
                 LocalTime localTime = LocalTime.parse("12:12:12");
 
@@ -84,9 +90,24 @@ public class SaoSiteApplication {
                 for(String tmp: types){
                     typesService.save(new Types(tmp));
                 }
-                for(int i = 0, j = 0; i < 95; i++, j++){
+                byte[] image1 = {};
+
+                try(FileInputStream reader = new FileInputStream("/home/daleon/IdeaProjects/anime_sao_site/src/main/resources/static/image/season_1/SAO_Alicization_MP1.jpg")) {
+                    byte[] tmpByteArray = new byte[reader.available()];
+                    while (reader.available() > 0) {
+                        tmpByteArray[tmpByteArray.length-reader.available()] = (byte)reader.read();
+                    }
+                    image1 = tmpByteArray;
+
+                }catch (IOException e){
+                }
+                for(int i = 0, j = 0; i < 100; i++, j++){
                     AnimePublication animePublication = PublicationFactory.getAnimePublication(j,categoriesService,typesService,genreService);
                     publicationService.addPublication(animePublication);
+                    File file = dbFileStorageService.storeFile(new ImageAvatar("avatar","image/jpg",image1,RoleEnum.ROLE_GUEST,new Publication()));
+                    ImageAvatar imageAvatar = new ImageAvatar(file.getFileName(),file.getContentType(),file.getData(),RoleEnum.ROLE_GUEST,animePublication);
+                    imageAvatar.setId(file.getId());
+                    publicationService.updateAvatar(animePublication.getId(),imageAvatar);
                     if(j == 6 )j = 0;
                 }
             }

@@ -47,7 +47,7 @@ $('#autorization_div').ready(function(){
 function createNumericalPageNavigation(){
 
     let pageCount = 1;
-    let publicationInPage = 1;
+    let publicationInPage = 10;
 
     $.ajax({
         url:"/api/v1/publication/anime/getCount",

@@ -48,9 +48,12 @@ public class AnimePublicationRestController {
         return ResponseEntity.ok().body(animePublicationService.getCount());
 //        return ResponseEntity.ok().body(userService.getCount());
     }
+    //При зміні showCount також потрібно змінити значення у resources/static/js/publication/animePublication.js
+    //у методі createNumericalPageNavigation зміну publicationInPage на такеж значення
     @GetMapping(value = "getAnime/{page}")
     public  ResponseEntity getPublication(@PathVariable(name = "page")int page){
-        return ResponseEntity.ok(animePublicationService.getAnimeByNumber(page,1));
+        int showCount = 10;
+        return ResponseEntity.ok(animePublicationService.getAnimeByNumber(page,showCount));
     }
     @GetMapping(value = "publication/genre/{str}")
     public ResponseEntity getGenres(@PathVariable(name = "str")String reqTxt){
