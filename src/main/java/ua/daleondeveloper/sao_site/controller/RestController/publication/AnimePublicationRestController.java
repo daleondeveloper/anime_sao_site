@@ -60,6 +60,12 @@ public class AnimePublicationRestController {
         return ResponseEntity.ok(genreService.getByTxt(reqTxt));
     }
 
+    @PostMapping(value = "admin/add")
+    public ResponseEntity addPublication(){
+
+
+        return null;
+    }
     @PostMapping(value = "uploadInfoImages/{id}")
     public List<ResponseEntity> uploadInfoImages(@RequestParam("files")MultipartFile[] files, @PathVariable(name = "id")Long id){
         return Arrays.asList(files).

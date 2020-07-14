@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
+import ua.daleondeveloper.sao_site.dto.ImageResponseDto;
 import ua.daleondeveloper.sao_site.dto.UploadFileResponseDto;
 import ua.daleondeveloper.sao_site.exception.BadFileTypeException;
 import ua.daleondeveloper.sao_site.exception.FileToBigException;
@@ -51,11 +52,13 @@ public class PublicationRestController {
                             new ImageAvatar(requestFile.getName(), requestFile.getContentType(), requestFile.getBytes(), RoleEnum.ROLE_GUEST, publication.get()));
 
                     publicationService.updateAvatar(publication.get().getId(), imageAvatar);
+
+                    return ResponseEntity.ok(ImageResponseDto.fromImage(imageAvatar));
                 }
             }catch (Exception e) {
                 return ResponseEntity.badRequest().body(e.getMessage());
             }
-        return ResponseEntity.ok().body("Image download");
+        return ResponseEntity.ok().body("Image not download");
     }
 
     @GetMapping(value = "getAvatar/{id}")
