@@ -18,6 +18,8 @@ import ua.daleondeveloper.sao_site.exception.NoAccess;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Optional;
 
 @Service
@@ -27,7 +29,8 @@ public class DBFileStorageService {
     DBFileRepository dbFileRepository;
 
     public File storeFile (File file){
-
+            file.setCreateDate(LocalDate.now());
+            file.setCreateTime(LocalTime.now());
             return dbFileRepository.save(file);
     }
 

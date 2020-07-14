@@ -7,7 +7,8 @@ function addAnimePublicationButtonBind(){
             fullName = $('#inputFullName').val(),
             director = $('#inputDirector').val(),
             language = $('#inputLanguage').val(),
-            descrition = $('#inputDescription').val();
+            description = $('#inputDescription').val(),
+            countSeries = $('#inputCountSeries').val();
 
         let genre = new Array(), i = 0;
         $('#spanGenre').find('span').each(function () {
@@ -20,8 +21,9 @@ function addAnimePublicationButtonBind(){
         form.fullName = fullName;
         form.director = director;
         form.language = language;
-        form.description = descrition;
+        form.description = description;
         form.genre = genre;
+        form.countSeries = countSeries;
 
         // let jsonForm = JSON.parse(form);
 
@@ -32,7 +34,7 @@ function addAnimePublicationButtonBind(){
             type: "POST",
             dataType: "json",
             data: form,
-            url: "/api/v1/admin/publication/anime/add",
+            url: "/api/v1/publication/anime/admin/add",
             success: function (res) {
                 id = res.id;
                 addAvatarToPublication(id);

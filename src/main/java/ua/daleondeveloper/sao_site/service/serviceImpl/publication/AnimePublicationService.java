@@ -12,6 +12,8 @@ import ua.daleondeveloper.sao_site.domain.publication.AnimePublication;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
 
 import javax.persistence.Table;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 public class AnimePublicationService {
@@ -27,6 +29,9 @@ public class AnimePublicationService {
 //,Sort.by(Sort.Direction.DESC, "lastUpdateDateTime")
     @Transactional
     public AnimePublication addPublication(AnimePublication publication){
+        publication.setCreateDate(LocalDate.now());
+        publication.setLastUpdateDateTime(LocalDateTime.now());
+        publication.setReleaseDateTime(LocalDateTime.now());
         return animePublicationRepository.saveAndFlush(publication);
     }
 

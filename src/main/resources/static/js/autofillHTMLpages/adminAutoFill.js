@@ -47,15 +47,15 @@ centerMenu.insertAdjacentHTML("afterbegin", leftMenuHtml);
         "                                        <input type=\"text\" class=\"form-control\" id=\"inputFullName\" placeholder=\"fullName\">\n" +
         "                                    </div>\n" +
         "                                    <div class=\"form-group\">\n" +
-        "                                        <label for=\"inputDirector\">Назва публікації</label>\n" +
+        "                                        <label for=\"inputDirector\">Автор</label>\n" +
         "                                        <input type=\"text\" class=\"form-control\" id=\"inputDirector\" placeholder=\"director\">\n" +
         "                                    </div>\n" +
         "                                    <div class=\"form-group\">\n" +
-        "                                        <label for=\"inputLanguage\">Назва публікації</label>\n" +
+        "                                        <label for=\"inputLanguage\">Мова публікації</label>\n" +
         "                                        <input type=\"text\" class=\"form-control\" id=\"inputLanguage\" placeholder=\"language\">\n" +
         "                                    </div>\n" +
         "                                    <div class=\"form-group\">\n" +
-        "                                        <label for=\"inputDescription\">Назва публікації</label>\n" +
+        "                                        <label for=\"inputDescription\">Опис</label>\n" +
         "                                        <input type=\"text\" class=\"form-control\" id=\"inputDescription\" placeholder=\"description\">\n" +
         "                                    </div>\n" +
         "                                <div class=\"form-group\">\n" +

@@ -34,7 +34,8 @@ public class ImageService {
             }
 
             Image dbFile = new Image(LocalDate.now(), LocalTime.now(),fileName, file.getContentType(), file.getBytes());
-
+            dbFile.setCreateDate(LocalDate.now());
+            dbFile.setCreateTime(LocalTime.now());
             return imageRepository.save(dbFile);
         }catch (IOException e){
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", e);

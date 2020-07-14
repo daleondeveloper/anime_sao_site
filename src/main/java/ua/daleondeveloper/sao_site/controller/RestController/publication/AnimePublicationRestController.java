@@ -9,6 +9,7 @@ import ua.daleondeveloper.sao_site.domain.Files.ImagePublication;
 import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
 import ua.daleondeveloper.sao_site.domain.publication.AnimePublication;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
+import ua.daleondeveloper.sao_site.dto.AnimePublicationDto;
 import ua.daleondeveloper.sao_site.dto.PublicationDto;
 import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.ImageService;
@@ -61,10 +62,9 @@ public class AnimePublicationRestController {
     }
 
     @PostMapping(value = "admin/add")
-    public ResponseEntity addPublication(){
-
-
-        return null;
+    public ResponseEntity addPublication(AnimePublicationDto animePublicationDto){
+        AnimePublication publication = animePublicationService.addPublication(animePublicationDto.toAnimePublication());
+        return ResponseEntity.ok(publication);
     }
     @PostMapping(value = "uploadInfoImages/{id}")
     public List<ResponseEntity> uploadInfoImages(@RequestParam("files")MultipartFile[] files, @PathVariable(name = "id")Long id){
