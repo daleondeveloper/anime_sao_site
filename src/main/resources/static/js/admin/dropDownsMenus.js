@@ -26,6 +26,7 @@ $('#dropDownChooseAnimeType').on('click','a',function(){
             addBindToGenre();
             addBindToCategories();
             addAnimePublicationButtonBind();
+            imageLabelsShowTxtButtonBind();
             break;
         case "Манга":
             break;

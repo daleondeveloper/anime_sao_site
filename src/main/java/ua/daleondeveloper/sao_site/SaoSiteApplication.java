@@ -66,13 +66,27 @@ public class SaoSiteApplication {
 
                 List<UserRole> roles = new ArrayList<>();
 
+                byte[] usersStandartAvatar ={};
+                try(FileInputStream reader = new FileInputStream("/home/daleon/IdeaProjects/anime_sao_site/src/main/resources/static/image/icon.jpg")) {
+                    byte[] tmpByteArray = new byte[reader.available()];
+                    while (reader.available() > 0) {
+                        tmpByteArray[tmpByteArray.length-reader.available()] = (byte)reader.read();
+                    }
+                    usersStandartAvatar = tmpByteArray;
+
+                }catch (IOException e){
+                }
                 // Admin users
                 //User users
                 roles.add(role_user);
 
                 for(int i = 0; i < 20 ; i++){
                     String email = ("daleon" + i + "@ukr.net");
-                    userServiceImpl.addUser(UserFactory.getUser(email,"$2a$10$81.IeFg8DpDeGhTtpN/MpOla6jjRVFC/PVZJjKfpTNEtWCLS7/06a",roles));
+                    User user = UserFactory.getUser(email,"$2a$10$81.IeFg8DpDeGhTtpN/MpOla6jjRVFC/PVZJjKfpTNEtWCLS7/06a",roles);
+                    File file = dbFileStorageService.storeFile(new ImageAvatar("avatar","image/jpg",usersStandartAvatar,RoleEnum.ROLE_GUEST,new Publication()));
+                    ImageAvatar imageAvatar = new ImageAvatar(file.getFileName(),file.getContentType(),file.getData(),RoleEnum.ROLE_GUEST,user);
+                    user.setAvatarImg(imageAvatar);
+                    userServiceImpl.addUser(user);
                 }
                 roles.add(role_admin);
 

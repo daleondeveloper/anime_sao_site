@@ -9,6 +9,7 @@ import ua.daleondeveloper.sao_site.domain.Files.ImagePublication;
 import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
 import ua.daleondeveloper.sao_site.domain.publication.AnimePublication;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Categories;
 import ua.daleondeveloper.sao_site.dto.AnimePublicationDto;
 import ua.daleondeveloper.sao_site.dto.PublicationDto;
 import ua.daleondeveloper.sao_site.service.serviceImpl.DBFileStorageService;
@@ -16,9 +17,11 @@ import ua.daleondeveloper.sao_site.service.serviceImpl.ImageService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.UserServiceImpl;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.AnimePublicationService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.PublicationService;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.CategoriesService;
 import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.GenreService;
 import ua.daleondeveloper.sao_site.utils.FileCheker;
 
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
@@ -38,6 +41,8 @@ public class AnimePublicationRestController {
     private DBFileStorageService dbFileStorageService;
     @Autowired
     private GenreService genreService;
+    @Autowired
+    private CategoriesService categoriesService;
     @Autowired
     private UserServiceImpl userService;
     @Autowired
@@ -62,8 +67,8 @@ public class AnimePublicationRestController {
     }
 
     @PostMapping(value = "admin/add")
-    public ResponseEntity addPublication(AnimePublicationDto animePublicationDto){
-        AnimePublication publication = animePublicationService.addPublication(animePublicationDto.toAnimePublication());
+    public ResponseEntity addPublication( AnimePublicationDto animePublicationDto, HttpServletRequest request){
+        AnimePublication publication = animePublicationService.addPublication(animePublicationDto.toAnimePublication(genreService,categoriesService));
         return ResponseEntity.ok(publication);
     }
     @PostMapping(value = "uploadInfoImages/{id}")

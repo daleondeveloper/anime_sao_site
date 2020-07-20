@@ -303,16 +303,20 @@
                                     <br>
                                         <div class="custom-file">
                                             <form method="POST" enctype="multipart/form-data" id="uploadAvatarPublication">
-                                                <label>Зміна аватара</label><br><br>
-                                                <input type="file" name="file" value="ooo" class="custom-file-input" id="avatar_Publication" aria-describedby="uploadAvatarButton">
-                                                <label class="custom-file-label" for="avatar_file_download"></label>
+                                                <input type="file" name="file" value="ooo" class="custom-file-input" id="avatar_Publication" aria-describedby="uploadAvatarButton" >
+                                                <label class="custom-file-label" for="avatar_file_download" id="avatar_Publication_Label"></label>
 
                                             </form>
 
                                         </div>
-                                    <div class="form-group">
-                                        <label for="avatar_Publication">Картинки публікації</label>
-                                        <input type="file" class="form-control-file" id="images_Publication" multiple>
+                                    <div class="custom-file">
+                                        <form method="POST" enctype="multipart/form-data" id="uploadImagesInfoPublication">
+<!--                                            <label>Зміна аватара</label><br><br>-->
+                                            <label class="custom-file-label" for="avatar_file_download" id="images_Publication_Label"></label>
+                                            <input type="file" name="file" value="ooo" class="custom-file-input" id="images_Publication" aria-describedby="uploadAvatarButton" multiple>
+
+                                        </form>
+
                                     </div>
                                 </div>
                                     <br>

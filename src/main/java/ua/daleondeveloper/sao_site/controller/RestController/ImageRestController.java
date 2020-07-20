@@ -2,6 +2,7 @@ package ua.daleondeveloper.sao_site.controller.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -65,6 +66,9 @@ public class ImageRestController {
         if(tokenUser.isPresent()){
             ImageAvatar avatar = (ImageAvatar)dbFileStorageService.getFile(
                     userService.findAvatarId(tokenUser.get().getId()),tokenUser.get());
+            if(avatar == null){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No content image by this request");
+            }
             return ResponseEntity.ok()
                     .contentType(MediaType.parseMediaType(avatar.getContentType()))
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + avatar.getFileName() + "\"")
