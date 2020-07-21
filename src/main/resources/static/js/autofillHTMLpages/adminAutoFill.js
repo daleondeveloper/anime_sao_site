@@ -3,6 +3,9 @@
 var leftMenuHtml =
     "<div class=\"card border border-primary\" id=\"registration_div\" style=\"margin: 0.4rem;\">\n" +
     "                    <div class=\"card-header\">\n" +
+    //
+    //Вибір дії ( створення/ редагування публікації , огляд юзера)
+    //
     "                        <div class=\"dropdown\" id=\"dropDownChoose\">\n" +
     "                                <button class=\"btn btn-outline-primary dropdown-toggle\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
     "                                Вибір дії\n" +
@@ -13,6 +16,9 @@ var leftMenuHtml =
     "                                <a class=\"dropdown-item\" href=\"#\">Отримати юзерів</a>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
+    //
+    //Вибір типу публікацію для створення нової публікації
+    //
     "                        <div class=\"dropdown\" id=\"dropDownChooseAnimeType\" hidden=\"true\">\n" +
     "                            <button class=\"btn btn-outline-primary dropdown-toggle\" type=\"button\" id=\"typePublicationDropDown\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
     "                                Вибір типу публікації\n" +
@@ -23,6 +29,33 @@ var leftMenuHtml =
     "                                <a class=\"dropdown-item\" href=\"#\">Гра</a>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
+    //
+    //Вибір номера публікації для редагування її
+    //
+    "<div id=\"choosePublicationIdDiv\" hidden=\"true\">\n" +
+    "                        <form class=\"form-inline\" >\n" +
+    "                            <div class=\"form-group\">\n" +
+    "                                <input type=\"number\" class=\"form-control\" id=\"publicationIdInput\" placeholder=\"Id публікації\">\n" +
+    "                            </div>\n" +
+    "                            <br>\n" +
+    "                            <button id=\"publicationShowByIdButton\" type=\"button\" class=\"btn btn-primary mb-2\">Вибрати публікацію</button>\n" +
+    "                        </form>\n" +
+    "                        </div>"+
+   //
+    //Вибір номера юзера для отримання інформації про нього
+    //
+    "<div id=\"chooseUserIdDiv\" hidden=\"true\">\n" +
+    "                        <form class=\"form-inline\" >\n" +
+    "                            <div class=\"form-group\">\n" +
+    "                                <input type=\"number\" class=\"form-control\" id=\"userIdPublication\" placeholder=\"Id користувача\">\n" +
+    "                            </div>\n" +
+    "                            <br>\n" +
+    "                            <button id=\"userShowByIdButton\" type=\"button\" class=\"btn btn-primary mb-2\">Показати користувача</button>\n" +
+    "                        </form>\n" +
+    "                        </div>"+
+    //
+    //
+    //
     "                    </div><!--                    card-header-->" +
     "<div class=\"card-body\">\n" +
     "                        <div class=\"row\">\n" +
@@ -60,38 +93,32 @@ let addPubStr = "<div id=\"addAnimePublication\" hidden=\"true\">" +
     "                                    <label for=\"inputCountSeries\">Кількість серій</label>\n" +
     "                                    <input type=\"number\" class=\"form-control\" value=\"0\" id=\"inputCountSeries\" placeholder=\"countSeries\">\n" +
     "                                </div>\n" +
+    //
+    //Вибір Жанру
+    //
     "                                <div class=\"dropdown\">\n" +
-    "                                <label id=\"txtGenre\" for=\"inputGenre\">Назва публікації</label>\n" +
+    "                                <label id=\"txtGenre\" for=\"inputGenre\">Жанр</label>\n" +
     "                                <input type=\"text\" class=\"form-control\" id=\"inputGenre\" placeholder=\"жанр\">\n" +
-    "                                <div id=\"dropDownInputGenre\" class=\"dropdown-menu\" >\n" +
-    "                                <a class=\"dropdown-item\" >fafa</a>\n" +
-    "                                <a class=\"dropdown-item\" >fafa</a>\n" +
-    "                                <a class=\"dropdown-item\" >fafa</a>\n" +
+    "                                <div id=\"dropDownInputGenre\" class=\"dropdown-menu\" >\n"+
     "                                </div>\n" +
-    "\n" +
     "                                <div id = \"spanGenre\">\n" +
-    "\n" +
     "                                </div>\n" +
     "                                </div>\n" +
-    "\n" +
+    //
+    //Вибір Категоріїї
+    //
     "                                <div class=\"dropdown\">\n" +
-    "                                <label id=\"txtCategories\" for=\"inputCategories\">Назва публікації</label>\n" +
+    "                                <label id=\"txtCategories\" for=\"inputCategories\">Категорії</label>\n" +
     "                                <input type=\"text\" class=\"form-control\" id=\"inputCategories\" placeholder=\"категорії\">\n" +
     "                                <div id=\"dropDownInputCategories\" class=\"dropdown-menu\" aria-labelledby=\"inputCategories\">\n" +
-    "\n" +
     "                                </div>\n" +
-    "\n" +
     "                                <div id = \"spanCategories\">\n" +
-    "                                <span class=\"badge badge-primary\">Primary</span>\n" +
-    "                                <span class=\"badge badge-primary\">Primary</span>\n" +
-    "                                <span class=\"badge badge-primary\">Primary</span>\n" +
-    "                                <span class=\"badge badge-primary\">Primary</span>\n" +
     "                                </div>\n" +
     "                                </div>\n" +
-    "\n" +
     "                                    <br>\n" +
-    "                                    <br>\n" +
-    "                                <div class=\"form-group\">\n" +
+    //
+    //Додавання аватарки( одна картинка)
+    //
     "  <div class=\"custom-file\">\n" +
     "                                            <form method=\"POST\" enctype=\"multipart/form-data\" id=\"uploadAvatarPublication\">\n" +
     "                                                <input type=\"file\" name=\"file\" value=\"ooo\" class=\"custom-file-input\" id=\"avatar_Publication\" aria-describedby=\"uploadAvatarButton\" >\n" +
@@ -100,6 +127,9 @@ let addPubStr = "<div id=\"addAnimePublication\" hidden=\"true\">" +
     "                                            </form>\n" +
     "\n" +
     "                                        </div>\n" +
+    //
+    //Додавання інформаційних картинок (багато файлів)
+    //
     "                                    <div class=\"custom-file\">\n" +
     "                                        <form method=\"POST\" enctype=\"multipart/form-data\" id=\"uploadImagesInfoPublication\">\n" +
     "<!--                                            <label>Зміна аватара</label><br><br>-->\n" +
@@ -111,6 +141,9 @@ let addPubStr = "<div id=\"addAnimePublication\" hidden=\"true\">" +
     "                                    </div>" +
     "                                    <br>\n" +
     "\n" +
+    //
+    //Кнопка віправки даних для створення публікації
+    //
     "                                <button type=\"button\" id='addPublicationBtn' class=\"btn btn-outline-primary\">Додати публікацію</button>" +
     "                                </div>\n" ;
 

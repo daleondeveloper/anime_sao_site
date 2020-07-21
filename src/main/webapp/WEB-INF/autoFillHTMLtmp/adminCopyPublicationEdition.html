@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link href="https://flaviusmatis.github.io/simplePagination.js/simplePagination.css" rel="stylesheet">
+
+    <title>Hello, world!</title>
+</head>
+<body>
+
+<header class="header">
+</header>
+<nav class="navbar  navbar-expand-lg navbar-dark bg-dark sticky-top">
+
+    <a href="#" class="navbar-brand">
+        <img src="../static/image/icon.jpg"
+             Width="50" Height="50"
+             alt="logo">
+        Sword Art Online
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toogle-navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a href="/" class="nav-link">Головна</a>
+            </li>
+            <li class="nav-item ">
+                <a href="/game" class="nav-link">Ігри</a>
+            </li>
+            <li class="nav-item">
+                <a href="/anime" class="nav-link">Аніме</a>
+            </li>
+            <li class="nav-item">
+                <a href="/manga" class="nav-link">Манга</a>
+            </li>
+            <li class="nav-item">
+                <a href="/contacts" class="nav-link">Контакти</a>
+            </li>
+        </ul>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Пошук по сайту" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Пошук</button>
+        </form>
+    </div>
+
+
+</nav><!--    navbar-->
+
+<main class="main" style="background: 8b4545">
+    <div class="container-fluid">
+        <div class="row">
+            <!--Left-->
+            <div class="col-12 col-md-4 col-lg-3 order-md-1" >
+                <div id="autorization_div">
+                    <card class="card border border-primary" style=" padding: 10%; margin: 0.4rem;">
+                        <form id="autorization_form" action="" method="post"    >
+                            <div class="form-group col-12">
+                                <label for="inputEmail3" class="col-sm-12 col-form-label"><h4>Авторизація</h4></label>
+                                <div class="col-12">
+                                    <input type="email" class="form-control" name="email" value="" id="inputEmail3" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <div class="col-12">
+                                    <input type="password" class="form-control" name="password" id="inputPassword3" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group col-12 ">
+                                <div class="col-6 offset-sm-3 col-md-12 offset-md-0 ">
+                                    <button id="autorization_button" class="btn btn-outline-primary btn-block">Вхід</button>
+                                </div>
+                                <div class="col-6 offset-sm-3 col-md-12 offset-md-0 ">
+                                    <a href="/registration" class="btn btn-outline-primary btn-block">Регістрація</a>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row" id="mini_user_info_menu" hidden="true" >
+                            <div class='preview col-7'>
+                                <img src="" id="avatarImg" class="img-fluid rounded float-left border border-dark" alt="avatar">
+                                <p class=" text-primary text-left text-wrap text-break font-italic" id = "user_nick_name_txt_left_menu">daleonandra</p>
+                            </div>
+
+                            <div class="col-5">
+                                <button id="settingUser" type="button" class="btn btn-outline-primary btn-sm float-right">Настройки</button>
+                                <br><br>
+                                <button id="logout" type="button" class="btn btn-outline-primary btn-sm float-right">Вихід</button>
+
+                            </div>
+                            <div class="col-12">
+                            </div>
+                        </div>
+                        <div class="row" id="mini_user_setting_menu" hidden="true"  >
+                            <div class="input-group col-12">
+                                <div class="custom-file">
+                                    <form method="POST" enctype="multipart/form-data" id="uploadAvatar">
+                                        <label>Зміна аватара</label><br><br>
+                                        <input type="file" name="file" value="ooo" class="custom-file-input" id="avatar_file_download" aria-describedby="uploadAvatarButton">
+                                        <label class="custom-file-label" for="avatar_file_download"></label>
+
+                                    </form>
+
+                                </div>
+                                <div class="input-group-append ">
+                                    <button class="btn btn-outline-primary btn-sm" type="button" id="uploadAvatarButton">Зміна</button>
+                                </div>
+                            </div>
+                            <div class = "col-12">
+                                <p class=" text-primary text-left  text-wrap text-break font-italic" id = "upload_avatar_txt">,f,f,f, ,f,lsaf;samf;as sd;lfmsa;dfld;smf dsa;lf;sa</p>
+                            </div>
+                            <div class="col-12 " >
+
+                                <button id="saveSettingButton" type="button" class="btn btn-outline-primary btn-sm ">Назад</button>
+                            </div>
+                        </div>
+                    </card>
+                </div>
+                <div id="last_update_post">
+                    <card class="card border border-primary" style=" padding: 1rem; margin: 0.4rem;">
+                        <div class="card-header">
+                            <h4>Остані оновлення:</h4>
+                        </div><!--                    card-header-->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <a  class="" href="#" data-toggle="tooltip" data-placement="right" data-html="true" data-title='<div class="row">
+                            <div class="col-12">
+                            <img class="tooltip-img" src="../static/image/season_1/SAO_Alicization_MP1.jpg" alt="Card image cap">
+                            <p>Год выхода: 2018<br>
+                            Жанр: приключения, фэнтези<br>
+                            Тип: ТВ<br>
+                            Количество серий: 48 (25 мин.)<br>
+                            Режиссёр: Ито Томохико</p>
+                            </div>
+                            </div>
+ '>
+                                        <h6>Мастера меча онлайн (третий сезон) / Sword Art Online 3rd Season [1-24 из 48] [25 серия - как отдохну]</h6>
+                                    </a>
+                                </div>
+                                <div class="col-12">
+                                    <a  class="" href="#" data-toggle="tooltip" data-placement="right" data-html="true" data-title='<div class="row">
+                            <div class="col-12">
+                            <img class="tooltip-img" src="../image/season_1/SAO_GGO_MP1.jpg" alt="Card image cap">
+                            <p class="collapse-group"><strong>Год выхода:</strong> 2012<br>
+
+                                <strong>Жанр:</strong> приключения, фэнтези, романтика, драма<br>
+
+                                <strong>Тип:</strong> ТВ<br>
+
+                                <strong>Количество серий:</strong> 12 (25 мин.)<br>
+
+                                <strong>Режиссёр:</strong> Ито Томохико<br>
+                            </div>
+                            </div>
+ '>
+                                        <h6>Мастера Меча Онлайн: Альтернативная "Призрачная пуля" / Sword Art Online Alternative: Gun Gale Online</h6>
+                                    </a>
+                                </div>
+                                <div class="col-12">
+                                    <a  class="" href="#" data-toggle="tooltip" data-placement="right" data-html="true" data-title='<div class="row">
+                            <div class="col-12">
+                            <img class="tooltip-img" src="../image/season_1/SAO_OrdinalScale_MP1.jpg" alt="Card image cap">
+                            <p class="collapse-group"><strong>Год выхода:</strong> 2017<br>
+
+                                <strong>Жанр:</strong> приключения, фэнтези, романтика, драма<br>
+
+                                <strong>Тип:</strong> ТВ<br>
+
+                                <strong>Количество серий:</strong>  1 (120 мин.))<br>
+
+                                <strong>Режиссёр:</strong> Ито Томохико<br>>
+                            </div>
+                            </div>
+ '>
+                                        <h6>Мастера меча онлайн (фильм) / Gekijouban Sword Art Online: Ordinal Scale</h6>
+                                    </a>
+                                </div>
+                                <div class="col-12">
+                                    <a  class="" href="#" data-toggle="tooltip" data-placement="right" data-html="true" data-title='<div class="row">
+                            <div class="col-12">
+                            <img class="tooltip-img" src="../image/season_1/SAO_S1_Special_MP1.jpg" alt="Card image cap">
+                            <p class="collapse-group"><strong>Год выхода:</strong> 2013<br>
+
+                                <strong>Жанр:</strong> приключения, фэнтези<br>
+
+                                <strong>Тип:</strong> ТВ<br>
+
+                                <strong>Количество серий:</strong> 1 (100 мин.)<br>
+
+                                <strong>Режиссёр:</strong> Ито Томохико<br>
+                            </div>
+                            </div>
+ '>
+                                        <h6>Мастера меча онлайн (спецвыпуск 1) / Sword Art Online: Extra Edition</h6>
+                                    </a>
+                                </div>
+
+                            </div><!--                        row-->
+                        </div><!--                    card-body-->
+                    </card>
+                </div>
+            </div>
+            <!--            col-3-->
+            <!--Center-->
+            <div class="col-12 col-md-8 col-lg-6 order-md-2 " id="centerMenu">
+                <div class="card border border-primary" id="registration_div" style="margin: 0.4rem;">
+                    <div class="card-header">
+                        <div class="dropdown" id="dropDownChoose">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Вибір дії
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Створити публікацію</a>
+                                <a class="dropdown-item" href="#">Редагувати публікацію</a>
+                                <a class="dropdown-item" href="#">Отримати юзерів</a>
+                            </div>
+                        </div>
+                        <div id="choosePublicationIdDiv">
+                        <form class="form-inline" hidden="true">
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="publicationIdInput" placeholder="Id публікації">
+                            </div>
+                            <br>
+                            <button class="btn btn-primary mb-2">Вибрати публікацію</button>
+                        </form>
+                        </div>
+                    </div><!--                    card-header-->
+                    <div class="card-body">
+                        <div class="row">
+                            <div id="centerEditShowDiv" class="col-12" >
+                                   <div class="form-group">
+                                        <label for="inputName">Назва публікації</label>
+                                        <input type="text" class="form-control" id="inputName" placeholder="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputFullName">Повна назва публікації</label>
+                                        <input type="text" class="form-control" id="inputFullName" placeholder="fullName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputDirector">Назва публікації</label>
+                                        <input type="text" class="form-control" id="inputDirector" placeholder="director">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputLanguage">Назва публікації</label>
+                                        <input type="text" class="form-control" id="inputLanguage" placeholder="language">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputDescription">Назва публікації</label>
+                                        <input type="text" class="form-control" id="inputDescription" placeholder="description">
+                                    </div>
+                                <div class="form-group">
+                                    <label for="inputCountSeries">Кількість серій</label>
+                                    <input type="number" class="form-control" id="inputCountSeries" placeholder="countSeries" value="1">
+                                </div>
+                                <div class="dropdown">
+                                <label id="txtGenre" for="inputGenre">Назва публікації</label>
+                                <input type="text" class="form-control" id="inputGenre" placeholder="жанр">
+                                <div id="dropDownInputGenre" class="dropdown-menu" >
+
+                                </div>
+
+                                <div id = "spanGenre">
+                                <span class="badge badge-primary">Primary</span>
+                                <span class="badge badge-primary">Primary</span>
+                                <span class="badge badge-primary">Primary</span>
+                                <span class="badge badge-primary">Primary</span>
+
+                                </div>
+                                </div>
+
+                                <div class="dropdown">
+                                <label id="txtCategories" for="inputCategories">Назва публікації</label>
+                                <input type="text" class="form-control" id="inputCategories" placeholder="категорії">
+                                <div id="dropDownInputCategories" class="dropdown-menu" aria-labelledby="inputCategories">
+
+                                </div>
+
+                                <div id = "spanCategories">
+                                <span class="badge badge-primary">Primary</span>
+                                <span class="badge badge-primary">Primary</span>
+                                <span class="badge badge-primary">Primary</span>
+                                <span class="badge badge-primary">Primary</span>
+                                </div>
+
+                                    <br>
+                                    <br>
+                                        <div class="custom-file">
+                                            <form method="POST" enctype="multipart/form-data" id="uploadAvatarPublication">
+                                                <input type="file" name="file" value="ooo" class="custom-file-input" id="avatar_Publication" aria-describedby="uploadAvatarButton" >
+                                                <label class="custom-file-label" for="avatar_file_download" id="avatar_Publication_Label"></label>
+
+                                            </form>
+
+                                        </div>
+                                    <div class="custom-file">
+                                        <form method="POST" enctype="multipart/form-data" id="uploadImagesInfoPublication">
+<!--                                            <label>Зміна аватара</label><br><br>-->
+                                            <label class="custom-file-label" for="avatar_file_download" id="images_Publication_Label"></label>
+                                            <input type="file" name="file" value="ooo" class="custom-file-input" id="images_Publication" aria-describedby="uploadAvatarButton" multiple>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                                    <br>
+
+                                <button type="button" class="btn btn-outline-primary">Додати публікацію</button>
+                                </div>
+                        </div><!--                      row - card-body -->
+
+                    </div><!--                    card-body-->
+                </div><!--                card-->
+
+            </div><!--            col-6-->
+            <!--Rigth-->
+
+        </div><!--        row-->
+    </div><!--    container-fluid-->
+</main>
+
+
+<!-- Optional JavaScript -->
+<!--AutoFillHTML-->
+<script src="../js/autofillHTMLpages/rigthMenuAutoFill.js" ></script>
+<script src="../js/autofillHTMLpages/leftMenuAutoFill.js" ></script>
+<script src="../js/autofillHTMLpages/headerAutoFill.js" ></script>
+<script src="../js/autofillHTMLpages/adminAutoFill.js" ></script>
+<script src="../js/autofillHTMLpages/footerAutoFill.js" ></script>
+<!---->
+<!--GlobalJS-->
+<script src="https://code.jquery.com/jquery-3.4.1.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<!---->
+<!--LocalJS-->
+<script src="../js/authetication/autorization.js" ></script>
+<script src="../js/button/UserButton.js" ></script>
+<script async src="../js/autorization_form/html_reg_fom_authorization_user.js" ></script>
+<script async src="../js/publication/animePublication.js" ></script>
+<script async src="../js/admin/addPublication.js" ></script>
+<script async src="../js/admin/dropDownsMenus.js" ></script>
+
+<!---->
+<!--BootStrap-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!---->
+
+    <script>
+    $(function () {
+        // инициализация всплывающих подсказок
+        $('[data-toggle="tooltip"]').tooltip();
+        // $('#inputGenre').dropdown('show');
+
+    });
+</script>
+
+</body>
+</html>

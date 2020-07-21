@@ -44,7 +44,7 @@ function addBindToGenre() {
         });
         document.getElementById("spanGenre").insertAdjacentHTML("afterbegin", textSpan);
         $('#dropDownInputGenre').hide();
-
+        badgeRemoveBind();
 
     });
     // $('#inputGenre').focusout(function () {
@@ -98,6 +98,12 @@ $('#dropDownInputCategories').on('click', 'a', function () {
     });
     document.getElementById("spanCategories").insertAdjacentHTML("afterbegin", textSpan);
     $('#dropDownInputCategories').hide();
+    badgeRemoveBind();
 
 
 });
+function badgeRemoveBind() {
+    $(".badge-primary").on('click',function () {
+        $(this).remove();
+    })
+}
