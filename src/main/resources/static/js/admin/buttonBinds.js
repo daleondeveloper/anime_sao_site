@@ -39,6 +39,19 @@ function publicationShowByIdBtnBind(){
                 $('#inputDescription').attr("placeholder",data.description);
                 $('#inputDirector').attr("placeholder",data.director);
                 $('#inputLanguage').attr("placeholder",data.language);
+                showGenreDate(data);
+                showCategoriesDate(data);
+                switch (data.types[0].types.toString().toLowerCase()){
+                    case "anime" :
+                        showAnimePublicationDate(data);
+                        break;
+                    case "manga" :
+                        showMangaPublicationDate(data);
+                        break;
+                    case "game" :
+                        showGamePublicationDate(data);
+                        break;
+                }
             },
             error : function (){}
         });
