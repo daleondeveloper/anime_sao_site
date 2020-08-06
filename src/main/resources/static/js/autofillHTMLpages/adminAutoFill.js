@@ -40,7 +40,9 @@ var leftMenuHtml =
     "                            <br>\n" +
     "                            <button id=\"publicationShowByIdButton\" type=\"button\" class=\"btn btn-primary mb-2\">Вибрати публікацію</button>\n" +
     "                        </form>\n" +
-    "                        </div>"+
+    "                        <span class=\"badge badge-primary\" id=\"publicationIdSpan\">3</span>\n" +
+    "                            <span class=\"badge badge-primary\" id=\"publicationTypeSpan\">4</span>\n"+
+    "                        </div>\n"+
    //
     //Вибір номера юзера для отримання інформації про нього
     //
@@ -145,6 +147,7 @@ let addPubStr = "<div id=\"addAnimePublication\" hidden=\"true\">" +
     //Кнопка віправки даних для створення публікації
     //
     "                                <button type=\"button\" id='addPublicationBtn' class=\"btn btn-outline-primary\">Додати публікацію</button>" +
+    "                                <button type=\"button\" id='editPublicationBtn' class=\"btn btn-outline-primary\">Редагувати публікацію</button>" +
     "                                </div>\n" ;
 
 //}
@@ -152,6 +155,14 @@ let addPubStr = "<div id=\"addAnimePublication\" hidden=\"true\">" +
 document.getElementById("centerEditShowDiv").insertAdjacentHTML("afterbegin",addPubStr);
 function showAddPublication(){
     $('#addAnimePublication').attr("hidden",false);
+    $('#addPublicationBtn').attr('hidden',false);
+    $('#editPublicationBtn').attr('hidden',true);
+
+}
+function showEditPublication(){
+    $('#addAnimePublication').attr("hidden",false);
+    $('#addPublicationBtn').attr('hidden',true);
+    $('#editPublicationBtn').attr('hidden',false);
 
 }
 

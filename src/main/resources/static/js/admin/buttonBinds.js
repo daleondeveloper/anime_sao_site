@@ -22,6 +22,28 @@ function imageLabelsShowTxtButtonBind(){
         $(this).next('#images_Publication_Label').html(fileNames);
     })
 }
+function publicationShowByIdBtnBind(){
+    $('#publicationShowByIdButton').bind('click',function () {
+        let id = $('#publicationIdInput').val();
+        $.ajax({
+            beforeSend : function (req){
+                req.setRequestHeader('Autorization',('Bearer_' + localStorage.getItem('token')));
+            },
+            type : "GET",
+            url : "/api/v1/publication/" + id,
+            success : function (data){
+                $('#publicationIdSpan').text(data.id);
+                $('#publicationTypeSpan').text(data.types[0].types);
+                $('#inputName').attr("placeholder",data.name);
+                $('#inputFullName').attr("placeholder",data.fullName);
+                $('#inputDescription').attr("placeholder",data.description);
+                $('#inputDirector').attr("placeholder",data.director);
+                $('#inputLanguage').attr("placeholder",data.language);
+            },
+            error : function (){}
+        });
+    });
+}
 function addAnimePublicationButtonBind(){
     let id = 0;
     $("#addPublicationBtn").bind("click",function () {
@@ -46,15 +68,7 @@ function addAnimePublicationButtonBind(){
            'description' : description,
             'countSeries ': countSeries
         };
-        // form.name = name;
-        // form.fullName = fullName;
-        // form.director = director;
-        // form.language = language;
-        // form.description = description;
         form.genre = JSON.stringify(genre);
-        // form.countSeries = countSeries;
-
-        // let jsonForm = JSON.parse(form);
 
         $.ajax({
             beforeSend: function (request) {

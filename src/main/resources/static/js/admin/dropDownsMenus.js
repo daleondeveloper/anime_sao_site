@@ -12,7 +12,8 @@ $('#dropDownChoose').on('click','a',function(){
             break;
          case "Редагувати публікацію":
              $('#choosePublicationIdDiv').attr("hidden",false);
-             publicationShowByIdBtnBind()
+             publicationShowByIdBtnBind();
+             showEditPublication();
             break;
         case "Отримати юзерів":
             $('#chooseUserIdDiv').attr("hidden",false);
