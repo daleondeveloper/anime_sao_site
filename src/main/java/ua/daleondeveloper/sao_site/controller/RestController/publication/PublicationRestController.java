@@ -40,6 +40,16 @@ public class PublicationRestController {
     public  ResponseEntity get_publication(@PathVariable(name = "page")int page){
         return ResponseEntity.ok(publicationService.getPublicationByNumber(page,page+3));
     }
+    @GetMapping(value = "/{id}")
+    public ResponseEntity getPublication(@PathVariable(name = "id")long id){
+        Optional<Publication> publication = publicationService.findById(id);
+        if(publication.isPresent()){
+            return ResponseEntity.ok(publication.get());
+        }else {
+            return ResponseEntity.badRequest().body("No publication with this id" + id);
+        }
+
+    }
 
     @PostMapping(value = "uploadAvatar/{id}")
     public ResponseEntity uploadAvatar (@RequestParam("file")MultipartFile requestFile, @PathVariable(name = "id")Long id) {

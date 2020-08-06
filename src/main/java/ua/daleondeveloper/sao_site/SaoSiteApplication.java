@@ -67,14 +67,15 @@ public class SaoSiteApplication {
                 List<UserRole> roles = new ArrayList<>();
 
                 byte[] usersStandartAvatar ={};
-                try(FileInputStream reader = new FileInputStream("/home/daleon/IdeaProjects/anime_sao_site/src/main/resources/static/image/icon.jpg")) {
+                try (FileInputStream reader = new FileInputStream("D://icon.jpg")) {
+
                     byte[] tmpByteArray = new byte[reader.available()];
                     while (reader.available() > 0) {
-                        tmpByteArray[tmpByteArray.length-reader.available()] = (byte)reader.read();
+                        tmpByteArray[tmpByteArray.length - reader.available()] = (byte) reader.read();
                     }
                     usersStandartAvatar = tmpByteArray;
 
-                }catch (IOException e){
+                } catch (IOException e) {
                 }
                 // Admin users
                 //User users
@@ -106,7 +107,7 @@ public class SaoSiteApplication {
                 }
                 byte[] image1 = {};
 
-                try(FileInputStream reader = new FileInputStream("/home/daleon/IdeaProjects/anime_sao_site/src/main/resources/static/image/season_1/SAO_Alicization_MP1.jpg")) {
+                try(FileInputStream reader = new FileInputStream("D://icon.jpg")) {
                     byte[] tmpByteArray = new byte[reader.available()];
                     while (reader.available() > 0) {
                         tmpByteArray[tmpByteArray.length-reader.available()] = (byte)reader.read();
