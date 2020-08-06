@@ -91,7 +91,7 @@ let addPubStr = "<div id=\"addAnimePublication\" hidden=\"true\">" +
     "                                        <label for=\"inputDescription\">Опис</label>\n" +
     "                                        <input type=\"text\" class=\"form-control\" id=\"inputDescription\" placeholder=\"description\">\n" +
     "                                    </div>\n" +
-    "                                <div class=\"form-group\">\n" +
+    "                                <div class=\"form-group\" id=\"countSeriesDiv\" hidden=\"true\">\n" +
     "                                    <label for=\"inputCountSeries\">Кількість серій</label>\n" +
     "                                    <input type=\"number\" class=\"form-control\" value=\"0\" id=\"inputCountSeries\" placeholder=\"countSeries\">\n" +
     "                                </div>\n" +
@@ -168,6 +168,7 @@ function showEditPublication(){
 function showAnimePublicationDate(obj){
     $('#inputCountSeries').attr('placeholder', obj.countSeries);
     $('#inputCountSeries').attr('value', obj.countSeries);
+    $('#countSeriesDiv').attr('hidden',false);
 }
 function showMangaPublicationDate(obj){}
 function showGamePublicationDate(obj){}
