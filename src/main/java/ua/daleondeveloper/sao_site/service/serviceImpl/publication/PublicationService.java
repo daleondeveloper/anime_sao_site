@@ -44,10 +44,10 @@ public class PublicationService {
     public Publication merge(Publication updatePublication){
         Optional<Publication> publicationBDOptional = findById(updatePublication.getId());
         if(publicationBDOptional.isPresent()){
-            Publication publicationBD = publicationBDOptional.get();
-            publicationBD.merge(updatePublication);
-            return publicationRepository.updatePublication(publicationBD);
-
+           // Publication publicationBD = publicationBDOptional.get();
+            //publicationBD.merge(updatePublication);
+             publicationRepository.updatePublication(updatePublication);
+            return findById(updatePublication.getId()).get();
         }else{
             //not found
         }
