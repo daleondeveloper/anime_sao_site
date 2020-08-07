@@ -34,6 +34,11 @@ function publicationShowByIdBtnBind(){
             success : function (data){
                 $('#publicationIdSpan').text(data.id);
                 $('#publicationTypeSpan').text(data.types[0].types);
+                $('#inputName').attr("placeholder","name");
+                $('#inputFullName').attr("placeholder","fullName");
+                $('#inputDescription').attr("placeholder","description");
+                $('#inputDirector').attr("placeholder","director");
+                $('#inputLanguage').attr("placeholder","language");
                 $('#inputName').attr("placeholder",data.name);
                 $('#inputFullName').attr("placeholder",data.fullName);
                 $('#inputDescription').attr("placeholder",data.description);

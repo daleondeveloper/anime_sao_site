@@ -166,7 +166,9 @@ function showEditPublication(){
 
 }
 function showAnimePublicationDate(obj){
+    $('#inputCountSeries').attr('placeholder', '0');
     $('#inputCountSeries').attr('placeholder', obj.countSeries);
+    $('#inputCountSeries').attr('value', '0');
     $('#inputCountSeries').attr('value', obj.countSeries);
     $('#countSeriesDiv').attr('hidden',false);
 }
