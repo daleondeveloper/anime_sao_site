@@ -142,7 +142,7 @@ function createPublicationObjFromHtmlDate() {
         "name":name,
         'fullName' : fullName,
         'director' : director,
-        'language ': language,
+        'language': language,
         'description' : description,
     };
     form.genre = JSON.stringify(genre);

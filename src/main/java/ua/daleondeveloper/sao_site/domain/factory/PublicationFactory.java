@@ -110,7 +110,7 @@ public class PublicationFactory {
         return types;
     }
     private static List<Categories> getCategories(CategoriesService categoriesService){
-        String[] strCategorie = {"ТВ", "2012", "Драма", "Приключения", "Романтика", "Фэнтези"};
+        String[] strCategorie = {"тв", "2012", "драма", "приключения", "романтика", "фэнтези"};
         List<Categories> returnCategories = new ArrayList<>();
             for(int i = 0; i < random.nextInt(10);i++){
                 returnCategories.add(categoriesService.getById((long)random.nextInt(strCategorie.length-1)+1));

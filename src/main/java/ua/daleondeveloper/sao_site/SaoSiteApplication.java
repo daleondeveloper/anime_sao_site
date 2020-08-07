@@ -93,7 +93,7 @@ public class SaoSiteApplication {
 
                 userServiceImpl.addUser(UserFactory.getUser("mail@ukr.net","$2a$10$81.IeFg8DpDeGhTtpN/MpOla6jjRVFC/PVZJjKfpTNEtWCLS7/06a",roles));
                 userServiceImpl.addUser(UserFactory.getUser("daleon@ukr.net","$2a$10$81.IeFg8DpDeGhTtpN/MpOla6jjRVFC/PVZJjKfpTNEtWCLS7/06a",roles));
-                String [] categories = {"ТВ", "2012", "Драма", "Приключения", "Романтика", "Фэнтези"};
+                String [] categories = {"тв", "2012", "драма", "приключения", "романтика", "фэнтези"};
                 for(String tmp: categories){
                     categoriesService.save(new Categories(tmp));
                 }

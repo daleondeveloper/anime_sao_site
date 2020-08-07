@@ -1,7 +1,10 @@
 package ua.daleondeveloper.sao_site.dao.dynamicDAO;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ua.daleondeveloper.sao_site.domain.publication.AnimePublication;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Genre;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.GenreService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +18,7 @@ public class PublicationDynamicRepositoryImpl implements PublicationDynamicRepos
     @PersistenceContext
     private EntityManager em;
 
-    public void updatePublication(Publication reqPub){
+    public void updatePublication(Publication reqPub, GenreService genreService){
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
         CriteriaUpdate update = cb.createCriteriaUpdate(Publication.class);

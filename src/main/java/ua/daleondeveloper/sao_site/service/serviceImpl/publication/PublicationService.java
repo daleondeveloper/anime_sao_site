@@ -11,6 +11,10 @@ import org.springframework.web.client.HttpClientErrorException;
 import ua.daleondeveloper.sao_site.dao.publication.PublicationRepository;
 import ua.daleondeveloper.sao_site.domain.Files.ImageAvatar;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Categories;
+import ua.daleondeveloper.sao_site.domain.publication.utils.Genre;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.CategoriesService;
+import ua.daleondeveloper.sao_site.service.serviceImpl.publication.utils.GenreService;
 
 import java.util.Optional;
 
@@ -18,7 +22,10 @@ import java.util.Optional;
 public class PublicationService {
     @Autowired
     private PublicationRepository publicationRepository;
-
+    @Autowired
+    private GenreService genreService;
+    @Autowired
+    private CategoriesService categoriesService;
 
     public Long getCount(){return publicationRepository.count();}
 
@@ -44,10 +51,29 @@ public class PublicationService {
     public Publication merge(Publication updatePublication){
         Optional<Publication> publicationBDOptional = findById(updatePublication.getId());
         if(publicationBDOptional.isPresent()){
-           // Publication publicationBD = publicationBDOptional.get();
-            //publicationBD.merge(updatePublication);
-             publicationRepository.updatePublication(updatePublication);
-            return findById(updatePublication.getId()).get();
+           Publication publicationBD = publicationBDOptional.get();
+
+             publicationRepository.updatePublication(updatePublication,genreService);
+             //Видалення всіх жанрів і присвоєння нових жанрів
+             publicationBD.getGenres().clear();
+                mainGenre:for(Genre genre : updatePublication.getGenres()) {
+                    for(Genre genreBD : publicationBD.getGenres()){
+                        if(genreBD.getGenre().equals(genre.getGenre())){
+                            continue mainGenre;
+                        }
+                    }
+                    publicationBD.getGenres().add(genreService.getByTxt(genre.getGenre()).get(0));
+                }
+                publicationBD.getCategories().clear();
+             mainCategories:for(Categories categories : updatePublication.getCategories()){
+                 for(Categories categoriesBD : publicationBD.getCategories()){
+                     if(categoriesBD.getCategories().equals(categories.getCategories())){
+                         continue mainCategories;
+                     } }
+                 publicationBD.getCategories().add(categoriesService.getByTxt(categories.getCategories()).get(0));
+             }
+
+             return findById(updatePublication.getId()).get();
         }else{
             //not found
         }
