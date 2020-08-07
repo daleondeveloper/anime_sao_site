@@ -67,7 +67,7 @@ public class AnimePublicationDto {
             s = StringParser.parseJSONRequestStringMassive(s);
             List<Categories> bdCategoriesList = categoriesService.getByTxt(s);
             if(!bdCategoriesList.isEmpty()) {
-                categoriesList.add(categoriesList.get(0));
+                categoriesList.add(bdCategoriesList.get(0));
             }
         }
         publication.setCategories(categoriesList);
