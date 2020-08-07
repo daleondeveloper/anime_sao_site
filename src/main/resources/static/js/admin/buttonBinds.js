@@ -57,39 +57,39 @@ function publicationShowByIdBtnBind(){
         });
     });
 }
-function addAnimePublicationButtonBind(){
-    let id = 0;
-    $("#addPublicationBtn").bind("click",function () {
-        let name = $('#inputName').val(),
-            fullName = $('#inputFullName').val(),
-            director = $('#inputDirector').val(),
-            language = $('#inputLanguage').val(),
-            description = $('#inputDescription').val(),
-            countSeries = $('#inputCountSeries').val();
-
-        let genre = [], i = 0;
-        $('#spanGenre').find('span').each(function () {
-           genre[i]=$(this).text();
-            i++;
-        });
-
-        let form = {
-            "name":name,
-            'fullName' : fullName,
-            'director' : director,
-            'language ': language,
-           'description' : description,
-            'countSeries ': countSeries
-        };
-        form.genre = JSON.stringify(genre);
-
+function editPublicationButtonBind(){
+    $("#editPublicationBtn").bind("click",function () {
+        let id = $('#publicationIdSpan').text();
         $.ajax({
             beforeSend: function (request) {
                 request.setRequestHeader('Authorization', ('Bearer_' + localStorage.getItem('token')));
             },
             type: "POST",
             dataType: "json",
-            data: form,
+            data: createPublicationObjFromHtmlDate("anime"),
+            url: "/api/v1/publication/edit/" + id,
+            success: function (res) {
+
+                //addAvatarToPublication(id);
+                //addInfoImageToPublication(id);
+            },
+            error: function () {
+
+            }
+
+        })
+    });
+}
+function addAnimePublicationButtonBind(){
+    let id = 0;
+    $("#addPublicationBtn").bind("click",function () {
+        $.ajax({
+            beforeSend: function (request) {
+                request.setRequestHeader('Authorization', ('Bearer_' + localStorage.getItem('token')));
+            },
+            type: "POST",
+            dataType: "json",
+            data: createPublicationObjFromHtmlFate("anime"),
             url: "/api/v1/publication/anime/admin/add",
             success: function (res) {
                 id = res.id;
@@ -102,6 +102,53 @@ function addAnimePublicationButtonBind(){
 
         })
     });
+}
+function createPublicationObjFromHtmlDate(type){
+    let obj = createPublicationObjFromHtmlDate();
+    if(type == null){
+        return obj;
+    }
+    switch (type.toLowerCase()){
+        case "anime" :
+            let countSeries = $('#inputCountSeries').val();
+            obj.countSeries = countSeries;
+            break;
+        case "manga":
+            break;
+        case "game" :
+            break;
+    }
+    return obj;
+}
+function createPublicationObjFromHtmlDate() {
+    let name = $('#inputName').val(),
+        fullName = $('#inputFullName').val(),
+        director = $('#inputDirector').val(),
+        language = $('#inputLanguage').val(),
+        description = $('#inputDescription').val();
+
+    let genre = [], i = 0;
+    $('#spanGenre').find('span').each(function () {
+        genre[i]=$(this).text();
+        i++;
+    });
+    let categories = [], j = 0;
+    $('#spanCategories').find('span').each(function () {
+        categories[j]=$(this).text();
+        j++;
+    });
+
+    let form = {
+        "name":name,
+        'fullName' : fullName,
+        'director' : director,
+        'language ': language,
+        'description' : description,
+    };
+    form.genre = JSON.stringify(genre);
+    form.categories = JSON.stringify(categories);
+
+    return form;
 }
 function addAvatarToPublication(id){
 
