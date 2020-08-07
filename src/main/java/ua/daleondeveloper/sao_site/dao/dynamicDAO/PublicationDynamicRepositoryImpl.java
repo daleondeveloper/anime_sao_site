@@ -1,5 +1,6 @@
 package ua.daleondeveloper.sao_site.dao.dynamicDAO;
 
+import ua.daleondeveloper.sao_site.domain.publication.AnimePublication;
 import ua.daleondeveloper.sao_site.domain.publication.Publication;
 
 import javax.persistence.EntityManager;
@@ -17,9 +18,18 @@ public class PublicationDynamicRepositoryImpl implements PublicationDynamicRepos
     public void updatePublication(Publication reqPub){
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
-        CriteriaUpdate<Publication> update = cb.createCriteriaUpdate(Publication.class);
+        CriteriaUpdate update = cb.createCriteriaUpdate(Publication.class);
 
-        Root<Publication> e = update.from(Publication.class);
+        Root e = update.from(Publication.class);
+
+        if(reqPub instanceof AnimePublication){
+            update  = cb.createCriteriaUpdate(AnimePublication.class);
+            e = update.from(AnimePublication.class);
+            AnimePublication animePublication = (AnimePublication)reqPub;
+            if(animePublication.getCountSeries() > 0){
+                update.set("countSeries", animePublication.getCountSeries());
+            }
+        }
 
         if(reqPub.getName() != null && !reqPub.getName().isEmpty()) {
             update.set("name", reqPub.getName());

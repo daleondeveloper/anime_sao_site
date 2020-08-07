@@ -66,7 +66,7 @@ function editPublicationButtonBind(){
             },
             type: "POST",
             dataType: "json",
-            data: createPublicationObjFromHtmlDate("anime"),
+            data: createPublicationObjFromHtmlDateWithType("anime"),
             url: "/api/v1/publication/edit/" + id,
             success: function (res) {
 
@@ -89,7 +89,7 @@ function addAnimePublicationButtonBind(){
             },
             type: "POST",
             dataType: "json",
-            data: createPublicationObjFromHtmlFate("anime"),
+            data: createPublicationObjFromHtmlDateWithType("anime"),
             url: "/api/v1/publication/anime/admin/add",
             success: function (res) {
                 id = res.id;
@@ -103,7 +103,7 @@ function addAnimePublicationButtonBind(){
         })
     });
 }
-function createPublicationObjFromHtmlDate(type){
+function createPublicationObjFromHtmlDateWithType(type){
     let obj = createPublicationObjFromHtmlDate();
     if(type == null){
         return obj;
