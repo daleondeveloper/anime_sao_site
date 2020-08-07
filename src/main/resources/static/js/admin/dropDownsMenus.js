@@ -15,6 +15,8 @@ $('#dropDownChoose').on('click','a',function(){
              publicationShowByIdBtnBind();
              showEditPublication();
              editPublicationButtonBind();
+             addBindToCategories();
+             addBindToGenre();
             break;
         case "Отримати юзерів":
             $('#chooseUserIdDiv').attr("hidden",false);

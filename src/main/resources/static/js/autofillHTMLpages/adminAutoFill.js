@@ -176,17 +176,19 @@ function showGenreDate(obj){
     $('#spanGenre').empty();
     let genreSpanDiv = document.getElementById('spanGenre'),dropdownStr="";
     obj.genres.forEach(function (masObj){
-        dropdownStr += "<span class=\"badge badge-primary\">" + masObj.genre + "</span>\n"
+        dropdownStr += "<span class=\"badge badge-primary badge-with-delete\">" + masObj.genre + "</span>\n"
     });
     genreSpanDiv.insertAdjacentHTML('afterbegin',dropdownStr);
+    badgeRemoveBind();
 }
 function showCategoriesDate(obj){
     $('#spanCategories').empty();
     let categoriesSpanDiv = document.getElementById('spanCategories'),dropdownStr="";
     obj.categories.forEach(function (masObj){
-        dropdownStr += "<span class=\"badge badge-primary\">" + masObj.categories + "</span>\n"
+        dropdownStr += "<span class=\"badge badge-primary badge-with-delete\">" + masObj.categories + "</span>\n"
     });
     categoriesSpanDiv.insertAdjacentHTML('afterbegin',dropdownStr);
+    badgeRemoveBind();
 }
 
 

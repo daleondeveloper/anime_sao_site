@@ -36,7 +36,7 @@ function addBindToGenre() {
 
     $('#dropDownInputGenre').on('click', 'a', function () {
         let textSpan, genreTxt = this.text;
-        textSpan = "<span class=\"badge badge-primary\">" + genreTxt + "</span>\n";
+        textSpan = "<span class=\"badge badge-primary badge-with-delete\">" + genreTxt + "</span>\n";
         $('#spanGenre').find('span').each(function () {
             if ($(this).text() === genreTxt) {
                 textSpan = "";
@@ -90,7 +90,7 @@ function addBindToCategories() {
 }
 $('#dropDownInputCategories').on('click', 'a', function () {
     let textSpan, categoriesTxt = this.text;
-    textSpan = "<span class=\"badge badge-primary\">" + categoriesTxt + "</span>\n";
+    textSpan = "<span class=\"badge badge-primary badge-with-delete\">" + categoriesTxt + "</span>\n";
     $('#spanCategories').find('span').each(function () {
         if ($(this).text() === categoriesTxt) {
             textSpan = "";
@@ -103,7 +103,7 @@ $('#dropDownInputCategories').on('click', 'a', function () {
 
 });
 function badgeRemoveBind() {
-    $(".badge-primary").on('click',function () {
+    $(".badge-with-delete").on('click',function () {
         $(this).remove();
     })
 }
