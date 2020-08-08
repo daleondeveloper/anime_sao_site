@@ -183,7 +183,7 @@ function createPublicationdiv(id,fullName,genre, director, language,createDate, 
         "                                <p><strong>Категории:</strong>" + categories + "</p>\n" +
         "                            </div>\n" +
         "                            <div class=\"col-3\">\n" +
-        "                                <button id=\"goToPublication" + id + "\" type=\"button\" class=\"btn btn-primary\" style=\"display: block; margin-left: auto;\">Смотреть</button>\n" +
+        "                                <a id=\"goToPublication" + id + "\"  class=\"btn btn-primary\" href=\"catalog\\anime\\" + id + "\" style=\"display: block; margin-left: auto;\">Дивитися</a>\n" +
         "                            </div>\n" +
         "                        </div>\n" +
         "                      </div><!--                    card-footer-->\n" +
