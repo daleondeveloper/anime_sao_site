@@ -55,7 +55,7 @@ public class LinkController {
     public String contactsLink(Locale locale, Model model){
         return "contacts";
     }
-    @RequestMapping(value = "catalog/anime/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "anime/{id}", method = RequestMethod.GET)
     public String animeShowLink(Locale locale, Model model){
         return "animeShow";
     }
