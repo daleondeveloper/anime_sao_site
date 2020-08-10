@@ -9,8 +9,22 @@ function showPublicationDate(){
         },
         type : 'GET',
         url : '/api/v1/publication/' + getIdFromHref(),
-        success : function (){
-                alert("success publication get");
+        success : function (res){
+                $('#txtFullName').text(res.fullName);
+                $('#txtDirector').text(res.director);
+                $('#txtLanguage').text(res.language);
+                $('#txtDescription').text(res.description);
+                $('#txtCountSeries').text(res.countSeries);
+                let strCategories ="";
+                res.categories.forEach(function (masObj){
+                    strCategories += masObj.categories + ", ";
+                })
+                $('#txtCategories').text(strCategories);
+                let strGenre ="";
+                res.genres.forEach(function (masObj){
+                    strGenre += masObj.genre + ", ";
+                })
+                $('#txtGenre').text(strGenre);
         },
         error : function (){}
     })
