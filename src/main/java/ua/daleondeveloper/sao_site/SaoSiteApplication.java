@@ -107,7 +107,7 @@ public class SaoSiteApplication {
                 }
                 byte[] image1 = {};
 
-                try(FileInputStream reader = new FileInputStream("D://icon.jpg")) {
+                try(FileInputStream reader = new FileInputStream("D://SAO_Alicization_MP1.jpg")) {
                     byte[] tmpByteArray = new byte[reader.available()];
                     while (reader.available() > 0) {
                         tmpByteArray[tmpByteArray.length-reader.available()] = (byte)reader.read();
