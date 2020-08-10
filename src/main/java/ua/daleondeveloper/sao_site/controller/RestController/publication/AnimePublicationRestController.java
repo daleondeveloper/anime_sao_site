@@ -1,6 +1,8 @@
 package ua.daleondeveloper.sao_site.controller.RestController.publication;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,9 +25,7 @@ import ua.daleondeveloper.sao_site.utils.FileCheker;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -64,6 +64,21 @@ public class AnimePublicationRestController {
     @GetMapping(value = "publication/genre/{str}")
     public ResponseEntity getGenres(@PathVariable(name = "str")String reqTxt){
         return ResponseEntity.ok(genreService.getByTxt(reqTxt));
+    }
+
+    @GetMapping(value = "getInfoImages/{id}")
+    public ResponseEntity getInfoImages(@PathVariable("id")Long id){
+
+        List<ImagePublication> images = animePublicationService.getInfoImages(id);
+        List<ResponseEntity> resEntList = new ArrayList<>();
+        for(ImagePublication imagePublication : images){
+            resEntList.add(ResponseEntity.ok()
+                    .contentType(MediaType.parseMediaType(imagePublication.getContentType()))
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imagePublication.getFileName() + "\"")
+                    .body(Base64.getEncoder().encodeToString(imagePublication.getData())));
+        }
+
+        return ResponseEntity.ok(resEntList);
     }
 
     @PostMapping(value = "admin/add")

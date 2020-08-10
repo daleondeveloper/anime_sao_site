@@ -1,8 +1,7 @@
 package ua.daleondeveloper.sao_site.domain.Files;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 import ua.daleondeveloper.sao_site.domain.User;
 import ua.daleondeveloper.sao_site.domain.dao_enum.RoleEnum;
 import ua.daleondeveloper.sao_site.domain.publication.AnimePublication;
@@ -20,7 +19,8 @@ public class ImagePublication extends Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonBackReference
     @JoinColumn(name = "anime_Publication_Id")
     private AnimePublication animePublicationImages;
 

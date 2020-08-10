@@ -28,7 +28,7 @@ function showPublicationDate(){
                 })
                 document.getElementById('txtGenre').insertAdjacentHTML('afterbegin','<strong>Жанр: </strong>' + strGenre);
                 showPublicationAvatar(res);
-                showInfoImages();
+                showInfoImages(res);
                 showAnimeVideo();
         },
         error : function (){}
@@ -51,7 +51,29 @@ function showPublicationAvatar(resObj){
         }
     })
 }
-function showInfoImages(){}
+function showInfoImages(resObj){
+    $.ajax({
+        beforeSend : function (req){
+            req.setRequestHeader('Autorization',('Bearer_' + localStorage.getItem('token')));
+        },
+        type : 'GET',
+        url : '/api/v1/publication/anime/getInfoImages/' + resObj.id,
+        async : true,
+        success : function (res){
+            let imageDiv = document.getElementById('infoImages');
+
+            res.forEach(function (masObj){
+                imageDiv.insertAdjacentHTML('afterbegin',
+                    "<img class=\"img-fluid img-thumbnail\" style=\"width:23%;height:10rem; \" src=\"data:image/jpeg;base64," + res + "\" alt=\"Card image cap\">\n")
+            })
+            $('#avatarPublicationImg').attr('src', 'data:image/jpeg;base64,'+ res);
+
+        },
+        error : function (){
+
+        }
+    })
+}
 function showAnimeVideo(){}
 function getIdFromHref(){
     let path = $(location).attr('pathname');

@@ -14,6 +14,7 @@ import ua.daleondeveloper.sao_site.domain.publication.Publication;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class AnimePublicationService {
@@ -25,6 +26,10 @@ public class AnimePublicationService {
 
     public Page<AnimePublication> getAnimeByNumber(int start, int end){
         return animePublicationRepository.findAll(PageRequest.of(start,end,Sort.by(Sort.Direction.DESC, "lastUpdateDateTime")));
+    }
+    public List<ImagePublication> getInfoImages(Long id){
+        AnimePublication animePublication = animePublicationRepository.findById(id).get();
+        return animePublication.getInfoImages();
     }
 //,Sort.by(Sort.Direction.DESC, "lastUpdateDateTime")
     @Transactional

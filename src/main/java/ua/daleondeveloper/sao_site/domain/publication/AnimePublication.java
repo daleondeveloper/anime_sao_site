@@ -1,6 +1,7 @@
 package ua.daleondeveloper.sao_site.domain.publication;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,8 +33,8 @@ public class AnimePublication extends Publication{
     @JoinColumn(name = "count_Series")
     private int countSeries;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "animePublicationImages")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "animePublicationImages", fetch = FetchType.EAGER)
     private List<ImagePublication> infoImages;
 
     public AnimePublication(String description, String fullName, String name, String director, String language, String groupers, LocalDate createDate, LocalDateTime releaseDateTime, LocalDateTime lastUpdateDateTime, List<Types> types, List<Categories> categories, List<Genre> genres, RoleEnum access, int countSeries) {
