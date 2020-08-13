@@ -57,22 +57,39 @@ function showInfoImages(resObj){
             req.setRequestHeader('Autorization',('Bearer_' + localStorage.getItem('token')));
         },
         type : 'GET',
-        url : '/api/v1/publication/anime/getInfoImages/' + resObj.id,
+        url : '/api/v1/publication/anime/getInfoImagesId/' + resObj.id,
         async : true,
         success : function (res){
-            let imageDiv = document.getElementById('infoImages');
-
+            $('#infoImages').empty();
             res.forEach(function (masObj){
-                imageDiv.insertAdjacentHTML('afterbegin',
-                    "<img class=\"img-fluid img-thumbnail\" style=\"width:23%;height:10rem; \" src=\"data:image/jpeg;base64," + res + "\" alt=\"Card image cap\">\n")
+                getInfoImage(masObj);
             })
-            $('#avatarPublicationImg').attr('src', 'data:image/jpeg;base64,'+ res);
-
         },
         error : function (){
 
         }
     })
+    function getInfoImage(id){
+        $.ajax({
+            type : 'GET',
+            url : '/api/v1/publication/anime/getInfoImage/' + id,
+            async : true,
+            success : function (res){
+                let imageDiv = document.getElementById('infoImages');
+
+                    imageDiv.insertAdjacentHTML('afterbegin',
+                        "        <div class=\"col-lg-3 col-md-4 col-6\">\n" +
+                        "<img class=\"img-fluid img-thumbnail\"   src=\"data:image/jpeg;base64," + res + "\" alt=\"Card image cap\">" +
+                        "</div>")
+
+             //   $('#avatarPublicationImg').attr('src', 'data:image/jpeg;base64,'+ res);
+
+            },
+            error : function (){
+
+            }
+        })
+    }
 }
 function showAnimeVideo(){}
 function getIdFromHref(){

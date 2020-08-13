@@ -66,19 +66,26 @@ public class AnimePublicationRestController {
         return ResponseEntity.ok(genreService.getByTxt(reqTxt));
     }
 
-    @GetMapping(value = "getInfoImages/{id}")
-    public ResponseEntity getInfoImages(@PathVariable("id")Long id){
+    @GetMapping(value = "getInfoImagesId/{id}")
+    public ResponseEntity<Object> getInfoImagesId(@PathVariable("id")Long id){
 
         List<ImagePublication> images = animePublicationService.getInfoImages(id);
-        List<ResponseEntity> resEntList = new ArrayList<>();
+        List<Long> resEntList = new ArrayList<>();
         for(ImagePublication imagePublication : images){
-            resEntList.add(ResponseEntity.ok()
-                    .contentType(MediaType.parseMediaType(imagePublication.getContentType()))
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imagePublication.getFileName() + "\"")
-                    .body(Base64.getEncoder().encodeToString(imagePublication.getData())));
+            resEntList.add(imagePublication.getId());
         }
-
         return ResponseEntity.ok(resEntList);
+    }
+    @GetMapping(value = "getInfoImage/{id}")
+    public ResponseEntity<Object> getInfoImage(@PathVariable("id")Long imageId,HttpServletRequest request){
+        ImagePublication image = (ImagePublication)dbFileStorageService.getFile(imageId,null);
+        if(image == null){
+            return ResponseEntity.badRequest().body("Id is invalid");
+        }
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(image.getContentType()))
+                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + image.getFileName() + "\"")
+                .body(Base64.getEncoder().encode(image.getData()));
     }
 
     @PostMapping(value = "admin/add")
