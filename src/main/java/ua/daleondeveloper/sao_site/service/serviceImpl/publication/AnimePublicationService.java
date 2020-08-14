@@ -42,7 +42,11 @@ public class AnimePublicationService {
 
     @Transactional
     public AnimePublication addInfoImage(Long publicationId, ImagePublication infoImage){
-        return animePublicationRepository.addInfoImage(publicationId,infoImage);
+        AnimePublication animePublication = animePublicationRepository.findById(publicationId).get();
+        animePublication.getInfoImages().add(infoImage);
+        animePublicationRepository.flush();
+        return animePublication;
+
     }
 
 }
