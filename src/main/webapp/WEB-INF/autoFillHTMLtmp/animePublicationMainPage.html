@@ -7,15 +7,16 @@
 
     <!-- Bootstrap CSS -->
 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <!-- Header CSS -->
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/animeShow.css">
     <link href="https://flaviusmatis.github.io/simplePagination.js/simplePagination.css" rel="stylesheet">
+    <!-- fancyBox CSS -->
+    <link rel="stylesheet" type="text/css" href="jquery.fancybox.min.css">
 
-    <title>Hello, world!</title>
 </head>
 <body>
 
@@ -244,12 +245,32 @@
                                 </p>
                                 </div>
                                 <div id = "infoImages" class = "card">
-                                    <div class="card-body">
-                                    <img class="img-fluid img-thumbnail" style="width:23%;height:10rem; " src="alicization/1.jpg" alt="Card image cap">
-                                    <img class="img-fluid img-thumbnail" style="width:23%;height:10rem; " src="alicization/2.jpg" alt="Card image cap">
-                                    <img class="img-fluid img-thumbnail" style="width:23%;height:10rem; " src="alicization/3.jpg" alt="Card image cap">
-                                    <img class="img-fluid img-thumbnail" style="width:23%;height:10rem; " src="alicization/4jpg.jpg" alt="Card image cap">
-                                    <img class="img-fluid img-thumbnail" style="width:23%;height:10rem;" src="alicization/5jpg.jpg" alt="Card image cap">
+                                    <div class="card-body" >
+                                        <div class="col-3  d-inline-block my-class" style="width:80%">
+
+                                        <img class="img-fluid " src="alicization/1.jpg" alt="Card image cap">
+                                        </div>
+                                        <div class="col-3 d-inline-block my-class">
+                                            <img class="img-fluid "  src="alicization/2.jpg" alt="Card image cap">
+                                        </div>
+
+                                        <div class="col-3 d-inline-block my-class">
+
+                                        <img class="img-fluid "  src="alicization/3.jpg" alt="Card image cap">
+                                        </div>
+                                        <div class="col-3 d-inline-block my-class">
+
+                                    <img class="img-fluid "  src="alicization/4jpg.jpg" alt="Card image cap">
+                                        </div>
+                                        <div class="col-3 d-inline-block my-class">
+
+                                    <img class="img-fluid "  src="alicization/5jpg.jpg" alt="Card image cap">
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-6 thumb">
+                                            <a data-fancybox="gallery" href="alicization/3.jpg">
+                                                <img class="img-fluid" src="alicization/3.jpg" alt="...">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card">
@@ -326,6 +347,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <!---->
+<script src="jquery.fancybox.min.js"></script>
+
 <!--LocalJS-->
 <script src="../js/authetication/autorization.js" ></script>
 <script src="../js/button/UserButton.js" ></script>

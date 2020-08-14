@@ -78,9 +78,11 @@ function showInfoImages(resObj){
                 let imageDiv = document.getElementById('infoImages');
 
                     imageDiv.insertAdjacentHTML('afterbegin',
-                        "        <div class=\"col-lg-3 col-md-4 col-6\">\n" +
-                        "<img class=\"img-fluid img-thumbnail\"   src=\"data:image/jpeg;base64," + res + "\" alt=\"Card image cap\">" +
-                        "</div>")
+                        "<!-- --><div class=\"col-lg-3 col-md-4 col-6 m-0 p-0 d-inline-block my-class\">\n" +
+                        "\n             <a data-fancybox=\"gallery\" class=\"img-fluid\" href=\"data:image/jpeg;base64," + res + "\">\n" +
+                        "   <img class=\"img-fluid img-thumbnail\"  src=\"data:image/jpeg;base64," + res + "\" alt=\"Card image cap\">\n" +
+                        " </a>"+
+                        "</div><!-- -->")
 
              //   $('#avatarPublicationImg').attr('src', 'data:image/jpeg;base64,'+ res);
 
