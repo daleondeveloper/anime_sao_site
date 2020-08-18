@@ -128,7 +128,7 @@ function createPublicationdiv(id,fullName,genre, director, language,createDate, 
     let stringDiv = "                <div class=\"card border border-primary\" style=\"margin: 0.4rem;\">\n" +
         "                    <div class=\"card-header\">\n" +
         "                        <h4>\n" +
-        "                          <a  href=\"#\">&#10031; " + fullName + "</a>\n" +
+        "                          <a  href=\"anime\\" + id + "\">&#10031; " + fullName + "</a>\n" +
         "                        </h4>\n" +
         "                    </div><!--                    card-header-->\n" +
         "                  <div class=\"card-body\">\n" +
@@ -183,7 +183,7 @@ function createPublicationdiv(id,fullName,genre, director, language,createDate, 
         "                                <p><strong>Категории:</strong>" + categories + "</p>\n" +
         "                            </div>\n" +
         "                            <div class=\"col-3\">\n" +
-        "                                <a id=\"goToPublication" + id + "\"  class=\"btn btn-primary\" href=\"catalog\\anime\\" + id + "\" style=\"display: block; margin-left: auto;\">Дивитися</a>\n" +
+        "                                <a id=\"goToPublication" + id + "\"  class=\"btn btn-primary\" href=\"anime\\" + id + "\" style=\"display: block; margin-left: auto;\">Дивитися</a>\n" +
         "                            </div>\n" +
         "                        </div>\n" +
         "                      </div><!--                    card-footer-->\n" +
