@@ -109,6 +109,6 @@ INSERT INTO image_publication(id,access,content_type,create_date,data,file_name,
 (56,'ROLE_GUEST','image/jpg',now(),lo_import('D://info_publication/SAO_SPECIAL/3.jpg'),'avatar',7),
 (57,'ROLE_GUEST','image/jpg',now(),lo_import('D://info_publication/SAO_SPECIAL/4.jpg'),'avatar',7),
 (58,'ROLE_GUEST','image/jpg',now(),lo_import('D://info_publication/SAO_SPECIAL/5.jpg'),'avatar',7);
-
-
+-- виправити шлях до файлів бере статіку з компютера , потрібно орієнтацію на проект зробити,
+-- при імпорту з git проекту ошибка шляху до файлів
 

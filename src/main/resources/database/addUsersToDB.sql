@@ -46,3 +46,5 @@ UPDATE users SET avatar_img = 7 WHERE id = 7;
 UPDATE users SET avatar_img = 8 WHERE id = 8;
 UPDATE users SET avatar_img = 9 WHERE id = 9;
 UPDATE users SET avatar_img = 10 WHERE id = 10;
+-- виправити шлях до файлів бере статіку з компютера , потрібно орієнтацію на проект зробити,
+-- при імпорту з git проекту ошибка шляху до файлів
